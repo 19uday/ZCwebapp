@@ -2,7 +2,7 @@ export const trendsService = {
     getTrends,
 };
 
-const hostName = window.location.hostname
+const hostName = '2cf6aac4.ngrok.io';
 
 function getTrends( trackers, parameter ) {
     const requestOptions = {
@@ -17,7 +17,7 @@ function getTrends( trackers, parameter ) {
 
 
 
-    return fetch(`http://${hostName}:5000/trends`, requestOptions)
+    return fetch(`http://36f707f5.ngrok.io/trends`, requestOptions)
         .then(handleResponse)
 }
 

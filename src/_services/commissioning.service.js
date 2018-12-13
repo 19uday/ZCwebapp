@@ -3,7 +3,7 @@ export const commissioningService = {
     getCurrentTrackerInfo
 };
 
-const hostname = window.location.hostname
+const hostname = '5fb4f752.ngrok.io';
 
 function getCommissioningData() {
     const requestOptions = {
@@ -12,7 +12,7 @@ function getCommissioningData() {
         body: null
     };
 
-    return fetch(`http://${hostname}:5000/getCommissioningData`, requestOptions)
+    return fetch(`http://36f707f5.ngrok.io/getCommissioningData`, requestOptions)
         .then(handleResponse)
 }
 
@@ -23,7 +23,7 @@ function getCurrentTrackerInfo(trackerID) {
         body: null
     };
 
-    return fetch(`http://${hostname}:5000/getCurrentTrackerInfo?id=${trackerID}`, requestOptions)
+    return fetch(`http://36f707f5.ngrok.io/getCurrentTrackerInfo?id=${trackerID}`, requestOptions)
         .then(handleResponse)
 }
 

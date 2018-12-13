@@ -18,8 +18,9 @@ import classNames from 'classnames';
 
 const styles = theme => ({
   root: {
-    width: '100%',
     backgroundColor: theme.palette.background.paper,
+    maxWidth: '100%',
+    display: 'flex',
   },
   red: {
     backgroundColor: 'red'
@@ -90,7 +91,7 @@ class CheckboxListSecondary extends React.Component {
     const { classes, trackers } = this.props;
     console.log(trackers)
     return ( 
-      <Grid container direction='column' justify='space-evenly'>
+      <Grid container direction='column' spacing={24}>
         <Grid item>
           <Paper className={classes.paper}>
             <Typography variant="h5" component="h3">
@@ -129,39 +130,34 @@ class CheckboxListSecondary extends React.Component {
           <Typography variant="h5" component="h3">
                 Tracker Control:
             </Typography>  
+            <br />
           <Table className={classes.table}>
             <TableBody>
           {
               trackers.map(tracker => {
                   return (
-                    <TableRow key={tracker.trackerID}>
-                      <TableCell padding="default">{tracker.trackerID}</TableCell>
-                      <TableCell padding="default">
-                        <Button variant="contained" className={classes.green} onClick={() => this.handleChange('WE', tracker.deviceID)}>
+                    <div>
+<Grid container justify="space-evenly">   
+<p>{tracker.trackerID}</p> 
+            <Button variant="contained" className={classes.green} onClick={() => this.handleChange('WE', tracker.deviceID)}>
                           RUN WEST
                           <ArrowLeftIcon className={classes.rightIcon} />
                         </Button>
-                      </TableCell>
-                      <TableCell padding="default">
-                        <Button variant="contained" className={classes.orange} onClick={() => this.handleChange('SMTALStow', tracker.deviceID)}>
+            <Button variant="contained" className={classes.orange} onClick={() => this.handleChange('SMTALStow', tracker.deviceID)}>
                           STOW
                           <StraightenIcon className={classes.rightIcon} />
                         </Button>
-                      </TableCell>
-                      <TableCell padding="default">
-                        <Button variant="contained" disabled={this.state.stopped ? this.state.stopped.indexOf(tracker.deviceID) > -1 ? true : false : false } className={classes.red} onClick={() => this.handleChange('SMTALStop', tracker.deviceID)}>
+            <Button variant="contained" disabled={this.state.stopped ? this.state.stopped.indexOf(tracker.deviceID) > -1 ? true : false : false } className={classes.red} onClick={() => this.handleChange('SMTALStop', tracker.deviceID)}>
                           STOP
                           <StopIcon className={classes.rightIcon} />
                         </Button>
-                      </TableCell>
-                      <TableCell padding="default">
-                        <Button variant="contained" disabled={this.state.auto ? this.state.auto.indexOf(tracker.deviceID) > -1 ? true : false : false } className={classes.blue} onClick={() => this.handleChange('ES', tracker.deviceID)}>
+            <Button variant="contained" disabled={this.state.auto ? this.state.auto.indexOf(tracker.deviceID) > -1 ? true : false : false } className={classes.blue} onClick={() => this.handleChange('ES', tracker.deviceID)}>
                           RUN EAST
                           <ArrowRightIcon className={classes.rightIcon} />
                         </Button>
-                      </TableCell>
-                    </TableRow>
-                    
+            </Grid><br/>
+            <br/>
+            </div>
                   )
               }
               )}

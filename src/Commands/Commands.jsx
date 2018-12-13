@@ -10,9 +10,10 @@ import classNames from 'classnames'
 
 const styles = theme => ({
   root: {
-    height: '90.5%',
-    width: '100%',
-    display: 'flex'
+    maxWidth: '100%',
+    display: 'flex',
+    flexWrap: 'wrap',
+    overflowX: 'scroll',
   },  
 });
 
@@ -20,10 +21,6 @@ class Commands extends Component {
 
     constructor(props){
         super(props);
-    }
-
-    state={
-
     }
 
     render(){

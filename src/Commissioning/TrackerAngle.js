@@ -7,7 +7,6 @@ import classNames from 'classnames'
 const styles = theme => ({
   root: {
     width: '100%',
-    overflowX: 'auto',
     ...theme.mixins.gutters(),
     paddingTop: theme.spacing.unit * 2,
     paddingBottom: theme.spacing.unit * 2,
@@ -16,7 +15,7 @@ const styles = theme => ({
     paddingLeft: '24px'
   },
   innerDiv: {
-    width: 'calc(100% - 24px)',
+    width: '90%',
     height: '100%',
     margin: 'auto'
   },  

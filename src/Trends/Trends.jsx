@@ -97,7 +97,7 @@ class Trends extends React.Component {
         return(
             loaded ? 
             <Grid container className={classNames("flex", classes.root)} justify="space-evenly" direction="row" alignItems="stretch">
-                <Grid item xs={3} className={classNames("flex", classes.paper)}>
+                <Grid item xs={7} md={4}  className={classNames("flex", classes.paper)}>
                   <Grid container direction="column" justify="space-evenly" alignItems="center">
                     <Grid item className={classes.width}>
                     <FormControl className={classes.formControl} >
@@ -147,7 +147,7 @@ class Trends extends React.Component {
                     </Grid>
                     </Grid>
                 </Grid>
-                <Grid item xs={6} className={classNames("flex", classes.paper)} >
+                <Grid item xs={7} md={7} className={classNames("flex", classes.paper)} >
                 <div style={{ width:'100%', height:'100%' }} 
                     ref={ref => {
                         this.contentDiv = ref;

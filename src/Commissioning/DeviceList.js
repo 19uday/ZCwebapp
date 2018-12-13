@@ -28,7 +28,6 @@ const styles = theme => ({
     height: '70%'
   },
   image: {
-    backgroundColor: 'black',
     width: '35%',
     height: '140%',
     backgroundImage: 'url(/img/map.png)',

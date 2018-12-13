@@ -13,10 +13,13 @@ import TrackerAngle from './TrackerAngle';
 
 const styles = theme => ({
     root: {
-        height: '90.5%',
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-around',
+        overflowY: 'scroll',
+        height: '100%',
         width: '100%',
-        display: 'flex'
-    },  
+      }, 
     padTop: {
         paddingTop: '5px'
     },
@@ -25,7 +28,17 @@ const styles = theme => ({
     },
     padRight: {
         paddingRight: '10px'
-    }
+    },
+    details: {
+        [theme.breakpoints.down('md')]: {
+            height: '500px',
+          },
+    },
+    detail: {
+        [theme.breakpoints.down('960')]: {
+            height: '500px',
+          },
+    },
 });
 
 class Commissioning extends Component {
@@ -61,18 +74,18 @@ class Commissioning extends Component {
         return (
             <div className={classes.root} >
                 <Grid container spacing={24} className="flex" alignItems="stretch" direction="row" justify="space-around">
-                    <Grid item xs={12} md={6} className={classNames("flex", classes.padRight)}>
+                    <Grid item xs={12} md={6} className={classNames("flex", classes.padRight, classes.detail)}>
                         { loaded ? <DeviceList permitJoin={this.permitJoin} permitJoinClicked={this.state.permitJoinClicked} selectedTrackerID={selectedTrackerID} devices={commissioningData} getTrackerDetails={this.getTrackerDetails}/> : <Loading /> }
                     </Grid>
                     <br />
                     <Grid item xs={12} md={6}  className={classNames("flex")}>
-                        <Grid container spacing={24} className="flex" alignItems="stretch" direction="column" justify="space-around">
-                        <Grid item sm className={classNames("flex", classes.padBottom)}>
+                        <Grid container spacing={24} className="flex" direction="column" justify="space-around">
+                        <Grid item md className={classNames("flex", classes.padBottom, classes.details)}>
                         {
                             loadedTrackerInfo ? <TrackerAngle angle={selectedTrackerDetails.currentAngle}/> : <Loading />
                         }
                         </Grid>
-                        <Grid item sm className={classNames("flex", classes.padTop)}>
+                        <Grid item md className={classNames("flex", classes.padTop, classes.details)}>
                         { loadedTrackerInfo ? <TrackerDetails 
                                                 deviceID={commissioningData.find(e => e.trackerID === selectedTrackerID).controllerInfo.macID}
                                                 trackerID={selectedTrackerID} 
