@@ -22,12 +22,14 @@ export function trends(state, action) {
         parameters: action.obj.parameter
       };
     case trendsConstants.GET_TRENDS_SUCCESS:
+    {console.log(action.trends);
       return {
         ...state,
         requesting: false,  
         trends: action.trends,
         loaded: true
       };
+    }
     case trendsConstants.GET_TRENDS_FAILURE:
       return {
         ...state,

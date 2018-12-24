@@ -2,22 +2,24 @@ export const trendsService = {
     getTrends,
 };
 
-const hostName = 'localhost';
+const hostName = '458076b7.ngrok.io';
 
 function getTrends( trackers, parameter ) {
     const requestOptions = {
         method: "POST",
         mode: 'cors',
         body: JSON.stringify({
+            "param": 
+            {
             "trackerId": trackers,
             "parameter": parameter
-        })
+        }})
     };
 
 
 
 
-    return fetch(`http://localhost:5000/trends`, requestOptions)
+    return fetch(`http://458076b7.ngrok.io/trends`, requestOptions)
         .then(handleResponse)
 }
 

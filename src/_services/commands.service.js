@@ -2,7 +2,7 @@ export const commandsService = {
     sendCommand
 };
 
-const hostName = 'localhost';
+const hostName = '458076b7.ngrok.io';
 
 function sendCommand(trackerID, command) {
     const requestOptions = {
@@ -14,7 +14,7 @@ function sendCommand(trackerID, command) {
         })
     };
 
-    return fetch(`http://localhost:5001/sendCommand`, requestOptions)
+    return fetch(`http://458076b7.ngrok.io/sendCommand`, requestOptions)
         .then(handleResponse)
 }
 

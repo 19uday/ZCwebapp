@@ -91,8 +91,26 @@ class Trends extends React.Component {
             'battery current',
             'pv voltage',
             'pv current',
-            'actual angle'
+            'actual angle',
+            'wind speed',
+            'temp',
+            'irradiation',
         ]
+
+        const data = [
+            {
+              "year": "1993",
+              "Burkina Faso": 16,
+              "Ghana": 0,
+              "Kenya": 0
+            },
+            {
+              "year": "2010",
+              "Burkina Faso": 80.4,
+              "Ghana": 75.05,
+              "Kenya": 70.90
+            }
+          ]
 
         return(
             loaded ? 
@@ -154,16 +172,22 @@ class Trends extends React.Component {
                     }}>
                 {loadedTrends ? 
                 
-                    <LineChart width={this.contentDiv.getBoundingClientRect().width} height={this.contentDiv.getBoundingClientRect().height} data={trends.coordinates}
-                            margin={{top: 5, right: 30, left: 20, bottom: 5}}>
-                        <XAxis tickFormatter = {(unixTime) => moment(unixTime).format('HH:mm MMM Do YY')} dataKey="timeStamp"/>
-                        <YAxis/>
-                        <CartesianGrid strokeDasharray="3 3"/>
-                        <Tooltip />
-                        <Legend />
-                        {this.state.trackers.map(t => {
-                            return <Line type="monotone" dataKey={t} stroke="#8884d8" activeDot={{r: 8}}/>
-                        })}
+                <LineChart 
+                width={400}
+                height={400}
+                data={data}
+                margin={{ top: 5, right: 20, left: 10, bottom: 5 }}
+               >
+               <XAxis dataKey="year" />
+               <YAxis />
+               <CartesianGrid strokeDasharray="3 3" />
+               <Tooltip />
+               <Line 
+                   connectNulls={true} 
+                   type="monotone" 
+                   dataKey="Zambia" 
+                   stroke="black" 
+               /> 
                     </LineChart>
                 : "select data to plot"}
                 </div>

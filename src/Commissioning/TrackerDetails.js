@@ -58,6 +58,26 @@ function TrackerDetails(props) {
             </TableRow>
             </TableHead>
             <TableBody>
+
+                      <TableRow>
+                      <TableCell className={classes.innerRow} padding="dense">
+                        windSpeed: </TableCell><TableCell>{data.windspeed}
+                      </TableCell>
+                      </TableRow>
+
+                      <TableRow>
+                      <TableCell className={classes.innerRow} padding="dense">
+                        temp: </TableCell><TableCell>{data.temp}
+                      </TableCell>
+                      </TableRow>
+
+                      <TableRow>
+                      <TableCell className={classes.innerRow} padding="dense">
+                        irradiation: </TableCell><TableCell>{data.irradiation}
+                      </TableCell>
+                      </TableRow>
+
+
                       <TableRow>
                       <TableCell className={classes.innerRow} padding="dense">
                         batteryCurrent: </TableCell><TableCell>{data.batteryCurrent}

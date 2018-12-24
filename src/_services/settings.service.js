@@ -2,7 +2,7 @@ export const settingsService = {
     sendSetting,
 };
 
-const hostName = 'localhost';
+const hostName = '458076b7.ngrok.io';
 
 function sendSetting(setting) {
     const requestOptions = {

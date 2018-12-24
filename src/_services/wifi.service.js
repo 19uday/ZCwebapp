@@ -3,7 +3,7 @@ export const wifiService = {
     upload
 };
 
-const hostName = 'localhost';
+const hostName = '458076b7.ngrok.io';
 
 function setWifiInfo(ssid, pass) {
     const requestOptions = {
@@ -15,7 +15,7 @@ function setWifiInfo(ssid, pass) {
         })
     };
 
-    return fetch(`http://localhost:5000/setWifiInfo`, requestOptions)
+    return fetch(`http://458076b7.ngrok.io/setWifiInfo`, requestOptions)
         .then(handleResponse)
 }
 
@@ -28,7 +28,7 @@ function upload(file) {
         body: data
     };
 
-    return fetch(`http://localhost:5000/loadStaticData`, requestOptions)
+    return fetch(`http://458076b7.ngrok.io/loadStaticData`, requestOptions)
         .then(handleResponse)
 }
 

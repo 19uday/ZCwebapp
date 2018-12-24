@@ -61,11 +61,14 @@ class Commissioning extends Component {
 
     getTrackerDetails = (trackerID) => {
         this.props.getCurrentTrackerInfo(trackerID)
+        console.log(trackerID)
         const deviceID = this.props.commissioningData.find(e => e.trackerID === trackerID).controllerInfo.macID
         this.setState({
             trackerID,
             deviceID
         })
+        console.log(this.state.deviceID);
+        
     }
 
     render(){
@@ -87,7 +90,7 @@ class Commissioning extends Component {
                         </Grid>
                         <Grid item md className={classNames("flex", classes.padTop, classes.details)}>
                         { loadedTrackerInfo ? <TrackerDetails 
-                                                deviceID={commissioningData.find(e => e.trackerID === selectedTrackerID).controllerInfo.macID}
+                                                deviceID={this.state.deviceID}
                                                 trackerID={selectedTrackerID} 
                                                 trackerDetails={selectedTrackerDetails}/> : <Loading /> }
                         </Grid>
