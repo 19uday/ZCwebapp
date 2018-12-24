@@ -2,7 +2,7 @@ export const commandsService = {
     sendCommand
 };
 
-const hostName = 'localhost:5000';
+const hostName = '0.0.0.0:5000';
 
 function sendCommand(trackerID, command) {
     const requestOptions = {
@@ -14,7 +14,7 @@ function sendCommand(trackerID, command) {
         })
     };
 
-    return fetch(`http://localhost:5000/sendCommand`, requestOptions)
+    return fetch(`http://0.0.0.0:5000/sendCommand`, requestOptions)
         .then(handleResponse)
 }
 

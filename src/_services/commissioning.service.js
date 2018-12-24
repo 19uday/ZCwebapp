@@ -3,7 +3,7 @@ export const commissioningService = {
     getCurrentTrackerInfo
 };
 
-const hostname = 'localhost:5000';
+const hostname = '0.0.0.0:5000';
 
 function getCommissioningData() {
     const requestOptions = {
@@ -12,7 +12,7 @@ function getCommissioningData() {
         body: null
     };
 
-    return fetch(`http://localhost:5000/getCommissioningData`, requestOptions)
+    return fetch(`http://0.0.0.0:5000/getCommissioningData`, requestOptions)
         .then(handleResponse)
 }
 
@@ -23,7 +23,7 @@ function getCurrentTrackerInfo(trackerID) {
         body: null
     };
 
-    return fetch(`http://localhost:5000/getCurrentTrackerInfo?id=${trackerID}`, requestOptions)
+    return fetch(`http://0.0.0.0:5000/getCurrentTrackerInfo?id=${trackerID}`, requestOptions)
         .then(handleResponse)
 }
 

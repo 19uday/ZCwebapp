@@ -2,7 +2,7 @@ export const trendsService = {
     getTrends,
 };
 
-const hostName = '458076b7.ngrok.io';
+const hostName = '0.0.0.0:5000';
 
 function getTrends( trackers, parameter ) {
     const requestOptions = {
@@ -19,7 +19,7 @@ function getTrends( trackers, parameter ) {
 
 
 
-    return fetch(`http://localhost:5000/trends`, requestOptions)
+    return fetch(`http://0.0.0.0:5000/trends`, requestOptions)
         .then(handleResponse)
 }
 
