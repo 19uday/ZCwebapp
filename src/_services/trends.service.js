@@ -2,24 +2,23 @@ export const trendsService = {
     getTrends,
 };
 
-const hostName = '0.0.0.0:5000';
+const hostName = window.location.hostname
 
 function getTrends( trackers, parameter ) {
     const requestOptions = {
         method: "POST",
         mode: 'cors',
         body: JSON.stringify({
-            "param": 
-            {
             "trackerId": trackers,
             "parameter": parameter
-        }})
+        })
     };
 
+    console.log(requestOptions)
 
 
 
-    return fetch(`http://0.0.0.0:5000/trends`, requestOptions)
+    return fetch(`http://${hostName}:5000/trends`, requestOptions)
         .then(handleResponse)
 }
 
