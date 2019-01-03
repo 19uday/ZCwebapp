@@ -2,7 +2,7 @@ export const settingsService = {
     sendSetting,
 };
 
-const hostName = '0.0.0.0:5000';
+const hostName = '192.168.4.1:5000';
 
 function sendSetting(setting) {
     const requestOptions = {

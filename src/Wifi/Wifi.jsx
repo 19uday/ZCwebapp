@@ -12,6 +12,10 @@ import CardMedia from '@material-ui/core/CardMedia';
 import classNames from 'classnames';
 import { wifiActions } from '../_actions'
 import { Typography } from '@material-ui/core';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
 
 const styles = theme => ({
   paper: {
@@ -28,7 +32,30 @@ const styles = theme => ({
   input: {
     display: 'none',
   },
-  
+  button: {
+    display: 'block',
+    marginTop: theme.spacing.unit * 2,
+  },
+  formControl: {
+    margin: theme.spacing.unit,
+    minWidth: 120,
+  },
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    overflowY: 'scroll',
+    height: '100%',
+  },
+  paper1: {
+    ...theme.mixins.gutters(),
+    paddingTop: theme.spacing.unit * 2,
+    paddingBottom: theme.spacing.unit * 2,
+    width: '50%',
+    margin: 'auto',
+    height: '120px',
+    paddingBottom: "10px",
+  }, 
 });
 
 class Wifi extends Component {
@@ -37,7 +64,9 @@ class Wifi extends Component {
         ssid: '',
         password: '',
         submitted: false,
-        selectedFile: null
+        selectedFile: null,
+        age:'',
+        open: false,
     };
 
   handleChange = (e) => {
@@ -64,6 +93,18 @@ class Wifi extends Component {
   handleUpload = event => {
     this.props.upload(this.state.selectedFile)
   }
+
+  handleChange1 = event => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
+
+  handleClose = () => {
+    this.setState({ open: false });
+  };
+
+  handleOpen = () => {
+    this.setState({ open: true });
+  };
 
     render(){
         const { classes } = this.props;
@@ -140,6 +181,35 @@ class Wifi extends Component {
                     </Button>
                 </center>
                 </form>
+                </Paper>
+              </Grid>
+              <Grid item xs={12}>
+              <Paper className={classes.paper1}>
+              <center>
+              <form autoComplete="off">
+        <FormControl className={classes.formControl}>
+          <InputLabel htmlFor="demo-controlled-open-select">Select Sensor</InputLabel>
+          <Select
+            open={this.state.open}
+            onClose={this.handleClose}
+            onOpen={this.handleOpen}
+            value={this.state.age}
+            onChange={this.handleChange1}
+            inputProps={{
+              name: 'sensor',
+              id: 'demo-controlled-open-select',
+            }}
+          >
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
+            <MenuItem value="Wind">Wind Sensor</MenuItem>
+            <MenuItem value="Temp">Temp Sensor</MenuItem>
+            <MenuItem value="Other">Other Sensor</MenuItem>
+          </Select>
+        </FormControl>
+      </form>
+      </center>
                 </Paper>
               </Grid>
             </Grid>

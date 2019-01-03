@@ -12,7 +12,7 @@ function getCommissioningData() {
         body: null
     };
 
-    return fetch(`http://${hostName}:5000/getCommissioningData`, requestOptions)
+    return fetch(`http://192.168.4.1:5000/getCommissioningData`, requestOptions)
         .then(handleResponse)
 }
 
@@ -23,7 +23,7 @@ function getCurrentTrackerInfo(trackerID) {
         body: null
     };
 
-    return fetch(`http://${hostName}:5000/getCurrentTrackerInfo?id=${trackerID}`, requestOptions)
+    return fetch(`http:/192.168.4.1:5000/getCurrentTrackerInfo?id=${trackerID}`, requestOptions)
         .then(handleResponse)
 }
 

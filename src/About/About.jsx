@@ -12,7 +12,6 @@ const styles = theme => ({
     paddingBottom: theme.spacing.unit * 2,
     textAlign: 'center',
   }
-  
 });
 
  class About extends Component {

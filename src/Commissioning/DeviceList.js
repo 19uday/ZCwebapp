@@ -84,7 +84,7 @@ function DeviceList(props) {
         </Grid>
         <div className={classes.zoneImage}>
             <div className={classes.image}></div>
-            <Button className={classes.button} variant='contained' disabled={props.permitJoinClicked} onClick={props.permitJoin} >Permit Join</Button>
+           
             <div className={classes.dummy}></div>
         </div>
     </Paper>

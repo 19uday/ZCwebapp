@@ -21,6 +21,7 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import InfoIcon from '@material-ui/icons/Info';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import { Link } from "react-router-dom";
+import { fade } from '@material-ui/core/styles/colorManipulator';
 
 const drawerWidth = 240;
 
@@ -60,7 +61,13 @@ const styles = theme => ({
   },
   selected: {
     backgroundColor: "lightskyblue"
-  }
+  },
+  search: {
+    margin: 'auto',
+    backgroundColor: 'silver',
+    borderRadius: '5px',
+    color: 'black',
+  },
 });
 
 class ResponsiveDrawer extends React.Component {
@@ -133,8 +140,8 @@ class ResponsiveDrawer extends React.Component {
 
     return (
       <div className={classes.root}>
-        <AppBar className={classes.appBar}>
-          <Toolbar>
+        <AppBar className={classes.appBar} >
+          <Toolbar style={{overflow:"auto"}}>
             <IconButton
               color="inherit"
               aria-label="Open drawer"
@@ -146,6 +153,11 @@ class ResponsiveDrawer extends React.Component {
             <Typography variant="title" color="inherit" noWrap>
               Zone Controller Interface
             </Typography>
+            <div className={classes.search}>
+            <p>
+             Id: Zone1 ; Location: 196* 
+             </p>
+          </div>
           </Toolbar>
         </AppBar>
         <Hidden lgUp>
