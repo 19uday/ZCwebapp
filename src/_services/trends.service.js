@@ -2,7 +2,7 @@ export const trendsService = {
     getTrends,
 };
 
-const hostName = window.location.hostname
+const hostName = window.location.hostname+':5000';
 
 function getTrends( trackers, parameter ) {
     const requestOptions = {
@@ -14,11 +14,10 @@ function getTrends( trackers, parameter ) {
         })
     };
 
-    console.log(requestOptions)
 
 
 
-    return fetch(`http://192.168.4.1:5000/trends`, requestOptions)
+    return fetch(`http://${hostName}/trends`, requestOptions)
         .then(handleResponse)
 }
 

@@ -61,7 +61,7 @@ class CheckboxListSecondary extends React.Component {
   };
 
   handleChange = (e,command, trackerID) => {
-    e.target.style.backgroundColor = "silver";
+    e.currentTarget.style.backgroundColor = "silver";
     this.props.sendCommand(trackerID, command)
     const newAuto = this.state.auto
     const newStopped = this.state.stopped

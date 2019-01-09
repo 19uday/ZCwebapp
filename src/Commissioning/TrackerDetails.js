@@ -61,6 +61,12 @@ function TrackerDetails(props) {
 
                       <TableRow>
                       <TableCell className={classes.innerRow} padding="dense">
+                        windSpeed: </TableCell><TableCell>{data.rainspeed}
+                      </TableCell>
+                      </TableRow>
+
+                      <TableRow>
+                      <TableCell className={classes.innerRow} padding="dense">
                         windSpeed: </TableCell><TableCell>{data.windspeed}
                       </TableCell>
                       </TableRow>

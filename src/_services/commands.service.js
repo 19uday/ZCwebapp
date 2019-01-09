@@ -2,19 +2,19 @@ export const commandsService = {
     sendCommand
 };
 
-const hostName = window.location.hostname
+const hostName = window.location.hostname+':5001';
 
-function sendCommand(trackers, command) {
+function sendCommand(trackerID, command) {
     const requestOptions = {
         method: "POST",
         mode: 'cors',
         body: JSON.stringify({
-            trackerID: "tracker001",
+            deviceID: trackerID,
             command: command
         })
     };
 
-    return fetch(`http://192.168.4.1:5000/sendCommand`, requestOptions)
+    return fetch(`http://${hostName}/sendCommand`, requestOptions)
         .then(handleResponse)
 }
 

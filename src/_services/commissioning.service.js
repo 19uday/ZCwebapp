@@ -3,7 +3,7 @@ export const commissioningService = {
     getCurrentTrackerInfo
 };
 
-const hostName = window.location.hostname
+const hostname = window.location.hostname+':5000';
 
 function getCommissioningData() {
     const requestOptions = {
@@ -12,7 +12,7 @@ function getCommissioningData() {
         body: null
     };
 
-    return fetch(`http://192.168.4.1:5000/getCommissioningData`, requestOptions)
+    return fetch(`http://${hostname}/getCommissioningData`, requestOptions)
         .then(handleResponse)
 }
 
@@ -23,13 +23,12 @@ function getCurrentTrackerInfo(trackerID) {
         body: null
     };
 
-    return fetch(`http:/192.168.4.1:5000/getCurrentTrackerInfo?id=${trackerID}`, requestOptions)
+    return fetch(`http://${hostname}/getCurrentTrackerInfo?id=${trackerID}`, requestOptions)
         .then(handleResponse)
 }
 
 function handleResponse(response) {
     return response.json().then(json => {
-        console.log(json)
         if (!response.ok) {
             if (response.status === 403) {
                 console.log("403")
