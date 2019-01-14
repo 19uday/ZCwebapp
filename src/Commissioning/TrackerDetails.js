@@ -61,50 +61,50 @@ function TrackerDetails(props) {
 
                       <TableRow>
                       <TableCell className={classes.innerRow} padding="dense">
-                        rainSpeed: </TableCell><TableCell>{data.rainspeed}
+                        rainFall: </TableCell><TableCell>{parseFloat(data.rainspeed).toFixed(2)}  mm
                       </TableCell>
                       </TableRow>
 
                       <TableRow>
                       <TableCell className={classes.innerRow} padding="dense">
-                        windSpeed: </TableCell><TableCell>{data.windspeed}
+                        windSpeed: </TableCell><TableCell>{parseFloat(data.windspeed).toFixed(2)}  km/hr
                       </TableCell>
                       </TableRow>
 
                       <TableRow>
                       <TableCell className={classes.innerRow} padding="dense">
-                        temp: </TableCell><TableCell>{data.temp}
+                        temp: </TableCell><TableCell>{parseFloat(data.temp).toFixed(2)}  F
                       </TableCell>
                       </TableRow>
 
                       <TableRow>
                       <TableCell className={classes.innerRow} padding="dense">
-                        irradiation: </TableCell><TableCell>{data.irradiation}
+                        irradiation: </TableCell><TableCell>{parseFloat(data.irradiation).toFixed(2)}  kW/mm2
                       </TableCell>
                       </TableRow>
 
 
                       <TableRow>
                       <TableCell className={classes.innerRow} padding="dense">
-                        batteryCurrent: </TableCell><TableCell>{data.batteryCurrent}
+                        batteryCurrent: </TableCell><TableCell>{parseFloat(data.batteryCurrent).toFixed(2)}  A
                       </TableCell>
                       </TableRow>
 
                       <TableRow>
                       <TableCell className={classes.innerRow} padding="dense">
-                      batteryVoltage: </TableCell><TableCell>{data.batteryVoltage}
+                      batteryVoltage: </TableCell><TableCell>{parseFloat(data.batteryVoltage).toFixed(2)}  V
                       </TableCell>
                       </TableRow>
 
                       <TableRow>
                       <TableCell className={classes.innerRow} padding="dense">
-                      calculatedAngle: </TableCell><TableCell>{data.calculatedAngle}
+                      calculatedAngle: </TableCell><TableCell>{parseFloat(data.calculatedAngle).toFixed(2)}  deg
                       </TableCell>
                       </TableRow>
 
                       <TableRow>
                       <TableCell className={classes.innerRow} padding="dense">
-                      currentAngle: </TableCell><TableCell>{data.currentAngle}
+                      currentAngle: </TableCell><TableCell>{parseFloat(data.currentAngle).toFixed(2)}  deg
                       </TableCell>
                       </TableRow>
 
@@ -128,25 +128,25 @@ function TrackerDetails(props) {
 
                       <TableRow>
                       <TableCell className={classes.innerRow} padding="dense">
-                      pvCurrent: </TableCell><TableCell>{data.pvCurrent}
+                      pvCurrent: </TableCell><TableCell>{parseFloat(data.pvCurrent).toFixed(2)}  A
                       </TableCell>
                       </TableRow>
 
                       <TableRow>
                       <TableCell className={classes.innerRow} padding="dense">
-                      pvVoltage: </TableCell><TableCell>{data.pvVoltage}
+                      pvVoltage: </TableCell><TableCell>{parseFloat(data.pvVoltage).toFixed(2)}  V
                       </TableCell>
                       </TableRow>
 
                       <TableRow>
                       <TableCell className={classes.innerRow} padding="dense">
-                      timeStamp: </TableCell><TableCell>{data.timeStamp}
+                      timeStamp: </TableCell><TableCell>{data.timeStamp}  
                       </TableCell>
                       </TableRow>
 
                       <TableRow>
                       <TableCell className={classes.innerRow} padding="dense">
-                      trackerID: </TableCell><TableCell>{data.trackerID}
+                      trackerID: </TableCell><TableCell>{data.trackerID} 
                       </TableCell>
                       </TableRow>
             </TableBody>
