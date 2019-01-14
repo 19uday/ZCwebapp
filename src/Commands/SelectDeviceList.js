@@ -60,8 +60,27 @@ class CheckboxListSecondary extends React.Component {
     disable: false,
   };
 
-  handleChange = (e,command, trackerID) => {
-    e.currentTarget.style.backgroundColor = "silver";
+  handleChange2 = (e,command, trackerID) => {
+    e.target.style.backgroundColor = 'silver';
+    this.props.sendCommand(trackerID, command)
+    const newAuto = this.state.auto
+    const newStopped = this.state.stopped
+    if(command === 'STOP') {
+      newStopped.push(trackerID)
+      this.setState({
+        stopped: newStopped
+      })  
+    } else if(command === 'AUTO') {
+      newAuto.push(trackerID)
+      this.setState({
+        auto: newAuto
+      })
+    }
+    
+  };
+
+  handleChange = (command, trackerID) => {
+
     this.props.sendCommand(trackerID, command)
     const newAuto = this.state.auto
     const newStopped = this.state.stopped
@@ -158,19 +177,19 @@ class CheckboxListSecondary extends React.Component {
                     <div>
 <Grid container justify="space-evenly">   
 <p>{tracker.trackerID}</p> 
-            <Button variant="contained" className={classes.green} onClick={(e) => this.handleChange(e,'WE', tracker.deviceID)}>
+            <Button variant="contained" className={classes.green} onClick={(e) => this.handleChange2(e,'WE', tracker.deviceID)}>
                           RUN WEST
                           <ArrowLeftIcon className={classes.rightIcon} />
                         </Button>
-            <Button variant="contained" className={classes.orange} onClick={(e) => this.handleChange(e,'SMTALStow', tracker.deviceID)}>
+            <Button variant="contained" className={classes.orange} onClick={(e) => this.handleChange2(e,'SMTALStow', tracker.deviceID)}>
                           STOW
                           <StraightenIcon className={classes.rightIcon} />
                         </Button>
-            <Button variant="contained" disabled={this.state.stopped ? this.state.stopped.indexOf(tracker.deviceID) > -1 ? true : false : false } className={classes.red} onClick={(e) => this.handleChange(e,'SMTALStop', tracker.deviceID)}>
+            <Button variant="contained" disabled={this.state.stopped ? this.state.stopped.indexOf(tracker.deviceID) > -1 ? true : false : false } className={classes.red} onClick={(e) => this.handleChange2(e,'SMTALStop', tracker.deviceID)}>
                           STOP
                           <StopIcon className={classes.rightIcon} />
                         </Button>
-            <Button variant="contained" disabled={this.state.auto ? this.state.auto.indexOf(tracker.deviceID) > -1 ? true : false : false } className={classes.blue} onClick={(e) => this.handleChange(e,'ES', tracker.deviceID)}>
+            <Button variant="contained" disabled={this.state.auto ? this.state.auto.indexOf(tracker.deviceID) > -1 ? true : false : false } className={classes.blue} onClick={(e) => this.handleChange2(e,'ES', tracker.deviceID)}>
                           RUN EAST
                           <ArrowRightIcon className={classes.rightIcon} />
                         </Button>

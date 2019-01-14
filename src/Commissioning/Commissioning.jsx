@@ -10,6 +10,8 @@ import TrackerDetails from './TrackerDetails';
 import { commissioningActions } from '../_actions';
 import { Loading } from '../_components';
 import TrackerAngle from './TrackerAngle';
+import { Link } from "react-router-dom";
+import { history } from '../_helpers';
 
 const styles = theme => ({
     root: {
@@ -71,6 +73,11 @@ class Commissioning extends Component {
         
     }
 
+    handleApp = () => {
+        console.log("clicked");
+        history.push("/openApp");
+    } 
+
     render(){
         const { classes, loaded, commissioningData, selectedTrackerDetails, loadedTrackerInfo, selectedTrackerID } = this.props;
         
@@ -83,7 +90,8 @@ class Commissioning extends Component {
                     <br />
                     <Grid item xs={12} md={6}  className={classNames("flex")}>
                         <Grid container spacing={24} className="flex" direction="column" justify="space-around">
-                        <Grid item md className={classNames("flex", classes.padBottom, classes.details)}>
+                        
+                        <Grid item md onClick={this.handleApp} className={classNames("flex", classes.padBottom, classes.details)}>
                         {
                             loadedTrackerInfo ? <TrackerAngle angle={selectedTrackerDetails.currentAngle}/> : <Loading />
                         }
