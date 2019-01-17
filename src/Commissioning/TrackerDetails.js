@@ -38,24 +38,6 @@ function TrackerDetails(props) {
         </Typography>
         <Table className={classes.table}>
             
-            <TableRow>
-                <TableCell><Typography >ID</Typography></TableCell>
-                <TableCell>
-                  <Table>
-                    <TableBody>
-                          <TableRow>
-                            <TableCell className={classes.innerRow}><Typography >Tracker ID</Typography></TableCell>
-                            <TableCell className={classes.innerRow}><Typography>{trackerID}</Typography></TableCell>
-                          </TableRow>
-                          <TableRow>
-                            <TableCell className={classes.innerRow} ><Typography>Device ID</Typography></TableCell>
-                            <TableCell className={classes.innerRow}><Typography>{deviceID}</Typography></TableCell>
-                          </TableRow>
-                    </TableBody>
-                  </Table>
-                </TableCell>
-            </TableRow>
-            
             <TableBody>
 
 

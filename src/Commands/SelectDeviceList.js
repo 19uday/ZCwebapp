@@ -152,10 +152,6 @@ class CheckboxListSecondary extends React.Component {
               RUN EAST
               <ArrowRightIcon className={classes.rightIcon} />
             </Button>
-            <Button variant="contained" disabled={!this.state.disable} className={classNames(classes.yellow, classes.button)} onClick={() => this.handleChange('ST', '00000000')}>
-              SEND ST
-              <BrightnessAutoIcon className={classes.rightIcon} />
-            </Button>
             <Button variant="contained" disabled={!this.state.disable} className={classNames(classes.yellow, classes.button)} onClick={() => this.handleChange('SMTALReset', '00000000')}>
               RESET
               <AutorenewIcon className={classes.rightIcon} />
