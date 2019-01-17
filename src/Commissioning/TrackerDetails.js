@@ -14,11 +14,10 @@ const styles = theme => ({
     width: '100%',
     overflowX: 'auto',
     ...theme.mixins.gutters(),
-    paddingTop: theme.spacing.unit * 2,
-    paddingBottom: theme.spacing.unit * 2,
+
   },
   heading: {
-    paddingLeft: '24px'
+    padding: '0px',
   },
   innerRow: {
     border: 'none !important'
@@ -34,42 +33,32 @@ function TrackerDetails(props) {
   
   return (
     <Paper className={classes.root}>
-        <Typography className={classes.heading} variant="headline" component="h3">
+        <Typography className={classes.heading}>
           <p>Tracker Details</p>
         </Typography>
         <Table className={classes.table}>
-            <TableHead>
+            
             <TableRow>
-                <TableCell padding="dense"><Typography variant="body2">ID</Typography></TableCell>
-                <TableCell padding="dense">
+                <TableCell><Typography >ID</Typography></TableCell>
+                <TableCell>
                   <Table>
                     <TableBody>
                           <TableRow>
-                            <TableCell className={classes.innerRow} padding="dense"><Typography variant="body2">Tracker ID</Typography></TableCell>
-                            <TableCell className={classes.innerRow} padding="dense"><Typography variant="body2">{trackerID}</Typography></TableCell>
+                            <TableCell className={classes.innerRow}><Typography >Tracker ID</Typography></TableCell>
+                            <TableCell className={classes.innerRow}><Typography>{trackerID}</Typography></TableCell>
                           </TableRow>
                           <TableRow>
-                            <TableCell className={classes.innerRow} padding="dense"><Typography variant="body2">Device ID</Typography></TableCell>
-                            <TableCell className={classes.innerRow} padding="dense"><Typography variant="body2">{deviceID}</Typography></TableCell>
+                            <TableCell className={classes.innerRow} ><Typography>Device ID</Typography></TableCell>
+                            <TableCell className={classes.innerRow}><Typography>{deviceID}</Typography></TableCell>
                           </TableRow>
                     </TableBody>
                   </Table>
                 </TableCell>
             </TableRow>
-            </TableHead>
+            
             <TableBody>
 
-                      <TableRow>
-                      <TableCell className={classes.innerRow} padding="dense">
-                        rainFall: </TableCell><TableCell>{parseFloat(data.rainspeed).toFixed(2)}  mm
-                      </TableCell>
-                      </TableRow>
 
-                      <TableRow>
-                      <TableCell className={classes.innerRow} padding="dense">
-                        windSpeed: </TableCell><TableCell>{parseFloat(data.windspeed).toFixed(2)}  km/hr
-                      </TableCell>
-                      </TableRow>
 
                       <TableRow>
                       <TableCell className={classes.innerRow} padding="dense">

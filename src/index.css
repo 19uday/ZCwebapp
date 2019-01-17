@@ -15,10 +15,19 @@ main {
   background-size: 100% 100%;
 }
 
+
 @media only screen and (max-width: 960px) {
-  .flex{
-    height: '50vh';
+  .flex1{
+    height: '23vh';
   }
+}
+
+.zoneDetail{
+  color: black;
+  background-color: white;
+  border: 2px solid white;
+  border-radius: 3px;
+  margin: 3px;
 }
 
 #root {
@@ -47,50 +56,61 @@ a {
   background-image: url('/img/angle/-60.png');
   background-size: contain;
   background-repeat: no-repeat;
+  background-position: center; 
 }
+
 .angle60 {
   background-image: url('/img/angle/60.png');
   background-size: contain;
   background-repeat: no-repeat;
+  background-position: center; 
+
 }
 
 .angle_30 {
   background-image: url('/img/angle/-30.png');
   background-size: contain;
   background-repeat: no-repeat;
+  background-position: center; 
 }
 .angle30 {
   background-image: url('/img/angle/30.png');
   background-size: contain;
   background-repeat: no-repeat;
+  background-position: center; 
 }
 
 .angle_15 {
   background-image: url('/img/angle/-15.png');
   background-size: contain;
   background-repeat: no-repeat;
+  background-position: center; 
 }
 .angle15 {
   background-image: url('/img/angle/15.png');
   background-size: contain;
   background-repeat: no-repeat;
+  background-position: center; 
 }
 
 .angle_45 {
   background-image: url('/img/angle/-45.png');
   background-size: contain;
   background-repeat: no-repeat;
+  background-position: center; 
 }
 .angle45 {
   background-image: url('/img/angle/45.png');
   background-size: contain;
   background-repeat: no-repeat;
+  background-position: center; 
 }
 
 .angle0 {
   background-image: url('/img/angle/0.png');
   background-size: contain;
   background-repeat: no-repeat;
+  background-position: center; 
 }
 
 .App-grid {

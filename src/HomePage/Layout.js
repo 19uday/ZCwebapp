@@ -22,6 +22,7 @@ import InfoIcon from '@material-ui/icons/Info';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import { Link } from "react-router-dom";
 import { fade } from '@material-ui/core/styles/colorManipulator';
+import Grid from '@material-ui/core/Grid';
 
 const drawerWidth = 240;
 
@@ -30,7 +31,7 @@ const styles = theme => ({
     flexGrow: 1,
     height: '100%',
     zIndex: 1,
-    overflow: 'hidden',
+
     position: 'relative',
     display: 'flex',
     width: '100%',
@@ -57,7 +58,7 @@ const styles = theme => ({
   content: {
     flexGrow: 1,
     backgroundColor: 'lightgrey',
-    padding: theme.spacing.unit * 3,
+    padding: theme.spacing.unit,
   },
   selected: {
     backgroundColor: "lightskyblue"
@@ -153,11 +154,24 @@ class ResponsiveDrawer extends React.Component {
             <Typography variant="title" color="inherit" noWrap>
               Zone Controller Interface
             </Typography>
-            <div className={classes.search}>
-            <p>
-             Id: Zone1 ; Location: 196* 
-             </p>
-          </div>
+            
+                <Grid container justify="flex-end" spacing={8}>
+                
+                  <Grid key={0} item className="zoneDetail">
+                    ID: Zone1
+                  </Grid>
+                  <Grid key={1} item className="zoneDetail">
+                    Location: 198*
+                  </Grid>
+                  <Grid key={2} item className="zoneDetail">
+                    RainSpeed: 110
+                  </Grid>
+                  <Grid key={3} item className="zoneDetail">
+                    WindSpeed: 23
+                  </Grid>
+                
+                </Grid>
+            
           </Toolbar>
         </AppBar>
         <Hidden lgUp>
