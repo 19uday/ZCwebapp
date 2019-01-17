@@ -23,6 +23,7 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import { Link } from "react-router-dom";
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import Grid from '@material-ui/core/Grid';
+import io from 'socket.io-client'
 
 const drawerWidth = 240;
 
@@ -71,14 +72,41 @@ const styles = theme => ({
   },
 });
 
+
 class ResponsiveDrawer extends React.Component {
   state = {
-    mobileOpen: false
+    mobileOpen: false,
+    start: true,
+    messages:[],
   };
 
   handleDrawerToggle = () => {
     this.setState(state => ({ mobileOpen: !state.mobileOpen }));
   };
+
+  hostname = window.location.hostname+':1111';
+
+  componentDidMount() {
+    var func = this;
+    
+    var socket = io(`http://${this.hostName}`);
+    socket.on("connect", () => {
+        console.log("Connected to server!!!");
+        func.socket.emit("subscribeToMessages",{});
+    });
+
+    socket.on("disconnect", () => {
+        console.log("Disconnect!!!");
+    });
+
+    socket.on('message', function (data) {
+        console.log(data);
+        func.setState({messages: data})
+        
+    });
+
+    func.setState({start: true});
+}
 
 
   render() {
@@ -136,6 +164,18 @@ class ResponsiveDrawer extends React.Component {
         </ListItem>
         </Link>
         <Divider />
+        <div className="messages">
+          <h3>Messages</h3>
+          {this.state.start === true &&
+          <div>
+            {this.state.messages.map((message,index) => {
+              return(
+                <p>{message}</p>
+              );
+              })}
+          </div>
+          }
+          </div>
       </div>
     );
 
