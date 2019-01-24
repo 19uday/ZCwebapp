@@ -21,6 +21,7 @@ function setWifiInfo(ssid, pass) {
 
 function upload(file) {
     var data = new FormData()
+    console.log(file);
     data.append('file', file)
     const requestOptions = {
         method: "POST",

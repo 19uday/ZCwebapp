@@ -24,6 +24,10 @@ const styles = theme => ({
   },
   outerRow: {
     borderRight: '1px solid #e0e0e0'
+  },
+  para: {
+    marginTop: '0px',
+    marginBottom: '0px',
   }
 });
 
@@ -34,92 +38,95 @@ function TrackerDetails(props) {
   return (
     <Paper className={classes.root}>
         <Typography className={classes.heading}>
-          <p>Tracker Details</p>
+          <p className={classes.para}>Tracker Details</p>
         </Typography>
         <Table className={classes.table}>
             
             <TableBody>
 
 
-
                       <TableRow>
                       <TableCell className={classes.innerRow} padding="dense">
-                        temp: </TableCell><TableCell>{parseFloat(data.temp).toFixed(2)}  F
+                      Tracker ID: </TableCell><TableCell>{data.trackerID} 
+                      </TableCell>
+                      </TableRow>
+
+                                           <TableRow>
+                      <TableCell className={classes.innerRow} padding="dense">
+                      Calculated Angle: </TableCell><TableCell>{parseFloat(data.calculatedAngle).toFixed(2)}  deg
                       </TableCell>
                       </TableRow>
 
                       <TableRow>
                       <TableCell className={classes.innerRow} padding="dense">
-                        irradiation: </TableCell><TableCell>{parseFloat(data.irradiation).toFixed(2)}  kW/mm2
+                      Current Angle: </TableCell><TableCell>{parseFloat(data.currentAngle).toFixed(2)}  deg
                       </TableCell>
                       </TableRow>
 
 
                       <TableRow>
                       <TableCell className={classes.innerRow} padding="dense">
-                        batteryCurrent: </TableCell><TableCell>{parseFloat(data.batteryCurrent).toFixed(2)}  A
+                        Temp: </TableCell><TableCell>{parseFloat(data.temp).toFixed(2)}  F
                       </TableCell>
                       </TableRow>
 
                       <TableRow>
                       <TableCell className={classes.innerRow} padding="dense">
-                      batteryVoltage: </TableCell><TableCell>{parseFloat(data.batteryVoltage).toFixed(2)}  V
+                        Irradiation: </TableCell><TableCell>{parseFloat(data.irradiation).toFixed(2)}  kW/mm2
+                      </TableCell>
+                      </TableRow>
+
+
+                      <TableRow>
+                      <TableCell className={classes.innerRow} padding="dense">
+                        Battery Current: </TableCell><TableCell>{parseFloat(data.batteryCurrent).toFixed(2)}  A
                       </TableCell>
                       </TableRow>
 
                       <TableRow>
                       <TableCell className={classes.innerRow} padding="dense">
-                      calculatedAngle: </TableCell><TableCell>{parseFloat(data.calculatedAngle).toFixed(2)}  deg
+                      Battery Voltage: </TableCell><TableCell>{parseFloat(data.batteryVoltage).toFixed(2)}  V
+                      </TableCell>
+                      </TableRow>
+
+ 
+
+                      <TableRow>
+                      <TableCell className={classes.innerRow} padding="dense">
+                      Current Mode: </TableCell><TableCell>{data.currentMode}
                       </TableCell>
                       </TableRow>
 
                       <TableRow>
                       <TableCell className={classes.innerRow} padding="dense">
-                      currentAngle: </TableCell><TableCell>{parseFloat(data.currentAngle).toFixed(2)}  deg
+                      Error Code: </TableCell><TableCell>{data.errorCode}
                       </TableCell>
                       </TableRow>
 
                       <TableRow>
                       <TableCell className={classes.innerRow} padding="dense">
-                      currentMode: </TableCell><TableCell>{data.currentMode}
+                      Motor: </TableCell><TableCell>{data.motor}
                       </TableCell>
                       </TableRow>
 
                       <TableRow>
                       <TableCell className={classes.innerRow} padding="dense">
-                      errorCode: </TableCell><TableCell>{data.errorCode}
+                      PV Current: </TableCell><TableCell>{parseFloat(data.pvCurrent).toFixed(2)}  A
                       </TableCell>
                       </TableRow>
 
                       <TableRow>
                       <TableCell className={classes.innerRow} padding="dense">
-                      motor: </TableCell><TableCell>{data.motor}
+                      PV Voltage: </TableCell><TableCell>{parseFloat(data.pvVoltage).toFixed(2)}  V
                       </TableCell>
                       </TableRow>
 
                       <TableRow>
                       <TableCell className={classes.innerRow} padding="dense">
-                      pvCurrent: </TableCell><TableCell>{parseFloat(data.pvCurrent).toFixed(2)}  A
+                      Time Stamp: </TableCell><TableCell>{data.timeStamp.slice(6,8)}-{data.timeStamp.slice(4,6)}-{data.timeStamp.slice(0,4)} , {data.timeStamp.slice(8,10)}:{data.timeStamp.slice(10,12)}
                       </TableCell>
                       </TableRow>
 
-                      <TableRow>
-                      <TableCell className={classes.innerRow} padding="dense">
-                      pvVoltage: </TableCell><TableCell>{parseFloat(data.pvVoltage).toFixed(2)}  V
-                      </TableCell>
-                      </TableRow>
-
-                      <TableRow>
-                      <TableCell className={classes.innerRow} padding="dense">
-                      timeStamp: </TableCell><TableCell>{data.timeStamp}  
-                      </TableCell>
-                      </TableRow>
-
-                      <TableRow>
-                      <TableCell className={classes.innerRow} padding="dense">
-                      trackerID: </TableCell><TableCell>{data.trackerID} 
-                      </TableCell>
-                      </TableRow>
             </TableBody>
         </Table>  
     </Paper>

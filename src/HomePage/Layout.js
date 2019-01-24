@@ -23,7 +23,10 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import { Link } from "react-router-dom";
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import Grid from '@material-ui/core/Grid';
-import io from 'socket.io-client'
+import io from 'socket.io-client';
+import Footer from './Footer.js';
+import Paper from '@material-ui/core/Paper';
+
 
 const drawerWidth = 240;
 
@@ -56,11 +59,12 @@ const styles = theme => ({
       position: 'relative',
     },
   },
-  content: {
-    flexGrow: 1,
-    backgroundColor: 'lightgrey',
-    padding: theme.spacing.unit,
-  },
+    content: {
+      flexGrow: 1,
+      backgroundColor: 'lightgrey',
+      padding: theme.spacing.unit,
+      maxHeight: 'calc(100vh - 180px)',
+    },
   selected: {
     backgroundColor: "lightskyblue"
   },
@@ -70,6 +74,39 @@ const styles = theme => ({
     borderRadius: '5px',
     color: 'black',
   },
+  br: {
+    padding: '5px',
+  },
+    footer: {
+      [theme.breakpoints.up('md')]: {
+        width:'100%',
+        position: 'absolute',
+        left: 0,
+        bottom: 0,
+      },
+      [theme.breakpoints.down('md')]: {
+        width:'100%',
+        left: 0,
+        position: 'fixed',
+        bottom: 0,
+      },
+},
+paper: {
+  width: 100,
+  minHeight: '80%',
+  maxHeight: '80%',
+  padding: '5px',
+  color: 'black',
+},
+typo: {
+  overflow: 'initial',
+},
+val: {
+  fontSize: '12px',
+},
+keyy: {
+  fontSize: '15px',
+}
 });
 
 
@@ -164,18 +201,6 @@ class ResponsiveDrawer extends React.Component {
         </ListItem>
         </Link>
         <Divider />
-        <div className="messages">
-          <h3>Messages</h3>
-          {this.state.start === true &&
-          <div>
-            {this.state.messages.map((message,index) => {
-              return(
-                <p>{message}</p>
-              );
-              })}
-          </div>
-          }
-          </div>
       </div>
     );
 
@@ -191,29 +216,53 @@ class ResponsiveDrawer extends React.Component {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="title" color="inherit" noWrap>
+            <Typography variant="title" color="inherit" noWrap className={classes.typo}>
               Zone Controller Interface
             </Typography>
-            
-                <Grid container justify="flex-end" spacing={8}>
-                
-                  <Grid key={0} item className="zoneDetail">
-                    ID: Zone1
+
+                        <Grid container className={classes.root1} spacing={16}>
+                <Grid item xs={12} className={classes.pad}>
+                    <Grid container className={classes.demo} justify="flex-end" spacing={Number(16)}>
+                    <Grid key={0} item>
+                    <Paper className={classes.paper} >
+                    <center><div className={classes.keyy}><b>ID</b></div> <div className={classes.val}>Zone1</div></center>
+                  </Paper>
                   </Grid>
-                  <Grid key={1} item className="zoneDetail">
-                    Location: 198*
+                  <Grid key={1} item>
+                  <Paper className={classes.paper} >
+                  <center><div className={classes.keyy}>
+                    <b>Location</b></div> <div className={classes.val}>19.8,20.8 Chennai</div> </center>
+                  </Paper>
+
                   </Grid>
-                  <Grid key={2} item className="zoneDetail">
-                    RainSpeed: 110
+                  <Grid key={2} item>
+                  <Paper className={classes.paper} >
+                  <center><div className={classes.keyy}>
+                    <b>RainFall</b></div> <div className={classes.val}>110 mm</div></center>
+                  </Paper>
+
                   </Grid>
-                  <Grid key={3} item className="zoneDetail">
-                    WindSpeed: 23
+                  <Grid key={3} item>
+                  <Paper className={classes.paper} >
+                  <center><div className={classes.keyy}>
+                    <b>WindSpeed</b></div> <div className={classes.val}>23 km/hr</div></center>
+                  </Paper>
+
                   </Grid>
-                
+                  <Grid key={3} item>
+                  <Paper className={classes.paper} >
+                  <center><div className={classes.keyy}>
+                    <b>ZC Version</b> </div><div className={classes.val}><b>S/W</b> 0.0.9</div></center>
+                  </Paper>
+
+                  </Grid>
+                    </Grid>
                 </Grid>
+            </Grid>
             
           </Toolbar>
         </AppBar>
+        
         <Hidden lgUp>
           <Drawer
             variant="temporary"
@@ -241,10 +290,12 @@ class ResponsiveDrawer extends React.Component {
             {drawer}
           </Drawer>
         </Hidden>
+        
         <main className={classes.content}>
           <div className={classes.toolbar} />
-          {children}
+            {children}
         </main>
+        <div className={classes.footer}><Footer /></div>
       </div>
     );
   }

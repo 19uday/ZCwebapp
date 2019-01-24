@@ -25,7 +25,7 @@ const styles = theme => ({
   },
   table: {
     overflowX: 'auto',
-    height: '70%'
+    height: '50%'
   },
   image: {
     width: '35%',
@@ -59,6 +59,9 @@ const styles = theme => ({
     lineHeight: '0.5em'
 
   },
+  head: {
+    marginBottom: '4px',
+  },
   
 });
 
@@ -70,7 +73,7 @@ function DeviceList(props) {
   return (
     <Paper className={classes.root}>
         <Typography className={classes.heading} variant="headline" component="h3">
-          <p>Trackers Discovered</p>
+          <p className={classes.head}>Trackers Discovered</p>
         </Typography>
         <Grid className={classes.table} container spacing={24} direction='row' justify='space-evenly' alignItems='center'>
           {data.map(n => {

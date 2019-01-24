@@ -13,7 +13,6 @@ const styles = theme => ({
     maxWidth: '100%',
     display: 'flex',
     flexWrap: 'wrap',
-    overflowX: 'scroll',
   },  
 });
 

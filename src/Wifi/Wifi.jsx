@@ -161,8 +161,8 @@ class Wifi extends Component {
                     <Typography component="p">
                         Upload the JSON document that contains the static initialization data.
                     </Typography>
-                <form>
-                <center>
+                <form style={{margin: 'auto', maxWidth: '40%'}}>
+                
                     <input
                         accept="*.json"
                         className={classes.input}
@@ -172,10 +172,13 @@ class Wifi extends Component {
                         onChange={this.handleselectedFile}
                     />
                     <label htmlFor="contained-button-file">
+                    <center>
                         <Button style={{marginRight: '5%'}} variant="contained" component="span" className={classes.button}>
                             Select File
                         </Button>
+                        </center>
                     </label>
+                    <center>
                     <Button onClick={this.handleUpload} variant="contained" component="span" className={classes.button}>
                         Upload
                     </Button>

@@ -26,7 +26,7 @@ const styles = theme => ({
               <Grid item xs={11} sm={10} md={8} lg={5}>
                 <Paper className={classes.paper}>
                     <Typography variant="h5" component="h3">
-                        Firmware version:
+                    ZC Version S/W:
                     </Typography>
                     <p>
                     0.0.9
