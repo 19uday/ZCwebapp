@@ -126,10 +126,11 @@ class ResponsiveDrawer extends React.Component {
   componentDidMount() {
     var func = this;
     
-    var socket = io(`http://${this.hostName}`);
+    var socket = io('http://192.168.1.105:1111');
+    console.log(socket);
     socket.on("connect", () => {
         console.log("Connected to server!!!");
-        func.socket.emit("subscribeToMessages",{});
+        socket.emit("subscribeToMessages",{});
     });
 
     socket.on("disconnect", () => {
@@ -138,8 +139,7 @@ class ResponsiveDrawer extends React.Component {
 
     socket.on('message', function (data) {
         console.log(data);
-        func.setState({messages: data})
-        
+        this.setState({messages: data})
     });
 
     func.setState({start: true});

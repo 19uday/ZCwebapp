@@ -31,6 +31,25 @@ export function wifi(state, action) {
         error: action.error,
         sent: false
       };
+      case wifiConstants.SET_PANID_REQUEST:
+      return {
+        ...state,
+        sending: true,
+        sent: false
+      };
+    case wifiConstants.SET_PANID_SUCCESS:
+      return {
+        ...state,
+        sending: false,
+        sent: true
+      };
+    case wifiConstants.SET_PANID_FAILURE:
+      return {
+        ...state,
+        sending: false,
+        error: action.error,
+        sent: false
+      };
     case wifiConstants.UPLOAD_REQUEST:
       return {
         ...state,

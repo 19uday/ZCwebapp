@@ -1,6 +1,7 @@
 export const wifiService = {
     setWifiInfo,
-    upload
+    upload,
+    setPanID,
 };
 
 const hostName = window.location.hostname+':5000';
@@ -16,6 +17,21 @@ function setWifiInfo(ssid, pass) {
     };
 
     return fetch(`http://${hostName}/setWifiInfo`, requestOptions)
+        .then(handleResponse)
+}
+
+function setPanID(panID) {
+    const requestOptions = {
+        method: "POST",
+        mode: 'cors',
+        body: JSON.stringify({
+            "panID": panID
+        })
+    };
+
+    console.log(panID);
+
+    return fetch(`http://192.168.1.105:5001/settings/xbeePanID `, requestOptions)
         .then(handleResponse)
 }
 

@@ -36,7 +36,8 @@ class Settings extends Component {
     state = {
         ssid: '',
         password: '',
-        submitted: false
+        submitted: false,
+        panID: '',
     };
 
   handleChange = (e) => {
@@ -51,6 +52,10 @@ class Settings extends Component {
     if (ssid && password) {
         this.props.setWifiInfo(ssid, password);
     }
+  }
+
+  handleClick = () => {
+    this.props.setPanID(this.state.panID);
   }
 
     render(){
@@ -570,34 +575,7 @@ class Settings extends Component {
                             fullWidth
                         />
                         <br />
-                        <TextField
-                            name="netAddress"
-                            label="Net address"
-                            placeholder="Enter the net address"
-                            margin="none"
-                            onChange={this.handleChange}
-                            fullWidth
-                        />
-                        <br />
-                        <TextField
-                            name="networkKey"
-                            label="Network key"
-                            placeholder="Enter the network key"
-                            margin="none"
-                            onChange={this.handleChange}
-                            fullWidth
-                        />
-                        <br />
-                        <TextField
-                            name="linkKey"
-                            label="Link key"
-                            placeholder="Enter the link key"
-                            margin="none"
-                            onChange={this.handleChange}
-                            fullWidth
-                        />
-                        <br />
-                        <center><Button type="submit" className="submit-button">
+                        <center><Button type="submit" className="submit-button" onClick={this.handleClick}>
                             Submit
                         </Button></center>
                 </form>
@@ -617,7 +595,10 @@ Settings.propTypes = {
 const mapDispatchToProps = (dispatch) => ({
     setWifiInfo: (ssid, pass) => {
         dispatch(wifiActions.setWifiInfo(ssid, pass)) 
-    }
+    },
+    setPanID: (panID) => {
+        dispatch(wifiActions.setPanID(panID))
+    },
   })
 
 const connectedSettings = connect(null, mapDispatchToProps)(withStyles(styles, { withTheme: true })(Settings));
