@@ -22,6 +22,33 @@ main {
   }
 }
 
+@-webkit-keyframes argh-my-eyes {
+  0%   { background-color: #fff; }
+  49% { background-color: #fff; }
+  50% { background-color: red; }
+  99% { background-color: red; }
+  100% { background-color: #fff; }
+}
+@-moz-keyframes argh-my-eyes {
+  0%   { background-color: #fff; }
+  49% { background-color: #fff; }
+  50% { background-color: red; }
+  99% { background-color: red; }
+  100% { background-color: #fff; }
+}
+@keyframes argh-my-eyes {
+  0%   { background-color: #fff; }
+  49% { background-color: #fff; }
+  50% { background-color: red; }
+  99% { background-color: red; }
+  100% { background-color: #fff; }
+}
+.blink {
+-webkit-animation: argh-my-eyes 1s infinite;
+-moz-animation:    argh-my-eyes 1s infinite;
+animation:         argh-my-eyes 1s infinite;
+}
+
 .zoneDetail{
   color: black;
   background-color: white;

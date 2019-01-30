@@ -5,14 +5,43 @@ export const commandsService = {
 const hostName = window.location.hostname+':5001';
 
 function sendCommand(trackerID, command) {
+
     const requestOptions = {
         method: "POST",
-        mode: 'cors',
-        body: JSON.stringify({
-            deviceID: trackerID,
-            command: command
-        })
+        mode: 'cors'
     };
+
+    if(command === "WE"){
+            requestOptions["body"] = JSON.stringify({
+                "CMD" : "HMNM",
+                "DID": "00000000",
+                "VALUES": "NEGATIVE"
+            });
+        }
+
+    if(command === "SMTALStow'"){
+        requestOptions["body"] = JSON.stringify({
+                "CMD" : "HMOD",
+                "DID": "00000000",
+                "VALUES": "NIGHT"
+            });
+    }
+
+    if(command === "SMTALStop"){
+        requestOptions["body"] = JSON.stringify({
+                "CMD" : "HMNM",
+                "DID": "00000000",
+                "VALUES": "STOP"
+            });
+    }
+
+    if(command === "ES"){
+        requestOptions["body"] = JSON.stringify({
+                "CMD" : "HMNM",
+                "DID": "00000000",
+                "VALUES": "POSITIVE"
+            });
+    }
 
     return fetch(`http://${hostName}/sendCommand`, requestOptions)
         .then(handleResponse)

@@ -41,6 +41,10 @@ const styles = theme => ({
                 </Paper>
               </Grid>
             </Grid>
+        <br />
+            <center>
+                <img src={require('./openApp.png')} />
+            </center>
             </div>
         );
     }

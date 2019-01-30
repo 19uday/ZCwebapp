@@ -1,8 +1,12 @@
 export const settingsService = {
     sendSetting,
+    setPanID,
+    threshold,
 };
 
 const hostName = window.location.hostname+':5000';
+
+const hostNameXBee = window.location.hostname+':5001';
 
 function sendSetting(setting) {
     const requestOptions = {
@@ -13,6 +17,35 @@ function sendSetting(setting) {
 /*
     return fetch(`https://099239c0-c7c8-488d-b965-7b1073b0c389.mock.pstmn.io/getCurrentTrackerInfo?id=${trackerID}`, requestOptions)
         .then(handleResponse)*/
+}
+
+function setPanID(panID) {
+    const requestOptions = {
+        method: "POST",
+        mode: 'cors',
+        body: JSON.stringify({
+            "panID": panID
+        })
+    };
+
+    console.log(panID);
+
+    return fetch(`http://${hostNameXBee}/settings/xbeePanID `, requestOptions)
+        .then(handleResponse)
+}
+
+function threshold(maxWindSpeed, maxRainFall) {
+    const requestOptions = {
+        method: "POST",
+        mode: 'cors',
+        body: JSON.stringify({
+            "maxWindSpeed": maxWindSpeed,
+            "maxRainFall": maxRainFall,
+        })
+    };
+
+    return fetch(`http://${hostName}/threshold`, requestOptions)
+        .then(handleResponse)
 }
 
 function handleResponse(response) {

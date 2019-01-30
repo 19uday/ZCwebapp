@@ -1,54 +1,54 @@
-import { wifiConstants } from '../_constants';
+import { settingsConstants } from '../_constants';
 
 const initialState = {
-  sending: false,
-  sent:  false,
-  sendingFile: false,
-  sentFile:  false
+  sending1: false,
+  sent1:  false,
+  sending1: false,
+  sent1:  false
 }
 
-export function wifi(state, action) {
+export function settings(state, action) {
   if (typeof state === 'undefined') {
     return initialState
   }
   switch (action.type) {
-    case wifiConstants.SET_WIFI_INFO_REQUEST:
+    case settingsConstants.SET_PANID_REQUEST:
       return {
         ...state,
         sending: true,
         sent: false
       };
-    case wifiConstants.SET_WIFI_INFO_SUCCESS:
+    case settingsConstants.SET_PANID_SUCCESS:
       return {
         ...state,
         sending: false,
         sent: true
       };
-    case wifiConstants.SET_WIFI_INFO_FAILURE:
+    case settingsConstants.SET_PANID_FAILURE:
       return {
         ...state,
         sending: false,
         error: action.error,
         sent: false
       };
-    case wifiConstants.UPLOAD_REQUEST:
+      case settingsConstants.SET_THRESHOLD_REQUEST:
       return {
         ...state,
-        sendingFile: true,
-        sentFile: false
+        sending1: true,
+        sent1: false
       };
-    case wifiConstants.UPLOAD_SUCCESS:
+    case settingsConstants.SET_THRESHOLD_SUCCESS:
       return {
         ...state,
-        sendingFile: false,
-        sentFile: true
+        sending1: false,
+        sent1: true
       };
-    case wifiConstants.UPLOAD_FAILURE:
+    case settingsConstants.SET_THRESHOLD_FAILURE:
       return {
         ...state,
-        sendingFile: false,
+        sending1: false,
         error: action.error,
-        sentFile: false
+        sent1: false
       };
     default:
       return state

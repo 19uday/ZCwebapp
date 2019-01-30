@@ -12,10 +12,6 @@ import { About } from '../About';
 
 class HomePage extends React.Component {
 
-    componentDidMount() {
-        this.props.getCommissioningData()
-    }
-
     render() {
 
         return(

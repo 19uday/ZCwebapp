@@ -1,12 +1,11 @@
 export const wifiService = {
     setWifiInfo,
-    upload,
-    setPanID,
+    upload
 };
 
 const hostName = window.location.hostname+':5000';
 
-const hostNameXBee = window.location.hostname+':5001';
+
 
 function setWifiInfo(ssid, pass) {
     const requestOptions = {
@@ -22,20 +21,7 @@ function setWifiInfo(ssid, pass) {
         .then(handleResponse)
 }
 
-function setPanID(panID) {
-    const requestOptions = {
-        method: "POST",
-        mode: 'cors',
-        body: JSON.stringify({
-            "panID": panID
-        })
-    };
 
-    console.log(panID);
-
-    return fetch(`http://${hostNameXBee}/settings/xbeePanID `, requestOptions)
-        .then(handleResponse)
-}
 
 function upload(file) {
     var data = new FormData()

@@ -26,6 +26,8 @@ import Grid from '@material-ui/core/Grid';
 import io from 'socket.io-client';
 import Footer from './Footer.js';
 import Paper from '@material-ui/core/Paper';
+import SimpleBar from './SimpleBar';
+
 
 
 const drawerWidth = 240;
@@ -46,13 +48,23 @@ const styles = theme => ({
     [theme.breakpoints.up('lg')]: {
       width: `calc(100% - ${drawerWidth}px)`,
     },
+    [theme.breakpoints.down('sm')]: {
+      height: '10vh',
+    },
   },
   navIconHide: {
     [theme.breakpoints.up('lg')]: {
       display: 'none',
     },
   },
-  toolbar: theme.mixins.toolbar,
+  toolbar: {
+    [theme.breakpoints.down('sm')]: {
+      minHeight: '5vh',
+    },
+    [theme.breakpoints.up('md')]: {
+      minHeight: 64,
+    },
+  },
   drawerPaper: {
     width: drawerWidth,
     [theme.breakpoints.up('lg')]: {
@@ -63,7 +75,9 @@ const styles = theme => ({
       flexGrow: 1,
       backgroundColor: 'lightgrey',
       padding: theme.spacing.unit,
-      maxHeight: 'calc(100vh - 180px)',
+      [theme.breakpoints.up('md')]: {
+        height: 'calc(85vh - 68px)',
+      },
     },
   selected: {
     backgroundColor: "lightskyblue"
@@ -83,12 +97,14 @@ const styles = theme => ({
         position: 'absolute',
         left: 0,
         bottom: 0,
+        height:'15vh'
       },
-      [theme.breakpoints.down('md')]: {
+      [theme.breakpoints.down('sm')]: {
         width:'100%',
         left: 0,
         position: 'fixed',
         bottom: 0,
+        height: '15vh',
       },
 },
 paper: {
@@ -98,15 +114,33 @@ paper: {
   padding: '5px',
   color: 'black',
 },
+paper1: {
+  width: 100,
+  minHeight: '80%',
+  maxHeight: '80%',
+  color: 'black',
+  backgroundColor: 'red',
+},
 typo: {
   overflow: 'initial',
+  [theme.breakpoints.down('sm')]: {
+    height: '6vh',
+  },
+},
+tool: {
+  [theme.breakpoints.down('sm')]: {
+    height: '8vh',
+  },
 },
 val: {
   fontSize: '12px',
 },
+val1: {
+  fontSize: '10px',
+},
 keyy: {
   fontSize: '15px',
-}
+},
 });
 
 
@@ -126,7 +160,7 @@ class ResponsiveDrawer extends React.Component {
   componentDidMount() {
     var func = this;
     
-    var socket = io('http://192.168.1.105:1111');
+    var socket = io('http://192.168.1.101:1111');
     console.log(socket);
     socket.on("connect", () => {
         console.log("Connected to server!!!");
@@ -144,6 +178,14 @@ class ResponsiveDrawer extends React.Component {
 
     func.setState({start: true});
 }
+
+  buttonObject = {
+    "id": "zone1",
+    "location": "19.8,20.8 Chennai",
+    "rainfall": 110,
+    "windspeed": 23,
+    "swversion": "0.0.9",
+  }
 
 
   render() {
@@ -207,7 +249,7 @@ class ResponsiveDrawer extends React.Component {
     return (
       <div className={classes.root}>
         <AppBar className={classes.appBar} >
-          <Toolbar style={{overflow:"auto"}}>
+          <Toolbar style={{overflow:"auto"}} className={classes.tool}>
             <IconButton
               color="inherit"
               aria-label="Open drawer"
@@ -219,47 +261,55 @@ class ResponsiveDrawer extends React.Component {
             <Typography variant="title" color="inherit" noWrap className={classes.typo}>
               Zone Controller Interface
             </Typography>
-
+            
+            <Hidden smDown>
                         <Grid container className={classes.root1} spacing={16}>
                 <Grid item xs={12} className={classes.pad}>
                     <Grid container className={classes.demo} justify="flex-end" spacing={Number(16)}>
-                    <Grid key={0} item>
+                    <Grid key={0} item >
                     <Paper className={classes.paper} >
-                    <center><div className={classes.keyy}><b>ID</b></div> <div className={classes.val}>Zone1</div></center>
+                    <center><div className={classes.keyy}><b>ID</b></div> <div className={classes.val}>{this.buttonObject["id"]}</div></center>
                   </Paper>
                   </Grid>
-                  <Grid key={1} item>
+                  <Grid key={1} item >
                   <Paper className={classes.paper} >
                   <center><div className={classes.keyy}>
-                    <b>Location</b></div> <div className={classes.val}>19.8,20.8 Chennai</div> </center>
+                    <b>Location</b></div> <div className={classes.val}>{this.buttonObject["location"]}</div> </center>
                   </Paper>
 
                   </Grid>
-                  <Grid key={2} item>
+                  <Grid key={2} item >
                   <Paper className={classes.paper} >
                   <center><div className={classes.keyy}>
-                    <b>RainFall</b></div> <div className={classes.val}>110 mm</div></center>
+                    <b>RainFall</b></div> <div className={classes.val}>{this.buttonObject["rainfall"]} mm</div></center>
                   </Paper>
 
+                  </Grid>
+                  <Grid key={3} item >
+                  {this.buttonObject['windspeed'] > 12 &&
+                    <Paper className={classNames(classes.paper, "blink")} >
+                    <center><div className={classes.keyy}>
+                      <b>WindSpeed</b></div> <div className={classes.val1}>{this.buttonObject["windspeed"]} km/hr, putting all panels to stow</div></center>
+                    </Paper>
+                  }
+                  {this.buttonObject['windspeed'] <= 12 &&
+                    <Paper className={classes.paper} >
+                    <center><div className={classes.keyy}>
+                      <b>WindSpeed</b></div> <div className={classes.val}>{this.buttonObject["windspeed"]} km/hr</div></center>
+                    </Paper>
+                  }
                   </Grid>
                   <Grid key={3} item>
                   <Paper className={classes.paper} >
                   <center><div className={classes.keyy}>
-                    <b>WindSpeed</b></div> <div className={classes.val}>23 km/hr</div></center>
-                  </Paper>
-
-                  </Grid>
-                  <Grid key={3} item>
-                  <Paper className={classes.paper} >
-                  <center><div className={classes.keyy}>
-                    <b>ZC Version</b> </div><div className={classes.val}><b>S/W</b> 0.0.9</div></center>
+                    <b>ZC Version</b> </div><div className={classes.val}><b>S/W</b>{this.buttonObject["version"]}</div></center>
                   </Paper>
 
                   </Grid>
                     </Grid>
                 </Grid>
             </Grid>
-            
+            </Hidden>
           </Toolbar>
         </AppBar>
         
@@ -279,6 +329,9 @@ class ResponsiveDrawer extends React.Component {
             {drawer}
           </Drawer>
         </Hidden>
+
+
+
         <Hidden mdDown implementation="css">
           <Drawer
             variant="permanent"
@@ -293,6 +346,9 @@ class ResponsiveDrawer extends React.Component {
         
         <main className={classes.content}>
           <div className={classes.toolbar} />
+          <Hidden mdUp>
+            <SimpleBar />
+          </Hidden>
             {children}
         </main>
         <div className={classes.footer}><Footer /></div>

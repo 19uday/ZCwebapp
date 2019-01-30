@@ -10,7 +10,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import classNames from 'classnames';
-import { wifiActions } from '../_actions'
+import { settingsActions } from '../_actions'
 import { Typography, FormControl } from '@material-ui/core';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -38,6 +38,8 @@ class Settings extends Component {
         password: '',
         submitted: false,
         panID: '',
+        maxWindSpeed: 5,
+        maxRainFall: 5,
     };
 
   handleChange = (e) => {
@@ -56,6 +58,10 @@ class Settings extends Component {
 
   handleClick = () => {
     this.props.setPanID(this.state.panID);
+  }
+
+  handleThreshold = () => {
+      this.props.threshold(this.state.maxWindSpeed, this.state.maxRainFall);
   }
 
     render(){
@@ -581,6 +587,37 @@ class Settings extends Component {
                 </form>
                 </Paper>
               </Grid>
+
+                            <Grid item md={4} lg={3} xs={6}>
+              <Paper className={classes.paper}>
+                    <Typography variant="h5" component="h3">
+                        Threshold:
+                    </Typography>
+                <form onSubmit={this.handleSubmit}>
+                        <TextField
+                            name="maxWindSpeed"
+                            label="Maximum Wind Speed"
+                            placeholder="Maximum Wind Speed"
+                            margin="none"
+                            onChange={this.handleChange}
+                            fullWidth
+                        />
+                        <br />
+                        <TextField
+                            name="maxRainFall"
+                            label="Maximum Rain Fall"
+                            placeholder="Maximum Rain Fall"
+                            margin="none"
+                            onChange={this.handleChange}
+                            fullWidth
+                        />
+                        <br />
+                        <center><Button type="submit" className="submit-button" onClick={this.handleThreshold}>
+                            Submit
+                        </Button></center>
+                </form>
+                </Paper>
+              </Grid>
             </Grid>
             </div>
         );
@@ -593,11 +630,11 @@ Settings.propTypes = {
 
 
 const mapDispatchToProps = (dispatch) => ({
-    setWifiInfo: (ssid, pass) => {
-        dispatch(wifiActions.setWifiInfo(ssid, pass)) 
-    },
     setPanID: (panID) => {
-        dispatch(wifiActions.setPanID(panID))
+        dispatch(settingsActions.setPanID(panID))
+    },
+    threshold: (maxWindSpeed, maxRainFall) => {
+        dispatch(settingsActions.threshold(maxWindSpeed, maxRainFall))
     },
   })
 
