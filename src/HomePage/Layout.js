@@ -149,6 +149,15 @@ class ResponsiveDrawer extends React.Component {
     mobileOpen: false,
     start: true,
     messages:[],
+    buttonObject: {
+      "id": "zone1",
+      "location": "19.8,20.8 Chennai",
+      "rainfall": 0.0,
+      "windspeed": 0.0,
+      "rainfallT": 5.0,
+      "windspeedT": 12.0,
+      "swversion": "0.0.9",
+    }
   };
 
   handleDrawerToggle = () => {
@@ -159,7 +168,6 @@ class ResponsiveDrawer extends React.Component {
 
   componentDidMount() {
     var func = this;
-    
     var socket = io('http://192.168.1.101:1111');
     console.log(socket);
     socket.on("connect", () => {
@@ -173,7 +181,36 @@ class ResponsiveDrawer extends React.Component {
 
     socket.on('message', function (data) {
         console.log(data);
-        this.setState({messages: data})
+        var res = [];
+        var datae = func.state.messages;
+        for(var i=0;i<data.logs.length;i++){
+          datae.push(data.logs[i]);
+          if(data.logs[i].message.substring(0, 4) === "rain")
+          {
+            res = data.logs[i].message.split(" ");
+            func.setState({...func.state, buttonObject: {
+              ...func.state.buttonObject,
+              rainfall: Number(res[2])
+            }});
+            func.setState({...func.state, buttonObject: {
+              ...func.state.buttonObject,
+              rainfallT: Number(res[4])
+            }});
+          }
+          if(data.logs[i].message.substring(0, 4) === "wind")
+          {
+            res = data.logs[i].message.split(" ");
+            func.setState({...func.state, buttonObject: {
+              ...func.state.buttonObject,
+              windspeed: Number(res[2])
+            }});
+            func.setState({...func.state, buttonObject: {
+              ...func.state.buttonObject,
+              windspeed: Number(res[4])
+            }});
+          }
+        }
+        func.setState({messages: datae})
     });
 
     func.setState({start: true});
@@ -182,8 +219,10 @@ class ResponsiveDrawer extends React.Component {
   buttonObject = {
     "id": "zone1",
     "location": "19.8,20.8 Chennai",
-    "rainfall": 110,
-    "windspeed": 23,
+    "rainfall": 110.0,
+    "windspeed": 23.0,
+    "rainfallT": 2.0,
+    "windspeedT": 12.0,
     "swversion": "0.0.9",
   }
 
@@ -274,35 +313,43 @@ class ResponsiveDrawer extends React.Component {
                   <Grid key={1} item >
                   <Paper className={classes.paper} >
                   <center><div className={classes.keyy}>
-                    <b>Location</b></div> <div className={classes.val}>{this.buttonObject["location"]}</div> </center>
+                    <b>Location</b></div> <div className={classes.val}>{this.state.buttonObject["location"]}</div> </center>
                   </Paper>
 
                   </Grid>
                   <Grid key={2} item >
-                  <Paper className={classes.paper} >
-                  <center><div className={classes.keyy}>
-                    <b>RainFall</b></div> <div className={classes.val}>{this.buttonObject["rainfall"]} mm</div></center>
-                  </Paper>
+                  {this.state.buttonObject['rainfall'] > this.state.buttonObject["rainfallT"] &&
+                    <Paper className={classNames(classes.paper, "blink")} >
+                    <center><div className={classes.keyy}>
+                      <b>RainFall</b></div> <div className={classes.val1}>{this.state.buttonObject["rainfall"]} mm, putting all panels to stow</div></center>
+                    </Paper>
+                  }
+                  {this.state.buttonObject['rainfall'] <= this.state.buttonObject["rainfallT"] &&
+                    <Paper className={classes.paper} >
+                    <center><div className={classes.keyy}>
+                      <b>RainFall</b></div> <div className={classes.val}>{this.state.buttonObject["rainfall"]} mm</div></center>
+                    </Paper>
+                  }
 
                   </Grid>
                   <Grid key={3} item >
-                  {this.buttonObject['windspeed'] > 12 &&
+                  {this.state.buttonObject['windspeed'] > this.state.buttonObject["windspeedT"] &&
                     <Paper className={classNames(classes.paper, "blink")} >
                     <center><div className={classes.keyy}>
-                      <b>WindSpeed</b></div> <div className={classes.val1}>{this.buttonObject["windspeed"]} km/hr, putting all panels to stow</div></center>
+                      <b>WindSpeed</b></div> <div className={classes.val1}>{this.state.buttonObject["windspeed"]} km/hr, putting all panels to stow</div></center>
                     </Paper>
                   }
-                  {this.buttonObject['windspeed'] <= 12 &&
+                  {this.state.buttonObject['windspeed'] <= this.state.buttonObject["windspeedT"] &&
                     <Paper className={classes.paper} >
                     <center><div className={classes.keyy}>
-                      <b>WindSpeed</b></div> <div className={classes.val}>{this.buttonObject["windspeed"]} km/hr</div></center>
+                      <b>WindSpeed</b></div> <div className={classes.val}>{this.state.buttonObject["windspeed"]} km/hr</div></center>
                     </Paper>
                   }
                   </Grid>
                   <Grid key={3} item>
                   <Paper className={classes.paper} >
                   <center><div className={classes.keyy}>
-                    <b>ZC Version</b> </div><div className={classes.val}><b>S/W</b>{this.buttonObject["version"]}</div></center>
+                    <b>ZC Version</b> </div><div className={classes.val}><b>S/W</b>{this.state.buttonObject["version"]}</div></center>
                   </Paper>
 
                   </Grid>
@@ -347,11 +394,11 @@ class ResponsiveDrawer extends React.Component {
         <main className={classes.content}>
           <div className={classes.toolbar} />
           <Hidden mdUp>
-            <SimpleBar />
+            <SimpleBar button={this.state.buttonObject}/>
           </Hidden>
             {children}
         </main>
-        <div className={classes.footer}><Footer /></div>
+        <div className={classes.footer}><Footer mess={this.state.messages}/></div>
       </div>
     );
   }

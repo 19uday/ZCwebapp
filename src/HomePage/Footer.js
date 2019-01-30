@@ -60,8 +60,9 @@ class Footer extends React.Component {
   };
 
   render() {
-    const { classes, theme } = this.props;
+    const { classes, theme, mess } = this.props;
 
+    console.log(this.props.mess);
     return (
       <div className={classes.root}>
         <AppBar position="static" color="default" className={classes.appBar}>
@@ -86,7 +87,13 @@ class Footer extends React.Component {
           onChangeIndex={this.handleChangeIndex}
           className={classes.black}
         >
-          <TabContainer dir={theme.direction} className={classes.white}><p className={classes.white}>Log</p></TabContainer>
+          <TabContainer dir={theme.direction} className={classes.white}>
+          {this.props.mess.map(n => {
+                  return (
+<p className={classes.white}>{n.message}</p>
+                  )
+          })}
+          </TabContainer>
           <TabContainer dir={theme.direction} className={classes.white}><p className={classes.white}>Errors</p></TabContainer>
           <TabContainer dir={theme.direction} className={classes.white}><p className={classes.white}>Warnings</p></TabContainer>
           <TabContainer dir={theme.direction} className={classes.white}><p className={classes.white}>Info</p></TabContainer>

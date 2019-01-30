@@ -4,7 +4,6 @@ import { wifiService } from '../_services';
 export const wifiActions = {
     setWifiInfo,
     upload,
-    setPanID,
 };
 
 function setWifiInfo(ssid, pass) {
@@ -29,30 +28,7 @@ function setWifiInfo(ssid, pass) {
     function failure(error) { return { type: wifiConstants.SET_WIFI_INFO_FAILURE, error } }
 }
 
-function setPanID(panID) {
-    console.log(panID);
-    return dispatch => {
-        dispatch(request());
 
-        wifiService.setPanID(panID)
-            .then(
-                ok => { 
-                    dispatch(success(ok.toString()));
-                    alert('successfully set Pan ID!')
-                },
-                error => {
-                    dispatch(failure(error.toString()));
-                    alert('error in setting Pan ID!')
-                }
-            );
-    };
-
-    
-
-    function request() { return { type: wifiConstants.SET_PANID_REQUEST } }
-    function success(success) { return { type: wifiConstants.SET_PANID_SUCCESS, success } }
-    function failure(error) { return { type: wifiConstants.SET_PANID_FAILURE, error } }
-}
 
 function upload(file) {
     return dispatch => {
@@ -62,11 +38,11 @@ function upload(file) {
             .then(
                 ok => { 
                     dispatch(success(ok.toString()));
-                    alert('successfully set wifi info!')
+                    alert('successfully uploaded!')
                 },
                 error => {
                     dispatch(failure(error.toString()));
-                    alert('error in setting wifi info!')
+                    alert('error in uploading!')
                 }
             );
     };

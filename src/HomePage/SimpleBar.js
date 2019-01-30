@@ -92,20 +92,20 @@ function SimpleBar(props) {
                     <Grid container className={classes.demo} justify="flex-start" spacing={Number(8)}>
                     <Grid key={0} item >
                     <Paper className={classes.paper} >
-                    <center><div className={classes.keyy}><b>ID</b></div> <div className={classes.val}>{buttonObject["id"]}</div></center>
+                    <center><div className={classes.keyy}><b>ID</b></div> <div className={classes.val}>{props.button["id"]}</div></center>
                   </Paper>
                   </Grid>
                   <Grid key={1} item >
                   <Paper className={classes.paper} >
                   <center><div className={classes.keyy}>
-                    <b>Location</b></div> <div className={classes.val}>{buttonObject["location"]}</div> </center>
+                    <b>Location</b></div> <div className={classes.val}>{props.button["location"]}</div> </center>
                   </Paper>
 
                   </Grid>
                   <Grid key={2} item >
                   <Paper className={classes.paper} >
                   <center><div className={classes.keyy}>
-                    <b>RainFall</b></div> <div className={classes.val}>{buttonObject["rainfall"]} mm</div></center>
+                    <b>RainFall</b></div> <div className={classes.val}>{props.button["rainfall"]} mm</div></center>
                   </Paper>
 
                   </Grid>
@@ -113,20 +113,20 @@ function SimpleBar(props) {
                   {buttonObject['windspeed'] > 12 &&
                     <Paper className={classNames(classes.paper, "blink")} >
                     <center><div className={classes.keyy}>
-                      <b>WindSpeed</b></div> <div className={classes.val1}>{buttonObject["windspeed"]} km/hr, putting all panels to stow</div></center>
+                      <b>WindSpeed</b></div> <div className={classes.val1}>{props.button["windspeed"]} km/hr, putting all panels to stow</div></center>
                     </Paper>
                   }
                   {buttonObject['windspeed'] <= 12 &&
                     <Paper className={classes.paper} >
                     <center><div className={classes.keyy}>
-                      <b>WindSpeed</b></div> <div className={classes.val}>{buttonObject["windspeed"]} km/hr</div></center>
+                      <b>WindSpeed</b></div> <div className={classes.val}>{props.button["windspeed"]} km/hr</div></center>
                     </Paper>
                   }
                   </Grid>
                   <Grid key={3} item>
                   <Paper className={classes.paper} >
                   <center><div className={classes.keyy}>
-                    <b>ZC Version</b> </div><div className={classes.val}><b>S/W</b>{buttonObject["version"]}</div></center>
+                    <b>ZC Version</b> </div><div className={classes.val}><b>S/W</b>{props.button["version"]}</div></center>
                   </Paper>
 
                   </Grid>
