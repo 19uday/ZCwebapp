@@ -11,7 +11,12 @@ const styles = theme => ({
     paddingTop: theme.spacing.unit * 2,
     paddingBottom: theme.spacing.unit * 2,
     textAlign: 'center',
-  }
+  },
+  image: {
+    backgroundImage: 'url(/img/openApp.png)',
+    backgroundSize: 'contain',
+    backgroundRepeat: 'no-repeat'
+  },
 });
 
  class About extends Component {
@@ -42,9 +47,7 @@ const styles = theme => ({
               </Grid>
             </Grid>
         <br />
-            <center>
-                <img src={require('./openApp.png')} />
-            </center>
+<center><div className={classes.image}></div></center>
             </div>
         );
     }
