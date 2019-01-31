@@ -2,7 +2,7 @@ export const trendsService = {
     getTrends,
 };
 
-const hostName = window.location.hostname+':5000';
+const hostName = '192.168.1.101:5000';
 
 function getTrends( trackers, parameter ) {
     const requestOptions = {

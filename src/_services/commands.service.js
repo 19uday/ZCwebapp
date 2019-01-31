@@ -2,7 +2,8 @@ export const commandsService = {
     sendCommand
 };
 
-const hostName = window.location.hostname+':5001';
+const hostName = '192.168.1.101:5001';
+//const hostName = 'https://ancient-catfish-90.localtunnel.me';
 
 function sendCommand(trackerID, command) {
 
@@ -14,23 +15,23 @@ function sendCommand(trackerID, command) {
     if(command === "WE"){
             requestOptions["body"] = JSON.stringify({
                 "CMD" : "HMNM",
-                "DID": "00000000",
+                "DID": "00000",
                 "VALUES": "NEGATIVE"
             });
         }
 
-    if(command === "SMTALStow'"){
+    if(command === "SMTALStow"){
         requestOptions["body"] = JSON.stringify({
                 "CMD" : "HMOD",
-                "DID": "00000000",
-                "VALUES": "NIGHT"
+                "DID": "00000",
+                "MODE": "NIGHT"
             });
     }
 
     if(command === "SMTALStop"){
         requestOptions["body"] = JSON.stringify({
                 "CMD" : "HMNM",
-                "DID": "00000000",
+                "DID": "00000",
                 "VALUES": "STOP"
             });
     }
@@ -38,7 +39,7 @@ function sendCommand(trackerID, command) {
     if(command === "ES"){
         requestOptions["body"] = JSON.stringify({
                 "CMD" : "HMNM",
-                "DID": "00000000",
+                "DID": "00000",
                 "VALUES": "POSITIVE"
             });
     }
