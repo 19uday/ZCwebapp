@@ -212,7 +212,7 @@ class ResponsiveDrawer extends React.Component {
             }});
             func.setState({...func.state, buttonObject: {
               ...func.state.buttonObject,
-              windspeed: Number(res[4])
+              windspeedT: Number(res[4])
             }});
           }
           if(data.logs[i].message.includes("CMD") && data.logs[i].message.includes("DID"))
