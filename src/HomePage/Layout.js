@@ -187,9 +187,9 @@ class ResponsiveDrawer extends React.Component {
         var res = [];
         var datae = func.state.messages;
         var xbeeDatae = func.state.xbeeMessages;
-        res = data.logs[i].message.split(" ");
+        
         for(var i=0;i<data.logs.length;i++){
-          datae.push(data.logs[i]);
+          res = data.logs[i].message.split(" ");
           if(res[0] === "rainFall")
           {
             

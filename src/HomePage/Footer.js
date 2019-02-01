@@ -99,9 +99,9 @@ class Footer extends React.Component {
           <TabContainer dir={theme.direction} className={classes.white}><p className={classes.white}>Warnings</p></TabContainer>
           <TabContainer dir={theme.direction} className={classes.white}><p className={classes.white}>Info</p></TabContainer>
           <TabContainer dir={theme.direction} className={classes.white}>          
-          {this.props.xbee.map(n => {
+          {this.props.xbee.map(m => {
                   return (
-            <p className={classes.white}>{n.message}</p>
+            <p className={classes.white}>{m.message}</p>
                   )
           })}
           </TabContainer>
