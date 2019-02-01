@@ -154,11 +154,11 @@ class ResponsiveDrawer extends React.Component {
       "location": "19.8,20.8 Chennai",
       "rainfall": 0.0,
       "windspeed": 0.0,
-      "rainfallT": 5.0,
-      "windspeedT": 12.0,
+      "rainfallT": 0.0,
+      "windspeedT": 0.0,
       "swversion": "0.0.9",
       "color": "",
-      "trackerID": ""
+      "trackerID": "",
     }
   };
 

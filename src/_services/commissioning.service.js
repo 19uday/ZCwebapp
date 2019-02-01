@@ -3,7 +3,7 @@ export const commissioningService = {
     getCurrentTrackerInfo
 };
 
-const hostname ='192.168.1.101:5000';
+const hostname = window.location.hostname+ '5000';
 
 function getCommissioningData() {
     const requestOptions = {

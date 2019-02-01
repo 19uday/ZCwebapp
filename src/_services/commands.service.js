@@ -2,7 +2,7 @@ export const commandsService = {
     sendCommand
 };
 
-const hostName = '192.168.1.101:5001';
+const hostName = window.location.hostname+ '5001';
 //const hostName = 'https://ancient-catfish-90.localtunnel.me';
 
 function sendCommand(trackerID, command) {
@@ -31,7 +31,7 @@ function sendCommand(trackerID, command) {
     if(command === "SMTALStop"){
         requestOptions["body"] = JSON.stringify({
                 "CMD" : "HMNM",
-                "DID": "00000",
+                "DID": "00000                                                                                               ",
                 "VALUES": "STOP"
             });
     }
