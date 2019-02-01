@@ -197,22 +197,22 @@ class ResponsiveDrawer extends React.Component {
             
             func.setState({...func.state, buttonObject: {
               ...func.state.buttonObject,
-              rainfall: Number(res[2])
+              rainfall: Number(res[2]).toFixed(2)
             }});
             func.setState({...func.state, buttonObject: {
               ...func.state.buttonObject,
-              rainfallT: Number(res[4])
+              rainfallT: Number(res[4]).toFixed(2)
             }});
           }
           if(data.logs[i].message.includes("windSpeed"))
           {
             func.setState({...func.state, buttonObject: {
               ...func.state.buttonObject,
-              windspeed: Number(res[2])
+              windspeed: Number(res[2]).toFixed(2)
             }});
             func.setState({...func.state, buttonObject: {
               ...func.state.buttonObject,
-              windspeedT: Number(res[4])
+              windspeedT: Number(res[4]).toFixed(2)
             }});
           }
           if(data.logs[i].message.includes("CMD") && data.logs[i].message.includes("DID"))
