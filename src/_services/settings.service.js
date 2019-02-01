@@ -4,7 +4,7 @@ export const settingsService = {
     threshold,
 };
 
-const hostName = window.location.hostname+ '5000';
+const hostName = window.location.hostname+ ':5000';
 
 const hostNameXBee = window.location.hostname+':5001';
 //const hostNameXBee = 'https://ancient-catfish-90.localtunnel.me';

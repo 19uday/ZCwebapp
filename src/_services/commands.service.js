@@ -2,7 +2,7 @@ export const commandsService = {
     sendCommand
 };
 
-const hostName = window.location.hostname+ '5001';
+const hostName = window.location.hostname+ ':5001';
 //const hostName = 'https://ancient-catfish-90.localtunnel.me';
 
 function sendCommand(trackerID, command) {

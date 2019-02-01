@@ -3,7 +3,7 @@ export const wifiService = {
     upload
 };
 
-const hostName = window.location.hostname+ '5000';
+const hostName = window.location.hostname+ ':5000';
 
 
 
