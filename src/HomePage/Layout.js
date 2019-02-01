@@ -157,6 +157,8 @@ class ResponsiveDrawer extends React.Component {
       "rainfallT": 5.0,
       "windspeedT": 12.0,
       "swversion": "0.0.9",
+      "color": "",
+      "trackerID": ""
     }
   };
 
@@ -168,7 +170,7 @@ class ResponsiveDrawer extends React.Component {
 
   componentDidMount() {
     var func = this;
-    var socket = io('http://192.168.1.101:1111');
+    var socket = io(`http://${this.hostname}`);
     console.log(socket);
     socket.on("connect", () => {
         console.log("Connected to server!!!");
