@@ -149,6 +149,7 @@ class ResponsiveDrawer extends React.Component {
     mobileOpen: false,
     start: true,
     messages:[],
+    xbeeMessages: [],
     buttonObject: {
       "id": "zone1",
       "location": "19.8,20.8 Chennai",
@@ -185,11 +186,13 @@ class ResponsiveDrawer extends React.Component {
         console.log(data);
         var res = [];
         var datae = func.state.messages;
+        var xbeeDatae = func.state.xbeeMessages;
+        res = data.logs[i].message.split(" ");
         for(var i=0;i<data.logs.length;i++){
           datae.push(data.logs[i]);
-          if(data.logs[i].message.substring(0, 4) === "rain")
+          if(res[0] === "rainFall")
           {
-            res = data.logs[i].message.split(" ");
+            
             func.setState({...func.state, buttonObject: {
               ...func.state.buttonObject,
               rainfall: Number(res[2])
@@ -199,9 +202,8 @@ class ResponsiveDrawer extends React.Component {
               rainfallT: Number(res[4])
             }});
           }
-          if(data.logs[i].message.substring(0, 4) === "wind")
+          if(res[1] === "windSpeed")
           {
-            res = data.logs[i].message.split(" ");
             func.setState({...func.state, buttonObject: {
               ...func.state.buttonObject,
               windspeed: Number(res[2])
@@ -211,8 +213,17 @@ class ResponsiveDrawer extends React.Component {
               windspeed: Number(res[4])
             }});
           }
+          if(res.includes("DID") && res.includes("CMD"))
+          {
+            xbeeDatae.push(data.logs[i]);
+          }
+          else{
+            datae.push(data.logs[i]);
+          }
+
         }
-        func.setState({messages: datae})
+        func.setState({messages: datae});
+        func.setState({xbeeMessages: xbeeDatae});
     });
 
     func.setState({start: true});
@@ -400,7 +411,7 @@ class ResponsiveDrawer extends React.Component {
           </Hidden>
             {children}
         </main>
-        <div className={classes.footer}><Footer mess={this.state.messages}/></div>
+        <div className={classes.footer}><Footer mess={this.state.messages} xbee={this.state.xbeeMessages}/></div>
       </div>
     );
   }

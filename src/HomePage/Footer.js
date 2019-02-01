@@ -78,6 +78,7 @@ class Footer extends React.Component {
             <Tab label="Errors" />
             <Tab label="Warnings" />
             <Tab label="Info" />
+            <Tab label="Xbee" />
           </Tabs>
           
         </AppBar>
@@ -97,6 +98,13 @@ class Footer extends React.Component {
           <TabContainer dir={theme.direction} className={classes.white}><p className={classes.white}>Errors</p></TabContainer>
           <TabContainer dir={theme.direction} className={classes.white}><p className={classes.white}>Warnings</p></TabContainer>
           <TabContainer dir={theme.direction} className={classes.white}><p className={classes.white}>Info</p></TabContainer>
+          <TabContainer dir={theme.direction} className={classes.white}>          
+          {this.props.xbee.map(n => {
+                  return (
+            <p className={classes.white}>{n.message}</p>
+                  )
+          })}
+          </TabContainer>
         </SwipeableViews>
       </div>
     );
