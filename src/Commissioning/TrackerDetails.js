@@ -51,7 +51,13 @@ function TrackerDetails(props) {
                       </TableCell>
                       </TableRow>
 
-                                           <TableRow>
+                      <TableRow>
+                      <TableCell className={classes.innerRow} padding="dense">
+                      Device ID: </TableCell><TableCell>{deviceID} 
+                      </TableCell>
+                      </TableRow>
+
+                      <TableRow>
                       <TableCell className={classes.innerRow} padding="dense">
                       Calculated Angle: </TableCell><TableCell>{parseFloat(data.calculatedAngle).toFixed(2)}  deg
                       </TableCell>

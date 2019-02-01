@@ -49,7 +49,7 @@ class Commissioning extends Component {
 
     state = {
         trackerID: "",
-        deviceID: "",
+        deviceID: "AB000121",
         permitJoinClicked: false
     }
 
@@ -65,8 +65,8 @@ class Commissioning extends Component {
 
     getTrackerDetails = (trackerID) => {
         this.props.getCurrentTrackerInfo(trackerID)
-        console.log(trackerID)
-        const deviceID = this.props.commissioningData.find(e => e.trackerID === trackerID).controllerInfo.macID
+        console.log(trackerID, this.props.commissioningData)
+        const deviceID = this.props.commissioningData.find(e => e.trackerID === trackerID).deviceID
         this.setState({
             trackerID,
             deviceID

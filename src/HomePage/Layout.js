@@ -105,6 +105,8 @@ const styles = theme => ({
         position: 'fixed',
         bottom: 0,
         height: '15vh',
+        resize: 'vertical',
+        overflow: 'auto',
       },
 },
 paper: {
@@ -167,7 +169,7 @@ class ResponsiveDrawer extends React.Component {
     this.setState(state => ({ mobileOpen: !state.mobileOpen }));
   };
 
-  hostname = window.location.hostname+':1111';
+  hostname = window.location.hostname + ':1111';
 
   componentDidMount() {
     var func = this;
@@ -190,7 +192,7 @@ class ResponsiveDrawer extends React.Component {
         
         for(var i=0;i<data.logs.length;i++){
           res = data.logs[i].message.split(" ");
-          if(res[0] === "rainFall")
+          if(data.logs[i].message.includes("rainFall"))
           {
             
             func.setState({...func.state, buttonObject: {
@@ -202,7 +204,7 @@ class ResponsiveDrawer extends React.Component {
               rainfallT: Number(res[4])
             }});
           }
-          if(res[1] === "windSpeed")
+          if(data.logs[i].message.includes("windSpeed"))
           {
             func.setState({...func.state, buttonObject: {
               ...func.state.buttonObject,

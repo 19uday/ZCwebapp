@@ -7,7 +7,7 @@ const initialState = {
   requestingTrackerInfo: false,
   loadedTrackerInfo: false,
   selectedTrackerDetails: null,
-  selectedTrackerID: null
+  selectedTrackerID: "tracker001"
 }
 
 export function commissioning(state, action) {
