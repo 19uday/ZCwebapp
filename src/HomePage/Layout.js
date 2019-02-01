@@ -213,7 +213,7 @@ class ResponsiveDrawer extends React.Component {
               windspeed: Number(res[4])
             }});
           }
-          if(data.logs[i].includes("CMD") && data.logs[i].includes("DID"))
+          if(data.logs[i].message.includes("CMD") && data.logs[i].message.includes("DID"))
           {
             console.log(data.logs[i]);
             xbeeDatae.push(data.logs[i]);
