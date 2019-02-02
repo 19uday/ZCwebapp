@@ -2,6 +2,7 @@ export const settingsService = {
     sendSetting,
     setPanID,
     threshold,
+    heartBeat,
 };
 
 const hostName = window.location.hostname+ ':5000';
@@ -47,6 +48,22 @@ function threshold(maxWindSpeed, maxRainFall) {
     };
 
     return fetch(`http://${hostName}/threshold`, requestOptions)
+        .then(handleResponse)
+}
+
+function heartBeat(enabled, hbinterval, maxMsgs) {
+    const requestOptions = {
+        method: "POST",
+        mode: 'cors',
+        body: JSON.stringify({
+            "enable": enabled,
+            "interval": hbinterval,
+            "maxMsgs": maxMsgs,
+        })
+    };
+    console.log(requestOptions);
+
+    return fetch(`http://${hostName}/heartBeatSettings`, requestOptions)
         .then(handleResponse)
 }
 

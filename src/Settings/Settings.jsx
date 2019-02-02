@@ -14,7 +14,8 @@ import { settingsActions } from '../_actions'
 import { Typography, FormControl } from '@material-ui/core';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
- 
+import MenuItem from '@material-ui/core/MenuItem';
+
 const styles = theme => ({
   paper: {
     ...theme.mixins.gutters(),
@@ -40,7 +41,7 @@ class Settings extends Component {
         panID: '',
         maxWindSpeed: 5,
         maxRainFall: 5,
-    };
+        };
 
   handleChange = (e) => {
     const { name, value } = e.target;
@@ -62,6 +63,10 @@ class Settings extends Component {
 
   handleThreshold = () => {
       this.props.threshold(this.state.maxWindSpeed, this.state.maxRainFall);
+  }
+
+  handleHeartBeat = () => {
+      this.props.heartBeat(this.state.enabled, this.state.hbinterval, this.state.maxMsgs);
   }
 
     render(){
@@ -618,6 +623,55 @@ class Settings extends Component {
                 </form>
                 </Paper>
               </Grid>
+
+        <Grid item md={4} lg={3} xs={6}>
+              <Paper className={classes.paper}>
+                    <Typography variant="h5" component="h3">
+                        Heart Beat Settings:
+                    </Typography>
+                    <br />
+                <form onSubmit={this.handleSubmit}>
+          <InputLabel htmlFor="enabled-simple">Enabled &nbsp; </InputLabel>
+          <Select
+            value={this.state.enabled}
+            onChange={this.handleChange}
+            inputProps={{
+              name: 'enabled',
+              id: 'enabled-simple',
+            }}
+          >
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
+            <MenuItem value="enable">Enable</MenuItem>
+            <MenuItem value="disable">Disable</MenuItem>
+          </Select>
+          <TextField
+                            name="hbinterval"
+                            label="Heart Beat Interval"
+                            placeholder="Heart Beat Interval"
+                            margin="none"
+                            onChange={this.handleChange}
+                            fullWidth
+                        />
+                        <br />
+                        <TextField
+                            name="maxMsgs"
+                            label="Max msgs before stow"
+                            placeholder="Max msgs before stow"
+                            margin="none"
+                            onChange={this.handleChange}
+                            fullWidth
+                        />
+                        <br />
+                        <center>
+                            <Button type="submit" className="submit-button" onClick={this.handleHeartBeat}>
+                                Submit
+                            </Button>
+                        </center>
+                </form>
+                </Paper>
+              </Grid>
             </Grid>
             </div>
         );
@@ -636,6 +690,9 @@ const mapDispatchToProps = (dispatch) => ({
     threshold: (maxWindSpeed, maxRainFall) => {
         dispatch(settingsActions.threshold(maxWindSpeed, maxRainFall))
     },
+    heartBeat: (enabled, hbinterval, maxMsgs) => {
+        dispatch(settingsActions.heartBeat(enabled, hbinterval, maxMsgs))
+    }
   })
 
 const connectedSettings = connect(null, mapDispatchToProps)(withStyles(styles, { withTheme: true })(Settings));

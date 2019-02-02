@@ -5,6 +5,7 @@ export const settingsActions = {
     sendSetting,
     setPanID,
     threshold,
+    heartBeat,
 };
 
 function sendSetting(setting) {
@@ -74,4 +75,27 @@ function threshold(maxWindSpeed, maxRainFall) {
     function request() { return { type: settingsConstants.SET_THRESHOLD_REQUEST } }
     function success(success) { return { type: settingsConstants.SET_THRESHOLD_SUCCESS, success } }
     function failure(error) { return { type: settingsConstants.SET_THRESHOLD_FAILURE, error } }
+}
+
+function heartBeat(enabled, hbinterval, maxMsgs) {
+    return dispatch => {
+        dispatch(request());
+        settingsService.heartBeat(enabled, hbinterval, maxMsgs)
+            .then(
+                ok => { 
+                    dispatch(success(ok.toString()));
+                    alert('successfully set Heart Beat')
+                },
+                error => {
+                    dispatch(failure(error.toString()));
+                    alert('error in setting HeartBeat!')
+                }
+            );
+    };
+
+    
+
+    function request() { return { type: settingsConstants.SET_HEARTBEAT_REQUEST } }
+    function success(success) { return { type: settingsConstants.SET_HEARTBEAT_SUCCESS, success } }
+    function failure(error) { return { type: settingsConstants.SET_HEARTBEAT_FAILURE, error } }
 }
