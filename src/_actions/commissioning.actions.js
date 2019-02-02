@@ -5,6 +5,7 @@ export const commissioningActions = {
     getCommissioningData,
     getCurrentTrackerInfo,
     setTrackerColor,
+    triggerDiscovery,
 };
 
 function getCommissioningData() {
@@ -55,4 +56,24 @@ function setTrackerColor(trackerID, color) {
         dispatch(success(trackerID, color));
     };
     function success(trackerID, color) { return { type: commissioningConstants.SET_COLOR_SUCCESS, trackerID, color} }
+}triggerDiscovery
+
+function triggerDiscovery() {
+    return dispatch => {
+        dispatch(request());
+
+        commissioningService.triggerDiscovery()
+            .then(
+                discoveryDetails => { 
+                    dispatch(success(discoveryDetails));
+                },
+                error => {
+                    dispatch(failure(error.toString()));
+                }
+            );
+    };
+
+    function request() { return { type: commissioningConstants.TRIGGER_DISCOVERY_REQUEST} }
+    function success(discoveryDetails) { return { type: commissioningConstants.TRIGGER_DISCOVERY_SUCCESS, discoveryDetails } }
+    function failure(error) { return { type: commissioningConstants.TRIGGER_DISCOVERY_FAILURE, error } }
 }

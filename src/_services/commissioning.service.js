@@ -1,9 +1,13 @@
 export const commissioningService = {
     getCommissioningData,
-    getCurrentTrackerInfo
+    getCurrentTrackerInfo,
+    triggerDiscovery,
 };
 
 const hostname = window.location.hostname + ':5000';
+
+const hostnamexbee = window.location.hostname + ':5001';
+
 
 function getCommissioningData() {
     const requestOptions = {
@@ -24,6 +28,20 @@ function getCurrentTrackerInfo(trackerID) {
     };
 
     return fetch(`http://${hostname}/getCurrentTrackerInfo?id=${trackerID}`, requestOptions)
+        .then(handleResponse)
+}
+
+function triggerDiscovery() {
+    const requestOptions = {
+        method: "POST",
+        mode: 'cors',
+        body: JSON.stringify({
+            "CMD": "HINF",
+            "DID": "00000",
+        })
+    };
+
+    return fetch(`http://${hostnamexbee}/sendCommand`, requestOptions)
         .then(handleResponse)
 }
 

@@ -87,6 +87,9 @@ class Commissioning extends Component {
         {
             this.setState({trackerIDforColor: nextProps.trackerColor.trackerID});
             this.setState({trackercolor: nextProps.trackerColor.color});
+                setTimeout(() => {
+                    this.setState({trackerIDforColor: null,trackercolor: null});
+                }, 60000);
         }
     }
 

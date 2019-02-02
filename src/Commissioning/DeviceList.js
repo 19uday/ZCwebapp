@@ -1,4 +1,4 @@
-import React from 'react';
+import React , {Component} from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import { Button, Grid } from '@material-ui/core';
 import classNames from 'classnames'
 import { connect } from 'react-redux'
+import { commissioningActions } from '../_actions'
 
 const styles = theme => ({
   root: {
@@ -66,33 +67,43 @@ const styles = theme => ({
   
 });
 
-function DeviceList(props) {
-  const { classes, devices, selectedTrackerID } = props;
-  const data = devices
-  console.log(props.trackercolor)
+class DeviceList extends Component {
 
-  return (
-    <Paper className={classes.root}>
-        <Typography className={classes.heading} variant="headline" component="h3">
-          <p className={classes.head}>Trackers Discovered</p>
-        </Typography>
-        <Grid className={classes.table} container spacing={24} direction='row' justify='space-evenly' alignItems='center'>
-          {data.map(n => {
-                  return (
-                    <Grid item xs 
-                    className={classNames( (props.trackercolor === 'red' && props.trackerIDforColor ===  n.trackerID) ?  'overl' : 'trackerIcon',  n.trackerID === selectedTrackerID ? classes.clicked : classes.tracker)}
-                    onClick={() => props.getTrackerDetails(n.trackerID)}
-                    key={n.trackerID}>{n.trackerID}</Grid>
-                  )
-          })}
-        </Grid>
-        <div className={classes.zoneImage}>
-            <div className={classes.image}></div>
-           
-            <div className={classes.dummy}></div>
-        </div>
-    </Paper>
-  );
+  trigger = () => {
+    this.props.triggerDiscovery();
+  }
+
+  render(){
+  const { classes, devices, selectedTrackerID } = this.props;
+  const data = devices
+  console.log(this.props.trackercolor)
+
+      return (
+        <Paper className={classes.root}>
+            <Typography className={classes.heading} variant="headline" component="h3">
+              <p className={classes.head}>Trackers Discovered</p>
+            </Typography>
+            <Grid className={classes.table} container spacing={24} direction='row' justify='space-evenly' alignItems='center'>
+              {data.map(n => {
+                      return (
+                        <Grid item xs 
+                        className={classNames( (this.props.trackercolor === 'red' && this.props.trackerIDforColor ===  n.trackerID) ?  'overl' : 'trackerIcon',  n.trackerID === selectedTrackerID ? classes.clicked : classes.tracker)}
+                        onClick={() => this.props.getTrackerDetails(n.trackerID)}
+                        key={n.trackerID}>{n.trackerID}</Grid>
+                      )
+              })}
+            </Grid>
+            <div className={classes.zoneImage}>
+                <div className={classes.image}></div>
+              
+                <div className={classes.dummy}></div>
+                <Button variant="contained" className={classes.yellow} onClick={this.trigger}>
+                          Trigger Discovery
+                </Button>
+            </div>
+        </Paper>
+      );
+    }
 }
 
 DeviceList.propTypes = {
@@ -100,5 +111,10 @@ DeviceList.propTypes = {
 };
 
 
+const mapDispatchToProps = (dispatch) => ({
+  triggerDiscovery: () => {
+      dispatch(commissioningActions.triggerDiscovery()) 
+  },
+})
 
-export default (withStyles(styles, { withTheme: true })(DeviceList));
+export default connect(null, mapDispatchToProps)(withStyles(styles, { withTheme: true })(DeviceList));
