@@ -110,13 +110,13 @@ function SimpleBar(props) {
 
                   </Grid>
                   <Grid key={3} item >
-                  {buttonObject['windspeed'] > 12 &&
+                  {props.button['windspeed'] > props.button['windspeedT'] &&
                     <Paper className={classNames(classes.paper, "blink")} >
                     <center><div className={classes.keyy}>
                       <b>WindSpeed</b></div> <div className={classes.val1}>{props.button["windspeed"]} km/hr, putting all panels to stow</div></center>
                     </Paper>
                   }
-                  {buttonObject['windspeed'] <= 12 &&
+                  {props.button['windspeed'] <= props.button['windspeedT'] &&
                     <Paper className={classes.paper} >
                     <center><div className={classes.keyy}>
                       <b>WindSpeed</b></div> <div className={classes.val}>{props.button["windspeed"]} km/hr</div></center>

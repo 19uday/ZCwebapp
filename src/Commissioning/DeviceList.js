@@ -5,6 +5,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import { Button, Grid } from '@material-ui/core';
 import classNames from 'classnames'
+import { connect } from 'react-redux'
 
 const styles = theme => ({
   root: {
@@ -67,8 +68,8 @@ const styles = theme => ({
 
 function DeviceList(props) {
   const { classes, devices, selectedTrackerID } = props;
-
   const data = devices
+  console.log(props.trackercolor)
 
   return (
     <Paper className={classes.root}>
@@ -79,7 +80,7 @@ function DeviceList(props) {
           {data.map(n => {
                   return (
                     <Grid item xs 
-                    className={classNames('trackerIcon', n.trackerID === selectedTrackerID ? classes.clicked : classes.tracker)}
+                    className={classNames( (props.trackercolor === 'red' && props.trackerIDforColor ===  n.trackerID) ?  'overl' : 'trackerIcon',  n.trackerID === selectedTrackerID ? classes.clicked : classes.tracker)}
                     onClick={() => props.getTrackerDetails(n.trackerID)}
                     key={n.trackerID}>{n.trackerID}</Grid>
                   )
@@ -98,4 +99,6 @@ DeviceList.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(DeviceList);
+
+
+export default (withStyles(styles, { withTheme: true })(DeviceList));

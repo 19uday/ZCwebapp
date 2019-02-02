@@ -7,6 +7,7 @@ import { commands } from './commands.reducer'
 import { wifi } from './wifi.reducer'
 import { trends } from './trends.reducer'
 import { settings } from './settings.reducer'
+import { extra } from './extra.reducer.js'
 
 const rootReducer = combineReducers({
   authentication,
@@ -15,7 +16,8 @@ const rootReducer = combineReducers({
   commands,
   wifi,
   trends,
-  settings
+  settings,
+  extra
 });
 
 export default rootReducer;

@@ -6,14 +6,13 @@ import { Commissioning } from '../Commissioning';
 import { Commands } from '../Commands';
 import { Trends } from '../Trends';
 import { Wifi } from '../Wifi';
-import { commissioningActions } from '../_actions'
+import { commissioningActions } from '../_actions';
 import { Settings } from '../Settings';
 import { About } from '../About';
 
 class HomePage extends React.Component {
 
     render() {
-
         return(
             <Layout selected={this.props.match.params.id}>
                 {

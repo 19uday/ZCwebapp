@@ -31,7 +31,7 @@ function sendCommand(trackerID, command) {
     if(command === "SMTALStop"){
         requestOptions["body"] = JSON.stringify({
                 "CMD" : "HMNM",
-                "DID": "00000                                                                                               ",
+                "DID": "00000",
                 "VALUES": "STOP"
             });
     }

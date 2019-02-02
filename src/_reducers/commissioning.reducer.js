@@ -7,7 +7,11 @@ const initialState = {
   requestingTrackerInfo: false,
   loadedTrackerInfo: false,
   selectedTrackerDetails: null,
-  selectedTrackerID: "tracker001"
+  selectedTrackerID: "tracker001",
+  trackerColor: {
+    trackerID: "",
+    color: "",
+  }
 }
 
 export function commissioning(state, action) {
@@ -56,6 +60,18 @@ export function commissioning(state, action) {
         error: action.error,
         loadedTrackerInfo: false
       };
+    case commissioningConstants.SET_COLOR_SUCCESS:
+    {
+      console.log(action.trackerID)
+      return {
+        ...state,
+        trackerColor:{
+          ...state.trackerColor,
+          trackerID: action.trackerID,
+          color: action.color,
+        }
+      };
+    }
     default:
       return state
   }

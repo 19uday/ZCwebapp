@@ -3,7 +3,8 @@ import { commissioningService } from '../_services';
 
 export const commissioningActions = {
     getCommissioningData,
-    getCurrentTrackerInfo
+    getCurrentTrackerInfo,
+    setTrackerColor,
 };
 
 function getCommissioningData() {
@@ -47,4 +48,11 @@ function getCurrentTrackerInfo(trackerID) {
     function request(trackerID) { return { type: commissioningConstants.GET_CURRENT_TRACKER_INFO_REQUEST, trackerID } }
     function success(trackerDetails) { return { type: commissioningConstants.GET_CURRENT_TRACKER_INFO_SUCCESS, trackerDetails } }
     function failure(error) { return { type: commissioningConstants.GET_CURRENT_TRACKER_INFO_FAILURE, error } }
+}
+
+function setTrackerColor(trackerID, color) {
+    return dispatch => {
+        dispatch(success(trackerID, color));
+    };
+    function success(trackerID, color) { return { type: commissioningConstants.SET_COLOR_SUCCESS, trackerID, color} }
 }

@@ -27,7 +27,7 @@ const styles = theme => ({
     },
     padBottom: {
         paddingBottom: '3px',
-        maxHeight:'23vh',
+        maxHeight:'45%',
     },
     details: {
         [theme.breakpoints.down('md')]: {
@@ -50,7 +50,9 @@ class Commissioning extends Component {
     state = {
         trackerID: "",
         deviceID: "AB000121",
-        permitJoinClicked: false
+        permitJoinClicked: false,
+        trackerIDforColor: "",
+        trackercolor: "",
     }
 
     permitJoin = () => {
@@ -80,14 +82,22 @@ class Commissioning extends Component {
         history.push("/openApp");
     } 
 
+    componentWillReceiveProps = (nextProps) => {
+        if(this.props.trackerColor !== nextProps.trackerColor)
+        {
+            this.setState({trackerIDforColor: nextProps.trackerColor.trackerID});
+            this.setState({trackercolor: nextProps.trackerColor.color});
+        }
+    }
+
     render(){
         const { classes, loaded, commissioningData, selectedTrackerDetails, loadedTrackerInfo, selectedTrackerID } = this.props;
-        
-        return (
+        const { trackerColor } = this.props;
+         return (
             <div className={classes.root} >
                 <Grid container  className="flex" alignItems="stretch" direction="row" justify="space-around">
                     <Grid item xs={12} sm={6} className={classNames("flex", classes.padRight, classes.detail)}>
-                        { loaded ? <DeviceList permitJoin={this.permitJoin} permitJoinClicked={this.state.permitJoinClicked} selectedTrackerID={selectedTrackerID} devices={commissioningData} getTrackerDetails={this.getTrackerDetails}/> : <Loading /> }
+                        { loaded ? <DeviceList trackerIDforColor={this.state.trackerIDforColor} trackercolor={this.state.trackercolor} permitJoin={this.permitJoin} permitJoinClicked={this.state.permitJoinClicked} selectedTrackerID={selectedTrackerID} devices={commissioningData} getTrackerDetails={this.getTrackerDetails}/> : <Loading /> }
                     </Grid>
                     <br />
                     <Grid item xs={12} sm={6}  className={classNames("flex")}>
@@ -117,13 +127,14 @@ Commissioning.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-    const { loaded, commissioningData, selectedTrackerDetails, loadedTrackerInfo, selectedTrackerID } = state.commissioning;
+    const { loaded, commissioningData, selectedTrackerDetails, loadedTrackerInfo, selectedTrackerID, trackerColor  } = state.commissioning
     return {
         commissioningData,
         loaded,
         loadedTrackerInfo,
         selectedTrackerDetails,
-        selectedTrackerID
+        selectedTrackerID,
+        trackerColor,
     };
 }
 

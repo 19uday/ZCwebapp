@@ -27,6 +27,9 @@ import io from 'socket.io-client';
 import Footer from './Footer.js';
 import Paper from '@material-ui/core/Paper';
 import SimpleBar from './SimpleBar';
+import { commissioningActions } from '../_actions'
+import { connect } from 'react-redux'
+
 
 
 
@@ -152,6 +155,7 @@ class ResponsiveDrawer extends React.Component {
     start: true,
     messages:[],
     xbeeMessages: [],
+    color: "",
     buttonObject: {
       "id": "zone1",
       "location": "19.8,20.8 Chennai",
@@ -160,7 +164,6 @@ class ResponsiveDrawer extends React.Component {
       "rainfallT": 0.0,
       "windspeedT": 0.0,
       "swversion": "0.0.9",
-      "color": "",
       "trackerID": "",
     }
   };
@@ -169,7 +172,7 @@ class ResponsiveDrawer extends React.Component {
     this.setState(state => ({ mobileOpen: !state.mobileOpen }));
   };
 
-  hostname = window.location.hostname + ':1111';
+  hostname = 'localhost:1111';
 
   componentDidMount() {
     var func = this;
@@ -215,6 +218,10 @@ class ResponsiveDrawer extends React.Component {
               windspeedT: Number(res[4]).toFixed(2)
             }});
           }
+          if(data.logs[i].message.includes("colorChange"))
+          {
+            func.props.setTrackerColor(res[2], res[1]);
+          }
           if(data.logs[i].message.includes("CMD") && data.logs[i].message.includes("DID"))
           {
             console.log(data.logs[i]);
@@ -223,7 +230,6 @@ class ResponsiveDrawer extends React.Component {
           else{
             datae.push(data.logs[i]);
           }
-
         }
         func.setState({messages: datae});
         func.setState({xbeeMessages: xbeeDatae});
@@ -425,4 +431,10 @@ ResponsiveDrawer.propTypes = {
   theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(ResponsiveDrawer);
+const mapDispatchToProps = (dispatch) => ({
+  setTrackerColor: (trackerID, color) => {
+      dispatch(commissioningActions.setTrackerColor(trackerID, color)) 
+  }
+})
+
+export default  connect(null, mapDispatchToProps)(withStyles(styles, { withTheme: true })(ResponsiveDrawer));
