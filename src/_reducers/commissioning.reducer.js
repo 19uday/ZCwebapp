@@ -11,7 +11,9 @@ const initialState = {
   trackerColor: {
     trackerID: "",
     color: "",
-  }
+  },
+  triggeringDiscovery: false,
+  discoveryDetails: null,
 }
 
 export function commissioning(state, action) {
@@ -72,6 +74,27 @@ export function commissioning(state, action) {
         }
       };
     }
+    case commissioningConstants.TRIGGER_DISCOVERY_REQUEST:
+    return {
+      ...state,
+      triggeringDiscovery: true,
+      discoveryDetails: false,
+      loaded: true
+    };
+  case commissioningConstants.TRIGGER_DISCOVERY_SUCCESS:
+    return {
+      ...state,
+      triggeringDiscovery: false,  
+      discoveryDetails: action.discoveryDetails,
+      loaded: true
+    };
+  case commissioningConstants.TRIGGER_DISCOVERY_FAILURE:
+    return {
+      ...state,
+      triggeringDiscovery: false,
+      error: action.error,
+      loaded: true
+    };
     default:
       return state
   }

@@ -129,7 +129,7 @@ function TrackerDetails(props) {
 
                       <TableRow>
                       <TableCell className={classes.innerRow} padding="dense">
-                      Time Stamp: </TableCell><TableCell>{new Date(data.timeStamp).toLocaleDateString()}-{new Date(data.timeStamp).toLocaleTimeString()}
+                      Time Stamp: </TableCell><TableCell>{new Date(Number(data.timeStamp) * 1000).toLocaleDateString()}-{new Date(Number(data.timeStamp) * 1000).toLocaleTimeString()}
                       </TableCell>
                       </TableRow>
 

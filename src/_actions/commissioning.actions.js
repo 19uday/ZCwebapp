@@ -66,9 +66,11 @@ function triggerDiscovery() {
             .then(
                 discoveryDetails => { 
                     dispatch(success(discoveryDetails));
+                    alert("Successfully Discovered!")
                 },
                 error => {
                     dispatch(failure(error.toString()));
+                    alert("Error in discovering!")
                 }
             );
     };
