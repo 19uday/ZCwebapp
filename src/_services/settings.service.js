@@ -56,7 +56,7 @@ function heartBeat(enabled, hbinterval, maxMsgs) {
         method: "POST",
         mode: 'cors',
         body: JSON.stringify({
-            "enable": enabled,
+            "enabled": enabled,
             "interval": hbinterval,
             "maxMsgs": maxMsgs,
         })

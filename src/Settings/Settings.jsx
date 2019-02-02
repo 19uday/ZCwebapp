@@ -643,8 +643,8 @@ class Settings extends Component {
             <MenuItem value="">
               <em>None</em>
             </MenuItem>
-            <MenuItem value="enable">Enable</MenuItem>
-            <MenuItem value="disable">Disable</MenuItem>
+            <MenuItem value="enabled">Enabled</MenuItem>
+            <MenuItem value="disabled">Disabled</MenuItem>
           </Select>
           <TextField
                             name="hbinterval"
