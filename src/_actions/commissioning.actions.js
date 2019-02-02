@@ -65,12 +65,12 @@ function triggerDiscovery() {
         commissioningService.triggerDiscovery()
             .then(
                 discoveryDetails => { 
-                    dispatch(success(discoveryDetails));
-                    alert("Successfully Discovered!")
+                    dispatch(success(discoveryDetails))
+                    alert("Successfully started discovery!")
                 },
                 error => {
                     dispatch(failure(error.toString()));
-                    alert("Error in discovering!")
+                    alert("Error in starting discovering!")
                 }
             );
     };
