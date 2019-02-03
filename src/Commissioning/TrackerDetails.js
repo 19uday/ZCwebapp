@@ -53,7 +53,7 @@ function TrackerDetails(props) {
 
                       <TableRow>
                       <TableCell className={classes.innerRow} padding="dense">
-                      Device ID: </TableCell><TableCell>{deviceID} 
+                      Device ID: </TableCell><TableCell>{data.deviceID} 
                       </TableCell>
                       </TableRow>
 

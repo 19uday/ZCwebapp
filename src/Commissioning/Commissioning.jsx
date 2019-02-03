@@ -39,6 +39,11 @@ const styles = theme => ({
             height: '500px',
           },
     },
+    image: {
+        backgroundImage: 'url(/img/openApp.png)',
+        backgroundSize: 'contain',
+        backgroundRepeat: 'no-repeat'
+      },
 });
 
 class Commissioning extends Component {
@@ -53,6 +58,7 @@ class Commissioning extends Component {
         permitJoinClicked: false,
         trackerIDforColor: "",
         trackercolor: "",
+        singlePixel: false,
     }
 
     permitJoin = () => {
@@ -79,7 +85,7 @@ class Commissioning extends Component {
 
     handleApp = () => {
         console.log("clicked");
-        history.push("/openApp");
+        this.setState({singlePixel: true});
     } 
 
     componentWillReceiveProps = (nextProps) => {
@@ -120,6 +126,7 @@ class Commissioning extends Component {
                         </Grid>
                     </Grid>
                 </Grid>
+                {this.state.singlePixel === true && <div className={classes.image}></div>}
             </div>
         );
     }
