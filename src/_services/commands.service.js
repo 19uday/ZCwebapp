@@ -46,7 +46,7 @@ function sendCommand(deviceID, command, macID) {
             });
     }
 
-    if(command === "WE"){
+    if(command === "WE" && macID !== '00000'){
         requestOptions["body"] = JSON.stringify({
             "CMD" : "HMNM",
             "DID": deviceID,
@@ -55,7 +55,7 @@ function sendCommand(deviceID, command, macID) {
         });
     }
 
-if(command === "SMTALStow"){
+if(command === "SMTALStow" && macID !== '00000'){
     requestOptions["body"] = JSON.stringify({
             "CMD" : "HMOD",
             "DID": deviceID,
@@ -64,7 +64,7 @@ if(command === "SMTALStow"){
         });
 }
 
-if(command === "SMTALStop"){
+if(command === "SMTALStop" && macID !== '00000'){
     requestOptions["body"] = JSON.stringify({
             "CMD" : "HMNM",
             "DID": deviceID,
@@ -73,7 +73,7 @@ if(command === "SMTALStop"){
         });
 }
 
-if(command === "ES"){
+if(command === "ES" && macID !== '00000'){
     requestOptions["body"] = JSON.stringify({
             "CMD" : "HMNM",
             "DID": deviceID,

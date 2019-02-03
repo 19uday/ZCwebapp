@@ -310,12 +310,13 @@ class ResponsiveDrawer extends React.Component {
         </ListItem>
         </Link>
         <Divider />
-        <ToastContainer />
       </div>
     );
 
     return (
       <div className={classes.root}>
+              <ToastContainer />
+
         <AppBar className={classes.appBar} >
           <Toolbar style={{overflow:"auto"}} className={classes.tool}>
             <IconButton
