@@ -12,6 +12,8 @@ function sendCommand(deviceID, command, macID) {
         mode: 'cors'
     };
 
+    console.log(macID);
+
     if(command === "WE"){
             requestOptions["body"] = JSON.stringify({
                 "CMD" : "HMNM",
@@ -48,6 +50,7 @@ function sendCommand(deviceID, command, macID) {
             });
     }
 
+    console.log(requestOptions);
 
     return fetch(`http://${hostName}/sendCommand`, requestOptions)
         .then(handleResponse)

@@ -46,8 +46,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  sendCommand: (trackers, command) => {
-      dispatch(commandsActions.sendCommand(trackers, command)) 
+  sendCommand: (deviceID, command, macID) => {
+      dispatch(commandsActions.sendCommand(deviceID, command, macID)) 
   }
 })
 
