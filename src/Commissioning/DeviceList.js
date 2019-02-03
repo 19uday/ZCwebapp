@@ -87,7 +87,7 @@ class DeviceList extends Component {
               {data.map(n => {
                       return (
                         <Grid item xs 
-                        className={classNames( (this.props.trackercolor === 'red' && this.props.trackerIDforColor ===  n.trackerID) ?  'overl' : 'trackerIcon',  n.trackerID === selectedTrackerID ? classes.clicked : classes.tracker)}
+                        className={classNames( (this.props.trackercolor === 'red' && this.props.trackerIDforColor ===  n.trackerID) ?  'overl' : 'trackerIcon', (this.props.trackercolor === 'blue' && this.props.trackerIDforColor ===  n.trackerID) ?  'trackerIcon' : 'trackerIcon', n.trackerID === selectedTrackerID ? classes.clicked : classes.tracker)}
                         onClick={() => this.props.getTrackerDetails(n.trackerID)}
                         key={n.trackerID}>{n.trackerID}</Grid>
                       )
