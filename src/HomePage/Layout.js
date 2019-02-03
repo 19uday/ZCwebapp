@@ -29,6 +29,8 @@ import Paper from '@material-ui/core/Paper';
 import SimpleBar from './SimpleBar';
 import { commissioningActions } from '../_actions'
 import { connect } from 'react-redux'
+import { ToastContainer, toast } from 'react-toastify';
+
 
 
 
@@ -308,6 +310,7 @@ class ResponsiveDrawer extends React.Component {
         </ListItem>
         </Link>
         <Divider />
+        <ToastContainer />
       </div>
     );
 

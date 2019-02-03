@@ -1,5 +1,7 @@
 import { wifiConstants } from '../_constants';
 import { wifiService } from '../_services';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const wifiActions = {
     setWifiInfo,
@@ -14,11 +16,11 @@ function setWifiInfo(ssid, pass) {
             .then(
                 ok => { 
                     dispatch(success(ok.toString()));
-                    alert('error in setting wifi info!')
+                    toast('error in setting wifi info!')
                 },
                 error => {
                     dispatch(failure(error.toString()));
-                    alert('successfully set wifi info!')
+                    toast('successfully set wifi info!')
                 }
             );
     };
@@ -38,11 +40,11 @@ function upload(file) {
             .then(
                 ok => { 
                     dispatch(success(ok.toString()));
-                    alert('successfully uploaded!')
+                    toast('successfully uploaded!')
                 },
                 error => {
                     dispatch(failure(error.toString()));
-                    alert('error in uploading!')
+                    toast('error in uploading!')
                 }
             );
     };

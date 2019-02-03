@@ -1,5 +1,7 @@
 import { settingsConstants } from '../_constants';
 import { settingsService } from '../_services';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const settingsActions = {
     sendSetting,
@@ -37,11 +39,11 @@ function setPanID(panID) {
             .then(
                 ok => { 
                     dispatch(success(ok.toString()));
-                    alert('successfully set Pan ID!')
+                    toast('successfully set Pan ID!')
                 },
                 error => {
                     dispatch(failure(error.toString()));
-                    alert('error in setting Pan ID!')
+                    toast('error in setting Pan ID!')
                 }
             );
     };
@@ -61,11 +63,11 @@ function threshold(maxWindSpeed, maxRainFall) {
             .then(
                 ok => { 
                     dispatch(success(ok.toString()));
-                    alert('successfully set Threshold!')
+                    toast('successfully set Threshold!')
                 },
                 error => {
                     dispatch(failure(error.toString()));
-                    alert('error in setting Threshold!')
+                    toast('error in setting Threshold!')
                 }
             );
     };
@@ -84,11 +86,11 @@ function heartBeat(enabled, hbinterval, maxMsgs) {
             .then(
                 ok => { 
                     dispatch(success(ok.toString()));
-                    alert('successfully set Heart Beat')
+                    toast('successfully set Heart Beat')
                 },
                 error => {
                     dispatch(failure(error.toString()));
-                    alert('error in setting HeartBeat!')
+                    toast('error in setting HeartBeat!')
                 }
             );
     };

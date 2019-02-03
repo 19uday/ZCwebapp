@@ -1,5 +1,9 @@
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import { commissioningConstants } from '../_constants';
 import { commissioningService } from '../_services';
+
 
 export const commissioningActions = {
     getCommissioningData,
@@ -66,11 +70,11 @@ function triggerDiscovery() {
             .then(
                 discoveryDetails => { 
                     dispatch(success(discoveryDetails))
-                    alert("Successfully started discovery!")
+                    toast("Successfully started discovery!")
                 },
                 error => {
                     dispatch(failure(error.toString()));
-                    alert("Error in starting discovering!")
+                    toast("Error in starting discovering!");
                 }
             );
     };

@@ -1,5 +1,7 @@
 import { commandsConstants } from '../_constants';
 import { commandsService } from '../_services';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const commandsActions = {
     sendCommand
@@ -13,11 +15,11 @@ function sendCommand(deviceID, command, macID) {
             .then(
                 ok => { 
                     dispatch(success(ok.toString()));
-                    alert('successfully sent message!')
+                    toast('successfully sent message!')
                 },
                 error => {
                     dispatch(failure(error.toString()));
-                    alert('error in sending message!')
+                    toast('error in sending message!')
                 }
             );
     };
