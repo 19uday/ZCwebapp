@@ -5,7 +5,7 @@ export const commandsService = {
 const hostName = window.location.hostname+ ':5001';
 //const hostName = 'https://ancient-catfish-90.localtunnel.me';
 
-function sendCommand(trackerID, command) {
+function sendCommand(deviceID, command, macID) {
 
     const requestOptions = {
         method: "POST",
@@ -15,34 +15,39 @@ function sendCommand(trackerID, command) {
     if(command === "WE"){
             requestOptions["body"] = JSON.stringify({
                 "CMD" : "HMNM",
-                "DID": "00000",
-                "VALUES": "NEGATIVE"
+                "DID": deviceID,
+                "VALUES": "NEGATIVE",
+                "macID": macID,
             });
         }
 
     if(command === "SMTALStow"){
         requestOptions["body"] = JSON.stringify({
                 "CMD" : "HMOD",
-                "DID": "00000",
-                "MODE": "NIGHT"
+                "DID": deviceID,
+                "MODE": "NIGHT",
+                "macID": macID,
             });
     }
 
     if(command === "SMTALStop"){
         requestOptions["body"] = JSON.stringify({
                 "CMD" : "HMNM",
-                "DID": "00000",
-                "VALUES": "STOP"
+                "DID": deviceID,
+                "VALUES": "STOP",
+                "macID": macID,
             });
     }
 
     if(command === "ES"){
         requestOptions["body"] = JSON.stringify({
                 "CMD" : "HMNM",
-                "DID": "00000",
-                "VALUES": "POSITIVE"
+                "DID": deviceID,
+                "VALUES": "POSITIVE",
+                "macID": macID,
             });
     }
+
 
     return fetch(`http://${hostName}/sendCommand`, requestOptions)
         .then(handleResponse)

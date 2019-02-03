@@ -59,18 +59,18 @@ class CheckboxListSecondary extends React.Component {
     disable: false,
   };
 
-  handleChange2 = (e,command, trackerID) => {
+  handleChange2 = (e,command, deviceID, macID) => {
     e.target.style.backgroundColor = 'silver';
-    this.props.sendCommand(trackerID, command)
+    this.props.sendCommand(deviceID, command, macID)
     const newAuto = this.state.auto
     const newStopped = this.state.stopped
     if(command === 'STOP') {
-      newStopped.push(trackerID)
+      newStopped.push(deviceID)
       this.setState({
         stopped: newStopped
       })  
     } else if(command === 'AUTO') {
-      newAuto.push(trackerID)
+      newAuto.push(deviceID)
       this.setState({
         auto: newAuto
       })
@@ -78,18 +78,18 @@ class CheckboxListSecondary extends React.Component {
     
   };
 
-  handleChange = (command, trackerID) => {
+  handleChange = (command, deviceID) => {
 
-    this.props.sendCommand(trackerID, command)
+    this.props.sendCommand(deviceID, command, '00000')
     const newAuto = this.state.auto
     const newStopped = this.state.stopped
     if(command === 'STOP') {
-      newStopped.push(trackerID)
+      newStopped.push(deviceID)
       this.setState({
         stopped: newStopped
       })  
     } else if(command === 'AUTO') {
-      newAuto.push(trackerID)
+      newAuto.push(deviceID)
       this.setState({
         auto: newAuto
       })
@@ -135,23 +135,23 @@ class CheckboxListSecondary extends React.Component {
               />
             </FormGroup> 
             <Grid container justify="space-evenly">   
-            <Button variant="contained" disabled={!this.state.disable} className={classNames(classes.green, classes.button)} onClick={() => this.handleChange('WE', '00000000')}>
+            <Button variant="contained" disabled={!this.state.disable} className={classNames(classes.green, classes.button)} onClick={() => this.handleChange('WE', '00000')}>
             RUN WEST
               <ArrowLeftIcon className={classes.rightIcon} />
             </Button>
-            <Button variant="contained" disabled={!this.state.disable} className={classNames(classes.orange, classes.button)} onClick={() => this.handleChange('SMTALStow', '00000000')}>
+            <Button variant="contained" disabled={!this.state.disable} className={classNames(classes.orange, classes.button)} onClick={() => this.handleChange('SMTALStow', '00000')}>
               STOW
               <StraightenIcon className={classes.rightIcon} />
             </Button>
-            <Button variant="contained" disabled={!this.state.disable} className={classNames(classes.red, classes.button)} onClick={() => this.handleChange('SMTALStop', '00000000')}>
+            <Button variant="contained" disabled={!this.state.disable} className={classNames(classes.red, classes.button)} onClick={() => this.handleChange('SMTALStop', '00000')}>
               STOP
               <StopIcon className={classes.rightIcon} />
             </Button>
-            <Button variant="contained" disabled={!this.state.disable} className={classNames(classes.blue, classes.button)} onClick={() => this.handleChange('ES', '00000000')}>
+            <Button variant="contained" disabled={!this.state.disable} className={classNames(classes.blue, classes.button)} onClick={() => this.handleChange('ES', '00000')}>
               RUN EAST
               <ArrowRightIcon className={classes.rightIcon} />
             </Button>
-            <Button variant="contained" disabled={!this.state.disable} className={classNames(classes.yellow, classes.button)} onClick={() => this.handleChange('SMTALReset', '00000000')}>
+            <Button variant="contained" disabled={!this.state.disable} className={classNames(classes.yellow, classes.button)} onClick={() => this.handleChange('SMTALReset', '00000')}>
               RESET
               <AutorenewIcon className={classes.rightIcon} />
             </Button>
@@ -172,19 +172,19 @@ class CheckboxListSecondary extends React.Component {
                     <div>
 <Grid container justify="space-evenly">   
 <p>{tracker.trackerID}</p> 
-            <Button variant="contained" className={classes.green} onClick={(e) => this.handleChange2(e,'WE', tracker.deviceID)}>
+            <Button variant="contained" className={classes.green} onClick={(e) => this.handleChange2(e,'WE', tracker.deviceID, tracker.macID)}>
                           RUN WEST
                           <ArrowLeftIcon className={classes.rightIcon} />
                         </Button>
-            <Button variant="contained" className={classes.orange} onClick={(e) => this.handleChange2(e,'SMTALStow', tracker.deviceID)}>
+            <Button variant="contained" className={classes.orange} onClick={(e) => this.handleChange2(e,'SMTALStow', tracker.deviceID, tracker.macID)}>
                           STOW
                           <StraightenIcon className={classes.rightIcon} />
                         </Button>
-            <Button variant="contained" disabled={this.state.stopped ? this.state.stopped.indexOf(tracker.deviceID) > -1 ? true : false : false } className={classes.red} onClick={(e) => this.handleChange2(e,'SMTALStop', tracker.deviceID)}>
+            <Button variant="contained" disabled={this.state.stopped ? this.state.stopped.indexOf(tracker.deviceID) > -1 ? true : false : false } className={classes.red} onClick={(e) => this.handleChange2(e,'SMTALStop', tracker.deviceID, tracker.macID)}>
                           STOP
                           <StopIcon className={classes.rightIcon} />
                         </Button>
-            <Button variant="contained" disabled={this.state.auto ? this.state.auto.indexOf(tracker.deviceID) > -1 ? true : false : false } className={classes.blue} onClick={(e) => this.handleChange2(e,'ES', tracker.deviceID)}>
+            <Button variant="contained" disabled={this.state.auto ? this.state.auto.indexOf(tracker.deviceID) > -1 ? true : false : false } className={classes.blue} onClick={(e) => this.handleChange2(e,'ES', tracker.deviceID, tracker.macID)}>
                           RUN EAST
                           <ArrowRightIcon className={classes.rightIcon} />
                         </Button>

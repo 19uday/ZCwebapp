@@ -101,6 +101,7 @@ class DeviceList extends Component {
                           Trigger Discovery
                 </Button>
             </div>
+            <div><iframe width="560" height="315" src="https://www.youtube.com/embed/hUaOcaclCKQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
         </Paper>
       );
     }
