@@ -172,6 +172,10 @@ class ResponsiveDrawer extends React.Component {
     this.setState(state => ({ mobileOpen: !state.mobileOpen }));
   };
 
+  handleCloseDrawer = () => {
+    this.setState({mobileOpen: false});
+  }
+
   hostname = window.location.hostname + ':1111';
 
   componentDidMount() {
@@ -256,7 +260,7 @@ class ResponsiveDrawer extends React.Component {
         <div className={classNames(classes.toolbar, "ftclogo")} />
         <Divider />
         <Link to="/Commissioning">
-        <ListItem button className={this.props.selected === 'Commissioning' || !this.props.selected ? classes.selected : ""}>
+        <ListItem button onClick={this.handleCloseDrawer} className={this.props.selected === 'Commissioning' || !this.props.selected ? classes.selected : ""}>
           <ListItemIcon>
             <DashboardIcon />
           </ListItemIcon>
@@ -264,7 +268,7 @@ class ResponsiveDrawer extends React.Component {
         </ListItem>
         </Link>
         <Link to="/Commands">
-        <ListItem button className={this.props.selected === 'Commands' ? classes.selected : ""}>
+        <ListItem button onClick={this.handleCloseDrawer} className={this.props.selected === 'Commands' ? classes.selected : ""}>
           <ListItemIcon>
             <SendIcon />
           </ListItemIcon>
@@ -272,7 +276,7 @@ class ResponsiveDrawer extends React.Component {
         </ListItem>
         </Link>
         <Link to="/Trends">
-        <ListItem button className={this.props.selected === 'Trends' ? classes.selected : ""}>
+        <ListItem button onClick={this.handleCloseDrawer} className={this.props.selected === 'Trends' ? classes.selected : ""}>
           <ListItemIcon>
             <TrendingUpIcon />
           </ListItemIcon>
@@ -280,7 +284,7 @@ class ResponsiveDrawer extends React.Component {
         </ListItem>
         </Link>
         <Link to="/Wifi">
-        <ListItem button className={this.props.selected === 'Wifi' ? classes.selected : ""}>
+        <ListItem button onClick={this.handleCloseDrawer} className={this.props.selected === 'Wifi' ? classes.selected : ""}>
           <ListItemIcon>
             <NetworkWifiIcon />
           </ListItemIcon>
@@ -288,7 +292,7 @@ class ResponsiveDrawer extends React.Component {
         </ListItem>
         </Link>
         <Link to="/Settings">
-        <ListItem button className={this.props.selected === 'Settings' ? classes.selected : ""}>
+        <ListItem button onClick={this.handleCloseDrawer} className={this.props.selected === 'Settings' ? classes.selected : ""}>
           <ListItemIcon>
             <SettingsIcon />
           </ListItemIcon>
@@ -296,7 +300,7 @@ class ResponsiveDrawer extends React.Component {
         </ListItem>
         </Link>
         <Link to="/About">
-        <ListItem button className={this.props.selected === 'About' ? classes.selected : ""}>
+        <ListItem button onClick={this.handleCloseDrawer} className={this.props.selected === 'About' ? classes.selected : ""}>
           <ListItemIcon>
             <InfoIcon />
           </ListItemIcon>
@@ -391,9 +395,7 @@ class ResponsiveDrawer extends React.Component {
             classes={{
               paper: classes.drawerPaper,
             }}
-            ModalProps={{
-              keepMounted: true, // Better open performance on mobile.
-            }}
+
           >
             {drawer}
           </Drawer>
