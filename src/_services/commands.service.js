@@ -14,41 +14,80 @@ function sendCommand(deviceID, command, macID) {
 
     console.log(macID);
 
-    if(command === "WE"){
+    if(command === "WE" && macID === '00000'){
             requestOptions["body"] = JSON.stringify({
                 "CMD" : "HMNM",
                 "DID": deviceID,
                 "VALUES": "NEGATIVE",
-                "macID": macID,
             });
         }
 
-    if(command === "SMTALStow"){
+    if(command === "SMTALStow" && macID === '00000'){
         requestOptions["body"] = JSON.stringify({
                 "CMD" : "HMOD",
                 "DID": deviceID,
                 "MODE": "NIGHT",
-                "macID": macID,
             });
     }
 
-    if(command === "SMTALStop"){
+    if(command === "SMTALStop" && macID === '00000'){
         requestOptions["body"] = JSON.stringify({
                 "CMD" : "HMNM",
                 "DID": deviceID,
                 "VALUES": "STOP",
-                "macID": macID,
             });
     }
 
-    if(command === "ES"){
+    if(command === "ES" && macID === '00000'){
         requestOptions["body"] = JSON.stringify({
                 "CMD" : "HMNM",
                 "DID": deviceID,
                 "VALUES": "POSITIVE",
-                "macID": macID,
             });
     }
+
+    if(command === "WE"){
+        requestOptions["body"] = JSON.stringify({
+            "CMD" : "HMNM",
+            "DID": deviceID,
+            "VALUES": "NEGATIVE",
+            "macID": macID,
+        });
+    }
+
+if(command === "SMTALStow"){
+    requestOptions["body"] = JSON.stringify({
+            "CMD" : "HMOD",
+            "DID": deviceID,
+            "MODE": "NIGHT",
+            "macID": macID,
+        });
+}
+
+if(command === "SMTALStop"){
+    requestOptions["body"] = JSON.stringify({
+            "CMD" : "HMNM",
+            "DID": deviceID,
+            "VALUES": "STOP",
+            "macID": macID,
+        });
+}
+
+if(command === "ES"){
+    requestOptions["body"] = JSON.stringify({
+            "CMD" : "HMNM",
+            "DID": deviceID,
+            "VALUES": "POSITIVE",
+            "macID": macID,
+        });
+}
+
+if(command === "SMTALReset"){
+    requestOptions["body"] = JSON.stringify({
+            "CMD" : "RESET",
+            "DID": "00000",
+        });
+}
 
     console.log(requestOptions);
 
