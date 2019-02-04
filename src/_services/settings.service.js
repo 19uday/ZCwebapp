@@ -37,13 +37,15 @@ function setPanID(panID) {
         .then(handleResponse)
 }
 
-function threshold(maxWindSpeed, maxRainFall) {
+function threshold(maxWindSpeed, maxRainFall, meanWindSpeed, windSpeedTimer) {
     const requestOptions = {
         method: "POST",
         mode: 'cors',
         body: JSON.stringify({
             "maxWindSpeed": maxWindSpeed,
             "maxRainFall": maxRainFall,
+            "meanWindSpeed": meanWindSpeed,
+            "windSpeedTimer": windSpeedTimer,
         })
     };
 

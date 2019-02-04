@@ -55,11 +55,11 @@ function setPanID(panID) {
     function failure(error) { return { type: settingsConstants.SET_PANID_FAILURE, error } }
 }
 
-function threshold(maxWindSpeed, maxRainFall) {
+function threshold(maxWindSpeed, maxRainFall, meanWindSpeed, windSpeedTimer) {
     return dispatch => {
         dispatch(request());
 
-        settingsService.threshold(maxWindSpeed, maxRainFall)
+        settingsService.threshold(maxWindSpeed, maxRainFall, meanWindSpeed, windSpeedTimer)
             .then(
                 ok => { 
                     dispatch(success(ok.toString()));

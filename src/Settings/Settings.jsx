@@ -41,6 +41,8 @@ class Settings extends Component {
         panID: '',
         maxWindSpeed: 5,
         maxRainFall: 5,
+        meanWindSpeed: 2,
+        windSpeedTimer: 30,
         };
 
   handleChange = (e) => {
@@ -62,7 +64,7 @@ class Settings extends Component {
   }
 
   handleThreshold = () => {
-      this.props.threshold(this.state.maxWindSpeed, this.state.maxRainFall);
+      this.props.threshold(this.state.maxWindSpeed, this.state.maxRainFall, this.state.meanWindSpeed, this.state.windSpeedTimer);
   }
 
   handleHeartBeat = () => {
@@ -609,6 +611,24 @@ class Settings extends Component {
                         />
                         <br />
                         <TextField
+                            name="meanWindSpeed"
+                            label="Mean Wind Speed"
+                            placeholder="Mean Wind Speed"
+                            margin="none"
+                            onChange={this.handleChange}
+                            fullWidth
+                        />
+                        <br />
+                        <TextField
+                            name="windSpeedTimer"
+                            label="Wind Speed Timer"
+                            placeholder="Wind Speed Timer"
+                            margin="none"
+                            onChange={this.handleChange}
+                            fullWidth
+                        />
+                        <br />
+                        <TextField
                             name="maxRainFall"
                             label="Maximum Rain Fall"
                             placeholder="Maximum Rain Fall"
@@ -616,6 +636,7 @@ class Settings extends Component {
                             onChange={this.handleChange}
                             fullWidth
                         />
+
                         <br />
                         <center><Button type="submit" className="submit-button" onClick={this.handleThreshold}>
                             Submit
@@ -687,8 +708,8 @@ const mapDispatchToProps = (dispatch) => ({
     setPanID: (panID) => {
         dispatch(settingsActions.setPanID(panID))
     },
-    threshold: (maxWindSpeed, maxRainFall) => {
-        dispatch(settingsActions.threshold(maxWindSpeed, maxRainFall))
+    threshold: (maxWindSpeed, maxRainFall, meanWindSpeed, windSpeedTimer) => {
+        dispatch(settingsActions.threshold(maxWindSpeed, maxRainFall, meanWindSpeed, windSpeedTimer))
     },
     heartBeat: (enabled, hbinterval, maxMsgs) => {
         dispatch(settingsActions.heartBeat(enabled, hbinterval, maxMsgs))
