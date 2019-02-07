@@ -127,7 +127,7 @@ const mapDispatchToProps = (dispatch) => ({
         dispatch(commissioningActions.getCommissioningData()) 
     },
     setWindParams: (windSpeed, windSpeedT) =>{
-        dispatch(commissioningActions.setWindParams())
+        dispatch(commissioningActions.setWindParams(windSpeed, windSpeedT))
     },
 })
 
