@@ -272,62 +272,41 @@ class ResponsiveDrawer extends React.Component {
             </Typography>
             
             <Hidden smDown>
-                        <Grid container className={classes.root1} spacing={8}>
+              <Grid container className={classes.root1} spacing={8}>
                 <Grid item xs={12} className={classes.pad}>
                     <Grid container className={classes.demo} justify="flex-end" spacing={Number(8)}>
-                    <Grid key={0} item >
-                    <Paper className={classes.paper} >
-                    <center><div className={classes.keyy}><b>ID</b></div> <div className={classes.val}>{this.buttonObject["id"]}</div></center>
-                  </Paper>
-                  </Grid>
-                  <Grid key={1} item >
-                  <Paper className={classes.paper} >
-                  <center><div className={classes.keyy}>
-                    <b>Location</b></div> <div className={classes.valll}>{this.state.buttonObject["location"]}</div> </center>
-                  </Paper>
+                      <Grid key={0} item >
+                        <Paper className={classes.paper} >
+                          <center><div className={classes.keyy}><b>ID</b></div> <div className={classes.val}>{this.buttonObject["id"]}</div></center>
+                        </Paper>
+                      </Grid>
 
-                  </Grid>
-                  <Grid key={2} item >
-                  {this.state.buttonObject['rainfall'] > this.state.buttonObject["rainfallT"] &&
-                    <Paper className={classNames(classes.paper, "blink")} >
-                    <center><div className={classes.keyy}>
-                      <b>RainFall</b></div> <div className={classes.val1}>{this.state.buttonObject["rainfall"]} mm, putting all panels to stow</div></center>
-                    </Paper>
-                  }
-                  {this.state.buttonObject['rainfall'] <= this.state.buttonObject["rainfallT"] &&
-                    <Paper className={classes.paper} >
-                    <center><div className={classes.keyy}>
-                      <b>RainFall</b></div> <div className={classes.val}>{this.state.buttonObject["rainfall"]} mm</div></center>
-                    </Paper>
-                  }
-
-                  </Grid>
-                  <Grid key={3} item >
-                  {this.state.buttonObject['windspeed'] > this.state.buttonObject["windspeedT"] &&
-                    <Paper className={classNames(classes.paper, "blink")} >
-                    <center><div className={classes.keyy}>
-                      <b>WindSpeed</b></div> <div className={classes.val1}>{this.state.buttonObject["windspeed"]} km/hr, putting all panels to stow</div></center>
-                    </Paper>
-                  }
-                  {this.state.buttonObject['windspeed'] <= this.state.buttonObject["windspeedT"] &&
-                    <Paper className={classes.paper} >
-                    <center><div className={classes.keyy}>
-                      <b>WindSpeed</b></div> <div className={classes.val}>{this.state.buttonObject["windspeed"]} km/hr</div></center>
-                    </Paper>
-                  }
-                  </Grid>
-                  <Grid key={3} item>
-                  <Paper className={classes.paper} >
-                  <center><div className={classes.val}>
-                    <b>S/W </b> {this.state.buttonObject["swversion"]}</div>
-                    <div className={classes.val}>
-                    <b>H/W </b> {this.state.buttonObject["hwversion"]}</div></center>
-                  </Paper>
-
-                  </Grid>
+                    
+                    <Grid key={3} item >
+                      {this.state.buttonObject['windspeed'] > this.state.buttonObject["windspeedT"] &&
+                        <Paper className={classNames(classes.paper, "blink")} >
+                        <center><div className={classes.keyy}>
+                          <b>WindSpeed</b></div> <div className={classes.val1}>{this.state.buttonObject["windspeed"]} km/hr, putting all panels to stow</div></center>
+                        </Paper>
+                      }
+                      {this.state.buttonObject['windspeed'] <= this.state.buttonObject["windspeedT"] &&
+                        <Paper className={classes.paper} >
+                        <center><div className={classes.keyy}>
+                          <b>WindSpeed</b></div> <div className={classes.val}>{this.state.buttonObject["windspeed"]} km/hr</div></center>
+                        </Paper>
+                      }
+                    </Grid>
+                    <Grid key={3} item>
+                      <Paper className={classes.paper} >
+                        <center><div className={classes.val}>
+                        <b>S/W </b> {this.state.buttonObject["swversion"]}</div>
+                        <div className={classes.val}>
+                        <b>H/W </b> {this.state.buttonObject["hwversion"]}</div></center>
+                      </Paper>
+                    </Grid>
+                    </Grid>
                     </Grid>
                 </Grid>
-            </Grid>
             </Hidden>
           </Toolbar>
         </AppBar>

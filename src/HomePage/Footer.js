@@ -43,7 +43,7 @@ const styles = theme => ({
       fontSize: '13px',
   },
   scroll: {
-    height: '100%',
+    height: '80vh',
     overflow: 'auto',
   },
 });
@@ -139,11 +139,6 @@ class Footer extends React.Component {
       </Table>
           </TabContainer>
         </SwipeableViews>
-        <div>
-        <Button variant="contained" className={classes.yellow} onClick={this.trigger}>
-                          Download Logs
-        </Button>
-        </div>
       </div>
     );
   }

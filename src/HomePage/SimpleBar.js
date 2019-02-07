@@ -95,27 +95,6 @@ function SimpleBar(props) {
                     <center><div className={classes.keyy}><b>ID</b></div> <div className={classes.val}>{props.button["id"]}</div></center>
                   </Paper>
                   </Grid>
-                  <Grid key={1} item >
-                  <Paper className={classes.paper} >
-                  <center><div className={classes.keyy}>
-                    <b>Location</b></div> <div className={classes.val}>{props.button["location"]}</div> </center>
-                  </Paper>
-
-                  </Grid>
-                  <Grid key={2} item >
-                  {props.button['rainfall'] > props.button['rainfallT'] &&
-                    <Paper className={classNames(classes.paper, "blink")} >
-                    <center><div className={classes.keyy}>
-                      <b>RainFall</b></div> <div className={classes.val1}>{props.button["rainfall"]} mm, putting all panels to stow</div></center>
-                    </Paper>
-                  }
-                  {props.button['rainfall'] <= props.button['rainfallT'] &&
-                    <Paper className={classes.paper} >
-                    <center><div className={classes.keyy}>
-                      <b>RainFall</b></div> <div className={classes.val}>{props.button["rainfall"]} mm</div></center>
-                    </Paper>
-                  }
-                  </Grid>
                   <Grid key={3} item >
                   {props.button['windspeed'] > props.button['windspeedT'] &&
                     <Paper className={classNames(classes.paper, "blink")} >
