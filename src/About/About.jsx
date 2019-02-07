@@ -34,7 +34,14 @@ const styles = theme => ({
                     ZC Version S/W:
                     </Typography>
                     <p>
-                    0.0.9
+                    1.0.0
+                    </p>
+                    <br />
+                    <Typography variant="h5" component="h3">
+                    ZC Version H/W:
+                    </Typography>
+                    <p>
+                    1.0.0
                     </p>
                     <br />
                     <Typography variant="h5" component="h3">

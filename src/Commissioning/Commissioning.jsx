@@ -59,6 +59,7 @@ class Commissioning extends Component {
         trackerIDforColor: "",
         trackercolor: "",
         singlePixel: false,
+        time: "",
     }
 
     permitJoin = () => {
@@ -71,7 +72,20 @@ class Commissioning extends Component {
         this.props.getCommissioningData()
     }
 
+    inter = {} 
+
+    everyEight = (trackerID) => {
+        var func = this;
+        console.log(trackerID);
+        clearInterval(this.inter);
+        this.inter = setInterval(() => {
+            func.props.getCurrentTrackerInfo(trackerID);
+            console.log(trackerID);
+        }, 8000)
+    }
+
     getTrackerDetails = (trackerID) => {
+        this.setState()
         this.props.getCurrentTrackerInfo(trackerID)
         console.log(trackerID, this.props.commissioningData)
         const deviceID = this.props.commissioningData.find(e => e.trackerID === trackerID).deviceID
@@ -79,8 +93,7 @@ class Commissioning extends Component {
             trackerID,
             deviceID
         })
-        console.log(this.state.deviceID);
-        
+        this.everyEight(trackerID);
     }
 
     handleApp = () => {
@@ -103,7 +116,7 @@ class Commissioning extends Component {
             <div className={classes.root} >
                 <Grid container  className="flex" alignItems="stretch" direction="row" justify="space-around">
                     <Grid item xs={12} sm={6} className={classNames("flex", classes.padRight, classes.detail)}>
-                        { loaded ? <DeviceList trackerIDforColor={this.state.trackerIDforColor} trackercolor={this.state.trackercolor} permitJoin={this.permitJoin} permitJoinClicked={this.state.permitJoinClicked} selectedTrackerID={selectedTrackerID} devices={commissioningData} getTrackerDetails={this.getTrackerDetails}/> : <Loading /> }
+                        { loaded ? <DeviceList time={this.state.time} trackerIDforColor={this.state.trackerIDforColor} trackercolor={this.state.trackercolor} permitJoin={this.permitJoin} permitJoinClicked={this.state.permitJoinClicked} selectedTrackerID={selectedTrackerID} devices={commissioningData} getTrackerDetails={this.getTrackerDetails}/> : <Loading /> }
                     </Grid>
                     <br />
                     <Grid item xs={12} sm={6}  className={classNames("flex")}>

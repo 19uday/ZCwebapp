@@ -66,71 +66,13 @@ function TrackerDetails(props) {
 
                       <TableRow>
                       <TableCell className={classes.innerRow} padding="dense">
-                      Calculated Angle: </TableCell><TableCell>{parseFloat(data.calculatedAngle).toFixed(2)}  deg
-                      </TableCell>
-                      </TableRow>
-
-                      <TableRow>
-                      <TableCell className={classes.innerRow} padding="dense">
-                      Current Angle: </TableCell><TableCell>{parseFloat(data.currentAngle).toFixed(2)}  deg
-                      </TableCell>
-                      </TableRow>
-
-
-                      <TableRow>
-                      <TableCell className={classes.innerRow} padding="dense">
-                        Temp: </TableCell><TableCell>{parseFloat(data.temp).toFixed(2)}  F
-                      </TableCell>
-                      </TableRow>
-
-                      <TableRow>
-                      <TableCell className={classes.innerRow} padding="dense">
-                        Irradiation: </TableCell><TableCell>{parseFloat(data.irradiation).toFixed(2)}  kW/mm2
-                      </TableCell>
-                      </TableRow>
-
-
-                      <TableRow>
-                      <TableCell className={classes.innerRow} padding="dense">
-                        Battery Current: </TableCell><TableCell>{parseFloat(data.batteryCurrent).toFixed(2)}  A
-                      </TableCell>
-                      </TableRow>
-
-                      <TableRow>
-                      <TableCell className={classes.innerRow} padding="dense">
-                      Battery Voltage: </TableCell><TableCell>{parseFloat(data.batteryVoltage).toFixed(2)}  V
-                      </TableCell>
-                      </TableRow>
-
- 
-
-                      <TableRow>
-                      <TableCell className={classes.innerRow} padding="dense">
                       Current Mode: </TableCell><TableCell>{data.currentMode}
                       </TableCell>
                       </TableRow>
 
                       <TableRow>
                       <TableCell className={classes.innerRow} padding="dense">
-                      Error Code: </TableCell><TableCell>{data.errorCode}
-                      </TableCell>
-                      </TableRow>
-
-                      <TableRow>
-                      <TableCell className={classes.innerRow} padding="dense">
-                      Motor: </TableCell><TableCell>{data.motor}
-                      </TableCell>
-                      </TableRow>
-
-                      <TableRow>
-                      <TableCell className={classes.innerRow} padding="dense">
-                      PV Current: </TableCell><TableCell>{parseFloat(data.pvCurrent).toFixed(2)}  A
-                      </TableCell>
-                      </TableRow>
-
-                      <TableRow>
-                      <TableCell className={classes.innerRow} padding="dense">
-                      PV Voltage: </TableCell><TableCell>{parseFloat(data.pvVoltage).toFixed(2)}  V
+                      Current Angle: </TableCell><TableCell>{parseFloat(data.currentAngle).toFixed(2)}  deg
                       </TableCell>
                       </TableRow>
 

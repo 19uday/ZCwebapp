@@ -19,7 +19,6 @@ class HomePage extends React.Component {
                     this.props.match.params.id ?
                         this.props.match.params.id === 'Commissioning' ? <Commissioning /> :
                             this.props.match.params.id === 'Commands' ? <Commands /> :
-                                this.props.match.params.id === 'Trends' ? <Trends /> : 
                                     this.props.match.params.id === 'Wifi' ? <Wifi /> :
                                         this.props.match.params.id === 'Settings' ? <Settings /> : <About />
                     : <Commissioning />

@@ -115,14 +115,14 @@ const styles = theme => ({
       },
 },
 paper: {
-  width: 100,
+  width: 85,
   minHeight: '80%',
   maxHeight: '80%',
-  padding: '5px',
+  padding: '2px',
   color: 'black',
 },
 paper1: {
-  width: 100,
+  width: '50px',
   minHeight: '80%',
   maxHeight: '80%',
   color: 'black',
@@ -141,6 +141,9 @@ tool: {
 },
 val: {
   fontSize: '12px',
+},
+valll: {
+  fontSize: '10px',
 },
 val1: {
   fontSize: '10px',
@@ -165,7 +168,8 @@ class ResponsiveDrawer extends React.Component {
       "windspeed": 0.0,
       "rainfallT": 0.0,
       "windspeedT": 0.0,
-      "swversion": "0.0.9",
+      "swversion": "1.0.0",
+      "hwversion": "1.0.0",
       "trackerID": "",
     }
   };
@@ -231,10 +235,10 @@ class ResponsiveDrawer extends React.Component {
           if(data.logs[i].message.includes("CMD") && data.logs[i].message.includes("DID"))
           {
             console.log(data.logs[i]);
-            xbeeDatae.push(data.logs[i]);
+            xbeeDatae.push(data.logs[i] + "  "  + new Date().getUTCTime());
           }
           else{
-            datae.push(data.logs[i]);
+            datae.push(data.logs[i] + "  "  + new Date().getUTCTime());
           }
         }
         func.setState({messages: datae});
@@ -251,7 +255,8 @@ class ResponsiveDrawer extends React.Component {
     "windspeed": 23.0,
     "rainfallT": 2.0,
     "windspeedT": 12.0,
-    "swversion": "0.0.9",
+    "swversion": "1.0.0",
+    "hwversion": "1.0.0",
   }
 
 
@@ -275,14 +280,6 @@ class ResponsiveDrawer extends React.Component {
             <SendIcon />
           </ListItemIcon>
           <ListItemText primary="Control" />
-        </ListItem>
-        </Link>
-        <Link to="/Trends">
-        <ListItem button onClick={this.handleCloseDrawer} className={this.props.selected === 'Trends' ? classes.selected : ""}>
-          <ListItemIcon>
-            <TrendingUpIcon />
-          </ListItemIcon>
-          <ListItemText primary="Trends" />
         </ListItem>
         </Link>
         <Link to="/Wifi">
@@ -332,9 +329,9 @@ class ResponsiveDrawer extends React.Component {
             </Typography>
             
             <Hidden smDown>
-                        <Grid container className={classes.root1} spacing={16}>
+                        <Grid container className={classes.root1} spacing={8}>
                 <Grid item xs={12} className={classes.pad}>
-                    <Grid container className={classes.demo} justify="flex-end" spacing={Number(16)}>
+                    <Grid container className={classes.demo} justify="flex-end" spacing={Number(8)}>
                     <Grid key={0} item >
                     <Paper className={classes.paper} >
                     <center><div className={classes.keyy}><b>ID</b></div> <div className={classes.val}>{this.buttonObject["id"]}</div></center>
@@ -343,7 +340,7 @@ class ResponsiveDrawer extends React.Component {
                   <Grid key={1} item >
                   <Paper className={classes.paper} >
                   <center><div className={classes.keyy}>
-                    <b>Location</b></div> <div className={classes.val}>{this.state.buttonObject["location"]}</div> </center>
+                    <b>Location</b></div> <div className={classes.valll}>{this.state.buttonObject["location"]}</div> </center>
                   </Paper>
 
                   </Grid>
@@ -379,7 +376,15 @@ class ResponsiveDrawer extends React.Component {
                   <Grid key={3} item>
                   <Paper className={classes.paper} >
                   <center><div className={classes.keyy}>
-                    <b>ZC Version</b> </div><div className={classes.val}><b>S/W</b>{this.state.buttonObject["version"]}</div></center>
+                    <b>ZC Version</b> </div><div className={classes.val}><b>S/W &nbsp;</b>{this.state.buttonObject["swversion"]}</div></center>
+                  </Paper>
+
+                  </Grid>
+
+                  <Grid key={4} item>
+                  <Paper className={classes.paper} >
+                  <center><div className={classes.keyy}>
+                    <b>ZC Version</b> </div><div className={classes.val}><b>H/W &nbsp;</b>{this.state.buttonObject["hwversion"]}</div></center>
                   </Paper>
 
                   </Grid>

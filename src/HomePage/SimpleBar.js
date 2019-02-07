@@ -133,7 +133,14 @@ function SimpleBar(props) {
                   <Grid key={4} item>
                   <Paper className={classes.paper} >
                   <center><div className={classes.keyy}>
-                    <b>ZC Version</b> </div><div className={classes.val}><b>S/W</b>{props.button["version"]}</div></center>
+                    <b>ZC Version</b> </div><div className={classes.val}><b>S/W &nbsp;</b>{props.button["swversion"]}</div></center>
+                  </Paper>
+
+                  </Grid>
+                  <Grid key={5} item>
+                  <Paper className={classes.paper} >
+                  <center><div className={classes.keyy}>
+                    <b>ZC Version</b> </div><div className={classes.val}><b>H/W &nbsp; </b>{props.button["hwversion"]}</div></center>
                   </Paper>
 
                   </Grid>
