@@ -11,6 +11,7 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import {Button} from '@material-ui/core';
 
 function TabContainer({ children, dir }) {
   return (
@@ -133,6 +134,11 @@ class Footer extends React.Component {
       </Table>
           </TabContainer>
         </SwipeableViews>
+        <div>
+        <Button variant="contained" className={classes.yellow} onClick={this.trigger}>
+                          Download Logs
+        </Button>
+        </div>
       </div>
     );
   }

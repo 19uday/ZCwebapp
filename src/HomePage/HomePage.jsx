@@ -87,11 +87,11 @@ class HomePage extends React.Component {
               }
               if(data.logs[i].message.includes("CMD") && data.logs[i].message.includes("DID"))
               {
-                console.log(data.logs[i]);
+                console.log(data.logs[i].message);
                 this.logsObj = {
                     date: new Date().toLocaleDateString(),
                     time: new Date().toLocaleTimeString(),
-                    log: data.logs[i],
+                    log: data.logs[i].message,
                 }
                 xbeeDatae.push(this.logsObj);
               }
@@ -99,7 +99,7 @@ class HomePage extends React.Component {
                 this.logsObj = {
                     date: new Date().toLocaleDateString(),
                     time: new Date().toLocaleTimeString(),
-                    log: data.logs[i],
+                    log: data.logs[i].message,
                 }
                 datae.push(this.logsObj);
               }
