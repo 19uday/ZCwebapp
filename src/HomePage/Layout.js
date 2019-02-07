@@ -182,7 +182,7 @@ class ResponsiveDrawer extends React.Component {
     this.setState({mobileOpen: false});
   }
 
-  hostname = '192.168.1.101:1111';
+  hostname = window.location.hostname +':1111';
 
   componentDidMount() {
     var func = this;
