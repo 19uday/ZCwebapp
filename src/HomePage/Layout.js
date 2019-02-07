@@ -182,7 +182,7 @@ class ResponsiveDrawer extends React.Component {
     this.setState({mobileOpen: false});
   }
 
-  hostname = window.location.hostname + ':1111';
+  hostname = '192.168.1.101:1111';
 
   componentDidMount() {
     var func = this;
@@ -235,10 +235,13 @@ class ResponsiveDrawer extends React.Component {
           if(data.logs[i].message.includes("CMD") && data.logs[i].message.includes("DID"))
           {
             console.log(data.logs[i]);
-            xbeeDatae.push(data.logs[i] + "  "  + new Date().getUTCTime());
+            xbeeDatae.push(data.logs[i] + ' '  + new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString());
+            console.log(data.logs[i] + ' '  + new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString());
           }
           else{
-            datae.push(data.logs[i] + "  "  + new Date().getUTCTime());
+            datae.push(data.logs[i] + ' '  + new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString());
+            console.log(data.logs[i]);
+            console.log(data.logs[i] + ' '  + new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString());
           }
         }
         func.setState({messages: datae});
