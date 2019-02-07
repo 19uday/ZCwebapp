@@ -26,13 +26,6 @@ const styles = theme => ({
   root: {
     backgroundColor: theme.palette.background.paper,
     borderRadius: '5px',
-    [theme.breakpoints.down('lg')]: {
-      width: '100%',
-    },
-    [theme.breakpoints.up('lg')]: {
-      width: 'calc(100% - 250px)',
-      marginLeft: '245px',
-    },
   },
   black: {
       backgroundColor: 'black',
@@ -40,9 +33,6 @@ const styles = theme => ({
   },
   white: {
       color: 'white',
-  },
-  appBar: {
-      maxHeight: '30px',
   },
 });
 
@@ -73,6 +63,7 @@ class Footer extends React.Component {
             indicatorColor="primary"
             textColor="primary"
             variant="fullWidth"
+            centered
           >
             <Tab label="Log" />
             <Tab label="Errors" />
@@ -91,7 +82,7 @@ class Footer extends React.Component {
           <TabContainer dir={theme.direction} className={classes.white}>
           {this.props.mess.map(n => {
                   return (
-<p className={classes.white}>{n.message}</p>
+<p className={classes.white}>{n.message} &nbsp; &nbsp;  <i>{new Date().toLocaleDateString()}</i> &nbsp; <i>{new Date().toLocaleTimeString()}</i> </p>
                   )
           })}
           </TabContainer>
@@ -101,7 +92,7 @@ class Footer extends React.Component {
           <TabContainer dir={theme.direction} className={classes.white}>          
           {this.props.xbee.map(m => {
                   return (
-            <p className={classes.white}>{m.message}--{new Date().toLocaleDateString()}--{new Date().toLocaleTimeString()}</p>
+            <p className={classes.white}>{m.message} &nbsp;  &nbsp; <i>{new Date().toLocaleDateString()}</i> &nbsp; <i>{new Date().toLocaleTimeString()}</i></p>
                   )
           })}
           </TabContainer>

@@ -80,9 +80,7 @@ const styles = theme => ({
       flexGrow: 1,
       backgroundColor: 'lightgrey',
       padding: theme.spacing.unit,
-      [theme.breakpoints.up('md')]: {
-        height: 'calc(85vh - 68px)',
-      },
+      maxHeight: '93vh',
     },
   selected: {
     backgroundColor: "lightskyblue"
@@ -184,70 +182,6 @@ class ResponsiveDrawer extends React.Component {
 
   hostname = window.location.hostname +':1111';
 
-  componentDidMount() {
-    var func = this;
-    var socket = io(`http://${this.hostname}`);
-    console.log(socket);
-    socket.on("connect", () => {
-        console.log("Connected to server!!!");
-        socket.emit("subscribeToMessages",{});
-    });
-
-    socket.on("disconnect", () => {
-        console.log("Disconnect!!!");
-    });
-
-    socket.on('message', function (data) {
-        console.log(data);
-        var res = [];
-        var datae = func.state.messages;
-        var xbeeDatae = func.state.xbeeMessages;
-        
-        for(var i=0;i<data.logs.length;i++){
-          res = data.logs[i].message.split(" ");
-          if(data.logs[i].message.includes("rainFall"))
-          {
-            
-            func.setState({...func.state, buttonObject: {
-              ...func.state.buttonObject,
-              rainfall: Number(res[2]).toFixed(2)
-            }});
-            func.setState({...func.state, buttonObject: {
-              ...func.state.buttonObject,
-              rainfallT: Number(res[4]).toFixed(2)
-            }});
-          }
-          if(data.logs[i].message.includes("windSpeed"))
-          {
-            func.setState({...func.state, buttonObject: {
-              ...func.state.buttonObject,
-              windspeed: Number(res[2]).toFixed(2)
-            }});
-            func.setState({...func.state, buttonObject: {
-              ...func.state.buttonObject,
-              windspeedT: Number(res[4]).toFixed(2)
-            }});
-          }
-          if(data.logs[i].message.includes("colorChange"))
-          {
-            func.props.setTrackerColor(res[2], res[1]);
-          }
-          if(data.logs[i].message.includes("CMD") && data.logs[i].message.includes("DID"))
-          {
-            console.log(data.logs[i]);
-            xbeeDatae.push(data.logs[i]);
-          }
-          else{
-            datae.push(data.logs[i]);
-          }
-        }
-        func.setState({messages: datae});
-        func.setState({xbeeMessages: xbeeDatae});
-    });
-
-    func.setState({start: true});
-}
-
   buttonObject = {
     "id": "zone1",
     "location": "19.8,20.8 Chennai",
@@ -304,6 +238,14 @@ class ResponsiveDrawer extends React.Component {
             <InfoIcon />
           </ListItemIcon>
           <ListItemText primary="About" />
+        </ListItem>
+        </Link>
+        <Link to="/Logs">
+        <ListItem button onClick={this.handleCloseDrawer} className={this.props.selected === 'Logs' ? classes.selected : ""}>
+          <ListItemIcon>
+            <InfoIcon />
+          </ListItemIcon>
+          <ListItemText primary="Logs" />
         </ListItem>
         </Link>
         <Divider />
@@ -375,16 +317,10 @@ class ResponsiveDrawer extends React.Component {
                   </Grid>
                   <Grid key={3} item>
                   <Paper className={classes.paper} >
-                  <center><div className={classes.keyy}>
-                    <b>ZC Version</b> </div><div className={classes.val}><b>S/W &nbsp;</b>{this.state.buttonObject["swversion"]}</div></center>
-                  </Paper>
-
-                  </Grid>
-
-                  <Grid key={4} item>
-                  <Paper className={classes.paper} >
-                  <center><div className={classes.keyy}>
-                    <b>ZC Version</b> </div><div className={classes.val}><b>H/W &nbsp;</b>{this.state.buttonObject["hwversion"]}</div></center>
+                  <center><div className={classes.val}>
+                    <b>S/W </b> {this.state.buttonObject["swversion"]}</div>
+                    <div className={classes.val}>
+                    <b>H/W </b> {this.state.buttonObject["hwversion"]}</div></center>
                   </Paper>
 
                   </Grid>
@@ -431,7 +367,6 @@ class ResponsiveDrawer extends React.Component {
           </Hidden>
             {children}
         </main>
-        <div className={classes.footer}><Footer mess={this.state.messages} xbee={this.state.xbeeMessages}/></div>
       </div>
     );
   }

@@ -9,8 +9,95 @@ import { Wifi } from '../Wifi';
 import { commissioningActions } from '../_actions';
 import { Settings } from '../Settings';
 import { About } from '../About';
+import Footer from './Footer.js';
+import io from 'socket.io-client';
 
 class HomePage extends React.Component {
+
+    state = {
+        mobileOpen: false,
+        start: true,
+        messages:[],
+        xbeeMessages: [],
+        color: "",
+        buttonObject: {
+          "id": "zone1",
+          "location": "19.8,20.8 Chennai",
+          "rainfall": 0.0,
+          "windspeed": 0.0,
+          "rainfallT": 0.0,
+          "windspeedT": 0.0,
+          "swversion": "1.0.0",
+          "hwversion": "1.0.0",
+          "trackerID": "",
+        }
+      };
+
+    hostname = window.location.hostname +':1111';
+
+    componentDidMount() {
+        var func = this;
+        var socket = io(`http://${this.hostname}`);
+        console.log(socket);
+        socket.on("connect", () => {
+            console.log("Connected to server!!!");
+            socket.emit("subscribeToMessages",{});
+        });
+    
+        socket.on("disconnect", () => {
+            console.log("Disconnect!!!");
+        });
+    
+        socket.on('message', function (data) {
+            console.log(data);
+            var res = [];
+            var datae = func.state.messages;
+            var xbeeDatae = func.state.xbeeMessages;
+            
+            for(var i=0;i<data.logs.length;i++){
+              res = data.logs[i].message.split(" ");
+              if(data.logs[i].message.includes("rainFall"))
+              {
+                
+                func.setState({...func.state, buttonObject: {
+                  ...func.state.buttonObject,
+                  rainfall: Number(res[2]).toFixed(2)
+                }});
+                func.setState({...func.state, buttonObject: {
+                  ...func.state.buttonObject,
+                  rainfallT: Number(res[4]).toFixed(2)
+                }});
+              }
+              if(data.logs[i].message.includes("windSpeed"))
+              {
+                func.setState({...func.state, buttonObject: {
+                  ...func.state.buttonObject,
+                  windspeed: Number(res[2]).toFixed(2)
+                }});
+                func.setState({...func.state, buttonObject: {
+                  ...func.state.buttonObject,
+                  windspeedT: Number(res[4]).toFixed(2)
+                }});
+              }
+              if(data.logs[i].message.includes("colorChange"))
+              {
+                func.props.setTrackerColor(res[2], res[1]);
+              }
+              if(data.logs[i].message.includes("CMD") && data.logs[i].message.includes("DID"))
+              {
+                console.log(data.logs[i]);
+                xbeeDatae.push(data.logs[i]);
+              }
+              else{
+                datae.push(data.logs[i]);
+              }
+            }
+            func.setState({messages: datae});
+            func.setState({xbeeMessages: xbeeDatae});
+        });
+    
+        func.setState({start: true});
+    }
 
     render() {
         return(
@@ -19,6 +106,7 @@ class HomePage extends React.Component {
                     this.props.match.params.id ?
                         this.props.match.params.id === 'Commissioning' ? <Commissioning /> :
                             this.props.match.params.id === 'Commands' ? <Commands /> :
+                                this.props.match.params.id === 'Logs' ? <Footer mess={this.state.messages} xbee={this.state.xbeeMessages}/>:
                                     this.props.match.params.id === 'Wifi' ? <Wifi /> :
                                         this.props.match.params.id === 'Settings' ? <Settings /> : <About />
                     : <Commissioning />

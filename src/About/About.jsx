@@ -31,14 +31,14 @@ const styles = theme => ({
               <Grid item xs={11} sm={10} md={8} lg={5}>
                 <Paper className={classes.paper}>
                     <Typography variant="h5" component="h3">
-                    ZC Version S/W:
+                    S/W Version:
                     </Typography>
                     <p>
                     1.0.0
                     </p>
                     <br />
                     <Typography variant="h5" component="h3">
-                    ZC Version H/W:
+                    H/W Version:
                     </Typography>
                     <p>
                     1.0.0
