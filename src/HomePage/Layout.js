@@ -235,13 +235,10 @@ class ResponsiveDrawer extends React.Component {
           if(data.logs[i].message.includes("CMD") && data.logs[i].message.includes("DID"))
           {
             console.log(data.logs[i]);
-            xbeeDatae.push(data.logs[i] + ' '  + new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString());
-            console.log(data.logs[i] + ' '  + new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString());
+            xbeeDatae.push(data.logs[i]);
           }
           else{
-            datae.push(data.logs[i] + ' '  + new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString());
-            console.log(data.logs[i]);
-            console.log(data.logs[i] + ' '  + new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString());
+            datae.push(data.logs[i]);
           }
         }
         func.setState({messages: datae});

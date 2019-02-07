@@ -101,7 +101,7 @@ class Footer extends React.Component {
           <TabContainer dir={theme.direction} className={classes.white}>          
           {this.props.xbee.map(m => {
                   return (
-            <p className={classes.white}>{m.message}</p>
+            <p className={classes.white}>{m.message}--{new Date().toLocaleDateString()}--{new Date().toLocaleTimeString()}</p>
                   )
           })}
           </TabContainer>
