@@ -195,8 +195,7 @@ class ResponsiveDrawer extends React.Component {
   componentWillReceiveProps = (nextProps) => {
     if((this.props.windSpeed  !== nextProps.windSpeed) || (this.props.windSpeedT  !== nextProps.windSpeedT) )
     {
-        this.setState({windSpeed: nextProps.windSpeed});
-        this.setState({windSpeedT: nextProps.windSpeedT});
+        this.setState({windSpeed: nextProps.windSpeed, windSpeedT: nextProps.windSpeedT});
     }
 }
 
