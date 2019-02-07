@@ -159,13 +159,11 @@ class ResponsiveDrawer extends React.Component {
     messages:[],
     xbeeMessages: [],
     color: "",
+    windSpeed: 0.0,
+    windSpeedT: 0.0,
     buttonObject: {
       "id": "zone1",
       "location": "19.8,20.8 Chennai",
-      "rainfall": 0.0,
-      "windspeed": 0.0,
-      "rainfallT": 0.0,
-      "windspeedT": 0.0,
       "swversion": "1.0.0",
       "hwversion": "1.0.0",
       "trackerID": "",
@@ -193,6 +191,14 @@ class ResponsiveDrawer extends React.Component {
     "hwversion": "1.0.0",
   }
 
+
+  componentWillReceiveProps = (nextProps) => {
+    if(this.props.windSpeed  !== nextProps.windSpeed || this.props.windSpeedT  !== nextProps.windSpeedT )
+    {
+        this.setState({windSpeed: nextProps.windSpeed});
+        this.setState({windSpeedT: nextProps.windSpeedT});
+    }
+}
 
   render() {
     const { classes, theme, children } = this.props;
@@ -283,16 +289,16 @@ class ResponsiveDrawer extends React.Component {
 
                     
                     <Grid key={3} item >
-                      {this.state.buttonObject['windspeed'] > this.state.buttonObject["windspeedT"] &&
+                      {this.state.windSpeed > this.state.windSpeedT &&
                         <Paper className={classNames(classes.paper, "blink")} >
                         <center><div className={classes.keyy}>
-                          <b>WindSpeed</b></div> <div className={classes.val1}>{this.state.buttonObject["windspeed"]} km/hr, putting all panels to stow</div></center>
+                          <b>WindSpeed</b></div> <div className={classes.val1}>{this.state.windSpeed } km/hr, putting all panels to stow</div></center>
                         </Paper>
                       }
-                      {this.state.buttonObject['windspeed'] <= this.state.buttonObject["windspeedT"] &&
+                      {this.state.windSpeed  <= this.state.windSpeedT &&
                         <Paper className={classes.paper} >
                         <center><div className={classes.keyy}>
-                          <b>WindSpeed</b></div> <div className={classes.val}>{this.state.buttonObject["windspeed"]} km/hr</div></center>
+                          <b>WindSpeed</b></div> <div className={classes.val}>{this.state.windSpeed } km/hr</div></center>
                         </Paper>
                       }
                     </Grid>
@@ -343,7 +349,7 @@ class ResponsiveDrawer extends React.Component {
         <main className={classes.content}>
           <div className={classes.toolbar} />
           <Hidden mdUp>
-            <SimpleBar button={this.state.buttonObject}/>
+            <SimpleBar button={this.state.buttonObject} windSpeed={this.state.windSpeed} windSpeedT={this.state.windSpeedT}/>
           </Hidden>
             {children}
         </main>
@@ -357,10 +363,18 @@ ResponsiveDrawer.propTypes = {
   theme: PropTypes.object.isRequired,
 };
 
+const mapStateToProps = (state) => {
+  const { windSpeed, windSpeedT } = state.commissioning
+  return {
+    windSpeed,
+    windSpeedT,
+  };
+}
+
 const mapDispatchToProps = (dispatch) => ({
   setTrackerColor: (trackerID, color) => {
       dispatch(commissioningActions.setTrackerColor(trackerID, color)) 
   }
 })
 
-export default  connect(null, mapDispatchToProps)(withStyles(styles, { withTheme: true })(ResponsiveDrawer));
+export default  connect(mapStateToProps, mapDispatchToProps)(withStyles(styles, { withTheme: true })(ResponsiveDrawer));

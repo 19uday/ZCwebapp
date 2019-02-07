@@ -14,6 +14,8 @@ const initialState = {
   },
   triggeringDiscovery: false,
   discoveryDetails: null,
+  windSpeed: 0.0,
+  windSpeedT: 0.0,
 }
 
 export function commissioning(state, action) {
@@ -72,6 +74,13 @@ export function commissioning(state, action) {
           trackerID: action.trackerID,
           color: action.color,
         }
+      };
+    }
+    case commissioningConstants.SET_WINDSPEED_SUCCESS:
+    {
+      return {
+        ...state,
+        windSpeed: action.windSpeed, windSpeedT: action.windSpeedT
       };
     }
     case commissioningConstants.TRIGGER_DISCOVERY_REQUEST:

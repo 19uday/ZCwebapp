@@ -72,14 +72,7 @@ class HomePage extends React.Component {
               }
               if(data.logs[i].message.includes("windSpeed"))
               {
-                func.setState({...func.state, buttonObject: {
-                  ...func.state.buttonObject,
-                  windspeed: Number(res[2]).toFixed(2)
-                }});
-                func.setState({...func.state, buttonObject: {
-                  ...func.state.buttonObject,
-                  windspeedT: Number(res[4]).toFixed(2)
-                }});
+                func.props.setWindParams(Number(res[2]).toFixed(2), Number(res[4]).toFixed(2))
               }
               if(data.logs[i].message.includes("colorChange"))
               {
@@ -132,7 +125,10 @@ class HomePage extends React.Component {
 const mapDispatchToProps = (dispatch) => ({
     getCommissioningData: () => {
         dispatch(commissioningActions.getCommissioningData()) 
-    }
+    },
+    setWindParams: (windSpeed, windSpeedT) =>{
+        dispatch(commissioningActions.setWindParams())
+    },
 })
 
 const connectedHomePage = connect(null, mapDispatchToProps)(HomePage);

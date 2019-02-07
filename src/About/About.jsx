@@ -48,7 +48,7 @@ const styles = theme => ({
                         Release Date: 
                     </Typography>
                    <p>
-                    20-12-2018
+                    08 Feb 2019
                     </p>
                 </Paper>
               </Grid>

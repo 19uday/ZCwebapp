@@ -10,6 +10,7 @@ export const commissioningActions = {
     getCurrentTrackerInfo,
     setTrackerColor,
     triggerDiscovery,
+    setWindParams,
 };
 
 function getCommissioningData() {
@@ -60,7 +61,14 @@ function setTrackerColor(trackerID, color) {
         dispatch(success(trackerID, color));
     };
     function success(trackerID, color) { return { type: commissioningConstants.SET_COLOR_SUCCESS, trackerID, color} }
-}triggerDiscovery
+}
+
+function setWindParams(windSpeed, windSpeedT) {
+    return dispatch => {
+        dispatch(success(windSpeed, windSpeedT));
+    };
+    function success(windSpeed, windSpeedT) { return { type: commissioningConstants.SET_WINDSPEED_SUCCESS, windSpeed, windSpeedT} }
+}
 
 function triggerDiscovery() {
     return dispatch => {
