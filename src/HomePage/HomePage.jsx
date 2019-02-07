@@ -35,6 +35,8 @@ class HomePage extends React.Component {
 
     hostname = window.location.hostname +':1111';
 
+    logObj ={}
+
     componentDidMount() {
         var func = this;
         var socket = io(`http://${this.hostname}`);
@@ -86,10 +88,20 @@ class HomePage extends React.Component {
               if(data.logs[i].message.includes("CMD") && data.logs[i].message.includes("DID"))
               {
                 console.log(data.logs[i]);
-                xbeeDatae.push(data.logs[i]);
+                this.logsObj = {
+                    date: new Date().toLocaleDateString(),
+                    time: new Date().toLocaleTimeString(),
+                    log: data.logs[i],
+                }
+                xbeeDatae.push(this.logsObj);
               }
               else{
-                datae.push(data.logs[i]);
+                this.logsObj = {
+                    date: new Date().toLocaleDateString(),
+                    time: new Date().toLocaleTimeString(),
+                    log: data.logs[i],
+                }
+                datae.push(this.logsObj);
               }
             }
             func.setState({messages: datae});

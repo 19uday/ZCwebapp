@@ -6,6 +6,11 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
 
 function TabContainer({ children, dir }) {
   return (
@@ -33,6 +38,7 @@ const styles = theme => ({
   },
   white: {
       color: 'white',
+      fontSize: '16px',
   },
 });
 
@@ -80,21 +86,51 @@ class Footer extends React.Component {
           className={classes.black}
         >
           <TabContainer dir={theme.direction} className={classes.white}>
-          {this.props.mess.map(n => {
-                  return (
-<p className={classes.white}>{n.message} &nbsp; &nbsp;  <i>{new Date().toLocaleDateString()}</i> &nbsp; <i>{new Date().toLocaleTimeString()}</i> </p>
-                  )
-          })}
+          <Table className={classes.table}>
+        <TableHead>
+          <TableRow>
+            <TableCell className={classes.white}  align="left">Date</TableCell>
+            <TableCell className={classes.white}  align="left">Time</TableCell>
+            <TableCell align="right" className={classes.white}>Log</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {this.props.mess.map(row => (
+            <TableRow key={row.id}>
+              <TableCell  className={classes.white}  align="left">{row.date}</TableCell>
+              <TableCell className={classes.white}  align="left">{row.time}</TableCell>
+              <TableCell component="th" scope="row" align="right" className={classes.white}>
+                {row.log}
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
           </TabContainer>
-          <TabContainer dir={theme.direction} className={classes.white}><p className={classes.white}>Errors</p></TabContainer>
-          <TabContainer dir={theme.direction} className={classes.white}><p className={classes.white}>Warnings</p></TabContainer>
-          <TabContainer dir={theme.direction} className={classes.white}><p className={classes.white}>Info</p></TabContainer>
+          <TabContainer dir={theme.direction} ><p className={classes.white}>Errors</p></TabContainer>
+          <TabContainer dir={theme.direction} ><p className={classes.white}>Warnings</p></TabContainer>
+          <TabContainer dir={theme.direction}><p className={classes.white}>Info</p></TabContainer>
           <TabContainer dir={theme.direction} className={classes.white}>          
-          {this.props.xbee.map(m => {
-                  return (
-            <p className={classes.white}>{m.message} &nbsp;  &nbsp; <i>{new Date().toLocaleDateString()}</i> &nbsp; <i>{new Date().toLocaleTimeString()}</i></p>
-                  )
-          })}
+          <Table className={classes.table}>
+        <TableHead>
+          <TableRow>
+            <TableCell className={classes.white} align="left">Date</TableCell>
+            <TableCell className={classes.white} align="left">Time</TableCell>
+            <TableCell className={classes.white} align="right">Log</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {this.props.xbee.map(row => (
+            <TableRow key={row.id}>
+              <TableCell className={classes.white} align="left">{row.date}</TableCell>
+              <TableCell className={classes.white} align="left">{row.time}</TableCell>
+              <TableCell component="th" scope="row" align="right" className={classes.white}>
+                {row.log}
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
           </TabContainer>
         </SwipeableViews>
       </div>

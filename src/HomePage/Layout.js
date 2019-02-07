@@ -232,14 +232,6 @@ class ResponsiveDrawer extends React.Component {
           <ListItemText primary="Settings" />
         </ListItem>
         </Link>
-        <Link to="/About">
-        <ListItem button onClick={this.handleCloseDrawer} className={this.props.selected === 'About' ? classes.selected : ""}>
-          <ListItemIcon>
-            <InfoIcon />
-          </ListItemIcon>
-          <ListItemText primary="About" />
-        </ListItem>
-        </Link>
         <Link to="/Logs">
         <ListItem button onClick={this.handleCloseDrawer} className={this.props.selected === 'Logs' ? classes.selected : ""}>
           <ListItemIcon>
@@ -248,6 +240,15 @@ class ResponsiveDrawer extends React.Component {
           <ListItemText primary="Logs" />
         </ListItem>
         </Link>
+        <Link to="/About">
+        <ListItem button onClick={this.handleCloseDrawer} className={this.props.selected === 'About' ? classes.selected : ""}>
+          <ListItemIcon>
+            <InfoIcon />
+          </ListItemIcon>
+          <ListItemText primary="About" />
+        </ListItem>
+        </Link>
+
         <Divider />
       </div>
     );
