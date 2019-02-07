@@ -12,6 +12,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import {Button} from '@material-ui/core';
+import classNames from 'classnames';
 
 function TabContainer({ children, dir }) {
   return (
@@ -39,7 +40,11 @@ const styles = theme => ({
   },
   white: {
       color: 'white',
-      fontSize: '16px',
+      fontSize: '13px',
+  },
+  scroll: {
+    height: '100%',
+    overflow: 'auto',
   },
 });
 
@@ -86,7 +91,7 @@ class Footer extends React.Component {
           onChangeIndex={this.handleChangeIndex}
           className={classes.black}
         >
-          <TabContainer dir={theme.direction} className={classes.white}>
+          <TabContainer dir={theme.direction} className={classNames(classes.white, classes.scroll)}>
           <Table className={classes.table}>
         <TableHead>
           <TableRow>
@@ -111,7 +116,7 @@ class Footer extends React.Component {
           <TabContainer dir={theme.direction} ><p className={classes.white}>Errors</p></TabContainer>
           <TabContainer dir={theme.direction} ><p className={classes.white}>Warnings</p></TabContainer>
           <TabContainer dir={theme.direction}><p className={classes.white}>Info</p></TabContainer>
-          <TabContainer dir={theme.direction} className={classes.white}>          
+          <TabContainer dir={theme.direction} className={classNames(classes.white, classes.scroll)}>          
           <Table className={classes.table}>
         <TableHead>
           <TableRow>
