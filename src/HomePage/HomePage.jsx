@@ -80,7 +80,7 @@ class HomePage extends React.Component {
               }
               if(data.logs[i].message.includes("CMD") && data.logs[i].message.includes("DID"))
               {
-                console.log(data.logs[i].message);
+                console.log(typeof data.logs[i].message);
                 this.logsObj = {
                     date: new Date().toLocaleDateString(),
                     time: new Date().toLocaleTimeString(),

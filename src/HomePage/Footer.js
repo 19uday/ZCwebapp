@@ -65,7 +65,6 @@ class Footer extends React.Component {
     const { classes, theme, mess } = this.props;
 
     console.log(this.props.mess);
-    console.log(typeof this.props.xbee[0].log)
     return (
       <div className={classes.root}>
         <AppBar position="static" color="default" className={classes.appBar}>
