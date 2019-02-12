@@ -128,8 +128,8 @@ class Footer extends React.Component {
         <TableBody>
           {this.props.xbee.map(row => (
             <TableRow key={row.id}>
-              <TableCell className={classes.white} align="left">{row.date}</TableCell>
-              <TableCell className={classes.white} align="left">{row.time}</TableCell>
+              <TableCell className={classes.white} align="left">{new Date(row.log['TS']).toLocaleDateString()}</TableCell>
+              <TableCell className={classes.white} align="left">{new Date(row.log['TS']).toLocaleTimeString()}</TableCell>
               <TableCell component="th" scope="row" align="right" className={classes.white}>
                 {row.log}
               </TableCell>
