@@ -65,6 +65,7 @@ class Footer extends React.Component {
     const { classes, theme, mess } = this.props;
 
     console.log(this.props.mess);
+    console.log(typeof this.props.xbee[0].log)
     return (
       <div className={classes.root}>
         <AppBar position="static" color="default" className={classes.appBar}>
@@ -128,8 +129,8 @@ class Footer extends React.Component {
         <TableBody>
           {this.props.xbee.map(row => (
             <TableRow key={row.id}>
-              <TableCell className={classes.white} align="left">{new Date(row.log['TS']).toLocaleDateString()}</TableCell>
-              <TableCell className={classes.white} align="left">{new Date(row.log['TS']).toLocaleTimeString()}</TableCell>
+              <TableCell className={classes.white} align="left">{new Date(Number(row.log['TS'])).toLocaleDateString()}</TableCell>
+              <TableCell className={classes.white} align="left">{new Date(Number(row.log['TS'])).toLocaleTimeString()}</TableCell>
               <TableCell component="th" scope="row" align="right" className={classes.white}>
                 {row.log}
               </TableCell>
