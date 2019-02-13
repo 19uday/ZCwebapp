@@ -63,16 +63,16 @@ class HomePage extends React.Component {
                 
                 func.setState({...func.state, buttonObject: {
                   ...func.state.buttonObject,
-                  rainfall: Number(res[2]).toFixed(2)
+                  rainfall: Number(Number(res[2]).toFixed(2))
                 }});
                 func.setState({...func.state, buttonObject: {
                   ...func.state.buttonObject,
-                  rainfallT: Number(res[4]).toFixed(2)
+                  rainfallT: Number(Number(res[4]).toFixed(2))
                 }});
               }
               if(data.logs[i].message.includes("windSpeed"))
               {
-                func.props.setWindParams(Number(res[2]).toFixed(2), Number(res[4]).toFixed(2))
+                func.props.setWindParams(Number(Number(res[2]).toFixed(2)), Number(Number(res[4]).toFixed(2)))
               }
               if(data.logs[i].message.includes("colorChange"))
               {
