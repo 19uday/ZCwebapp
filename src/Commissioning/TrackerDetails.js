@@ -78,7 +78,7 @@ function TrackerDetails(props) {
 
                       <TableRow>
                       <TableCell className={classes.innerRow} padding="dense">
-                      Time Stamp: </TableCell><TableCell>{new Date(Number(data.timeStamp) * 1000).toLocaleDateString()}-{new Date(Number(data.timeStamp) * 1000).toLocaleTimeString()}
+                      Time Stamp: </TableCell><TableCell>{new Date(Number(data.timeStamp) * 1000).toLocaleDateString('en-US', {timeZone: 'America/Denver'})}-{new Date(Number(data.timeStamp) * 1000).toLocaleTimeString('en-US', {timeZone: 'America/Denver'})}
                       </TableCell>
                       </TableRow>
 
