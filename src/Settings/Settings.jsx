@@ -43,6 +43,7 @@ class Settings extends Component {
         maxRainFall: 5,
         meanWindSpeed: 2,
         windSpeedTimer: 30,
+        timeZone: "",
         };
 
   handleChange = (e) => {
@@ -69,6 +70,10 @@ class Settings extends Component {
 
   handleHeartBeat = () => {
       this.props.heartBeat(this.state.enabled, this.state.hbinterval, this.state.maxMsgs);
+  }
+
+  handleTimeZone = () => {
+      this.props.timeZone(this.state.timeZone);
   }
 
     render(){
@@ -197,6 +202,37 @@ class Settings extends Component {
                 </form>
                 </Paper>
               </Grid>
+
+              <Grid item md={4} lg={3} xs={6}>
+              <Paper className={classes.paper}>
+                    <Typography variant="h5" component="h3">
+                       Select Time Zone:
+                    </Typography>
+                    <br />
+                <form onSubmit={this.handleSubmit}>
+          <Select
+            value={this.state.timeZone}
+            onChange={this.handleChange}
+            inputProps={{
+              name: 'timeZone',
+              id: 'timeZone-simple',
+            }}
+          >
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
+            <MenuItem value="IST - +5:30">+ &nbsp; 5:30</MenuItem>
+            <MenuItem value="MST - -7:00">- &nbsp; 7:00</MenuItem>
+          </Select>
+                        <br />
+                        <center>
+                            <Button type="submit" className="submit-button" onClick={this.handleTimeZone}>
+                                Submit
+                            </Button>
+                        </center>
+                </form>
+                </Paper>
+              </Grid>
             </Grid>
             </div>
         );
@@ -217,7 +253,10 @@ const mapDispatchToProps = (dispatch) => ({
     },
     heartBeat: (enabled, hbinterval, maxMsgs) => {
         dispatch(settingsActions.heartBeat(enabled, hbinterval, maxMsgs))
-    }
+    },
+    timeZone: (time) => {
+        dispatch(settingsActions.timeZone(time))
+    },
   })
 
 const connectedSettings = connect(null, mapDispatchToProps)(withStyles(styles, { withTheme: true })(Settings));

@@ -8,6 +8,7 @@ export const settingsActions = {
     setPanID,
     threshold,
     heartBeat,
+    timeZone,
 };
 
 function sendSetting(setting) {
@@ -100,4 +101,27 @@ function heartBeat(enabled, hbinterval, maxMsgs) {
     function request() { return { type: settingsConstants.SET_HEARTBEAT_REQUEST } }
     function success(success) { return { type: settingsConstants.SET_HEARTBEAT_SUCCESS, success } }
     function failure(error) { return { type: settingsConstants.SET_HEARTBEAT_FAILURE, error } }
+}
+
+function timeZone(time) {
+    return dispatch => {
+        dispatch(request());
+        settingsService.timeZone(time)
+            .then(
+                ok => { 
+                    dispatch(success(ok.toString()));
+                    toast('successfully set Time Zone')
+                },
+                error => {
+                    dispatch(failure(error.toString()));
+                    toast('error in setting Time Zone!')
+                }
+            );
+    };
+
+    
+
+    function request() { return { type: settingsConstants.SET_TIMEZONE_REQUEST } }
+    function success(success) { return { type: settingsConstants.SET_TIMEZONE_SUCCESS, success } }
+    function failure(error) { return { type: settingsConstants.SET_TIMEZONE_FAILURE, error } }
 }

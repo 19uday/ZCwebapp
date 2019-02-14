@@ -69,6 +69,26 @@ export function settings(state, action) {
         error: action.error,
         sent2: false
       };
+
+    case settingsConstants.SET_TIMEZONE_REQUEST:
+      return {
+        ...state,
+        sending2: true,
+        sent2: false
+      };
+    case settingsConstants.SET_TIMEZONE_SUCCESS:
+      return {
+        ...state,
+        sending2: false,
+        sent2: true
+      };
+    case settingsConstants.SET_TIMEZONE_FAILURE:
+      return {
+        ...state,
+        sending2: false,
+        error: action.error,
+        sent2: false
+      };
     default:
       return state
   }

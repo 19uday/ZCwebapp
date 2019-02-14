@@ -82,16 +82,16 @@ class HomePage extends React.Component {
               {
                 console.log(typeof data.logs[i].message);
                 this.logsObj = {
-                    date: new Date().toLocaleDateString(),
-                    time: new Date().toLocaleTimeString(),
+                    date: new Date().toLocaleDateString('en-US', {timeZone: 'America/Denver'}),
+                    time: new Date().toLocaleTimeString('en-US', {timeZone: 'America/Denver'}),
                     log: data.logs[i].message,
                 }
                 xbeeDatae.push(this.logsObj);
               }
               else{
                 this.logsObj = {
-                    date: new Date().toLocaleDateString(),
-                    time: new Date().toLocaleTimeString(),
+                    date: new Date().toLocaleDateString('en-US', {timeZone: 'America/Denver'}),
+                    time: new Date().toLocaleTimeString('en-US', {timeZone: 'America/Denver'}),
                     log: data.logs[i].message,
                 }
                 datae.push(this.logsObj);

@@ -3,6 +3,7 @@ export const settingsService = {
     setPanID,
     threshold,
     heartBeat,
+    timeZone,
 };
 
 const hostName = window.location.hostname+ ':5000';
@@ -66,6 +67,20 @@ function heartBeat(enabled, hbinterval, maxMsgs) {
     console.log(requestOptions);
 
     return fetch(`http://${hostName}/heartBeatSettings`, requestOptions)
+        .then(handleResponse)
+}
+
+function timeZone(time) {
+    const requestOptions = {
+        method: "POST",
+        mode: 'cors',
+        body: JSON.stringify({
+            "timeZone": time,
+        })
+    };
+    console.log(requestOptions);
+
+    return fetch(`http://${hostName}/setTimeZone`, requestOptions)
         .then(handleResponse)
 }
 
