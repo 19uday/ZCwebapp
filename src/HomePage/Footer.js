@@ -11,7 +11,6 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import {Button} from '@material-ui/core';
 import classNames from 'classnames';
 
 function TabContainer({ children, dir }) {
@@ -128,8 +127,8 @@ class Footer extends React.Component {
         <TableBody>
           {this.props.xbee.map(row => (
             <TableRow key={row.id}>
-              <TableCell className={classes.white} align="left">{new Date(Number(JSON.parse(row.log).TS) * 1000).toLocaleDateString()}</TableCell>
-              <TableCell className={classes.white} align="left">{new Date(Number(JSON.parse(row.log).TS) * 1000).toLocaleTimeString()}</TableCell>
+              <TableCell className={classes.white} align="left">{new Date(Number(JSON.parse(row.log).TS) * 1000).toLocaleDateString('en-US', {timeZone: 'America/Denver'})}</TableCell>
+              <TableCell className={classes.white} align="left">{new Date(Number(JSON.parse(row.log).TS) * 1000).toLocaleTimeString('en-US', {timeZone: 'America/Denver'})}</TableCell>
               <TableCell component="th" scope="row" align="right" className={classes.white}>
                 {row.log}
               </TableCell>
