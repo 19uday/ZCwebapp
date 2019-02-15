@@ -83,7 +83,7 @@ class HomePage extends React.Component {
               {
                 func.props.setTrackerColor(res[2], res[1]);
               }
-              if(data.logs[i].message.includes("CMD") && data.logs[i].message.includes("DID"))
+              if( data.logs[i].message.includes("DID"))
               {
                 console.log(typeof data.logs[i].message);
                 this.logsObj = {
