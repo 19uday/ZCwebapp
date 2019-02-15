@@ -36,6 +36,8 @@ const styles = theme => ({
   black: {
       backgroundColor: 'black',
       color: 'silver',
+      height: '80vh',
+      overflowX: 'scroll',
   },
   white: {
       color: 'white',
