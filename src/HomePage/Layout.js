@@ -164,7 +164,7 @@ class ResponsiveDrawer extends React.Component {
     buttonObject: {
       "id": "zone1",
       "location": "19.8,20.8 Chennai",
-      "swversion": "1.0.0",
+      "swversion": "1.0.CT",
       "hwversion": "1.0.0",
       "trackerID": "",
     }
