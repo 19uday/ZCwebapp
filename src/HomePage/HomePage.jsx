@@ -20,6 +20,7 @@ class HomePage extends React.Component {
         messages:[],
         xbeeMessages: [],
         color: "",
+        sock: {},
         buttonObject: {
           "id": "zone1",
           "location": "19.8,20.8 Chennai",
@@ -41,6 +42,9 @@ class HomePage extends React.Component {
         var func = this;
         var socket = io(`http://${this.hostname}`);
         console.log(socket);
+
+        this.setState({sock: socket});
+
         socket.on("connect", () => {
             console.log("Connected to server!!!");
             socket.emit("subscribeToMessages",{});
@@ -48,11 +52,12 @@ class HomePage extends React.Component {
     
         socket.on("disconnect", () => {
             console.log("Disconnect!!!");
+            socket.disconnect();
         });
     
         socket.on('message', function (data) {
             console.log(data);
-            var res = [];
+            var res = [];   
             var datae = func.state.messages;
             var xbeeDatae = func.state.xbeeMessages;
             
@@ -102,6 +107,10 @@ class HomePage extends React.Component {
         });
     
         func.setState({start: true});
+    }
+
+    componentWillMount(){
+        this.state.sock.disconnect();
     }
 
     render() {
