@@ -109,7 +109,7 @@ class HomePage extends React.Component {
         func.setState({start: true});
     }
 
-    componentWillMount(){
+    componentWillUnmount(){
         this.state.sock.disconnect();
     }
 
