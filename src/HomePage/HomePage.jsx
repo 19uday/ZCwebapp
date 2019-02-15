@@ -27,7 +27,7 @@ class HomePage extends React.Component {
           "windspeed": 0.0,
           "rainfallT": 0.0,
           "windspeedT": 0.0,
-          "swversion": "1.0.0",
+          "swversion": "1.0.CT",
           "hwversion": "1.0.0",
           "trackerID": "",
         }

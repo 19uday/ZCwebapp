@@ -34,7 +34,7 @@ const styles = theme => ({
                     S/W Version:
                     </Typography>
                     <p>
-                    1.0.0
+                    1.0.CT
                     </p>
                     <br />
                     <Typography variant="h5" component="h3">
