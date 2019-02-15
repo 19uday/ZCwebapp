@@ -187,8 +187,8 @@ class ResponsiveDrawer extends React.Component {
     "windspeed": 23.0,
     "rainfallT": 2.0,
     "windspeedT": 12.0,
-    "swversion": "1.0.0",
-    "hwversion": "1.0.0",
+    "swversion": "1.0.CT",
+    "hwversion": "1.0.0", 
   }
 
 
