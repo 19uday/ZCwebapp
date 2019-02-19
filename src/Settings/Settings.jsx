@@ -38,13 +38,13 @@ class Settings extends Component {
         ssid: '',
         password: '',
         submitted: false,
-        panID: '',
+        panID: "",
         maxWindSpeed: 5,
         maxRainFall: 5,
         meanWindSpeed: 2,
         windSpeedTimer: 30,
         timeZone: "",
-        };
+    };
 
   handleChange = (e) => {
     const { name, value } = e.target;
@@ -61,6 +61,7 @@ class Settings extends Component {
   }
 
   handleClick = () => {
+    console.log(this.state.panID);
     this.props.setPanID(this.state.panID);
   }
 
@@ -76,9 +77,19 @@ class Settings extends Component {
       this.props.timeZone(this.state.timeZone);
   }
 
+  componentWillReceiveProps(nextProps){
+      console.log(nextProps.panId)
+      if(this.props.panId !== nextProps.panId)
+      {
+          this.setState({panID: nextProps.panId});
+          console.log(this.state.panID);
+      }
+  }
+
     render(){
         const { classes } = this.props;
-        
+        console.log(this.state);
+        console.log(this.props.panId)
         return (
             <div className={classes.root}>
             <Grid  spacing={24} container>
@@ -94,6 +105,7 @@ class Settings extends Component {
                             placeholder="Enter the pan id"
                             margin="none"
                             onChange={this.handleChange}
+                            defaultValue={this.props.panId}
                             fullWidth
                         />
                         <br />
@@ -243,6 +255,12 @@ Settings.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
+const mapStateToProps = (state) => {
+    const { panId } = state.commissioning
+    return {
+        panId,
+    };
+  }
 
 const mapDispatchToProps = (dispatch) => ({
     setPanID: (panID) => {
@@ -259,5 +277,5 @@ const mapDispatchToProps = (dispatch) => ({
     },
   })
 
-const connectedSettings = connect(null, mapDispatchToProps)(withStyles(styles, { withTheme: true })(Settings));
+const connectedSettings = connect(mapStateToProps, mapDispatchToProps)(withStyles(styles, { withTheme: true })(Settings));
 export { connectedSettings as Settings };

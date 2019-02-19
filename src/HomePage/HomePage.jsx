@@ -5,7 +5,7 @@ import { } from '../_actions';
 import { Commissioning } from '../Commissioning';
 import { Commands } from '../Commands';
 import { Wifi } from '../Wifi';
-import { commissioningActions } from '../_actions';
+import { commissioningActions, settingsActions } from '../_actions';
 import { Settings } from '../Settings';
 import { About } from '../About';
 import Footer from './Footer.js';
@@ -40,6 +40,7 @@ class HomePage extends React.Component {
     socket = null;
 
     componentDidMount() {
+        this.props.getPanId();
         var func = this;
         this.socket = io(`http://${this.hostname}`);
 
@@ -62,10 +63,6 @@ class HomePage extends React.Component {
             console.log(data);
             
         })
-    }
-
-    componentWillUnmount(){
-        this.state.sock.disconnect();
     }
 
     render() {
@@ -95,6 +92,9 @@ const mapDispatchToProps = (dispatch) => ({
     },
     setLogs: (logs) => {
         dispatch(commissioningActions.setLogs(logs))
+    },
+    getPanId: () =>{
+        dispatch(settingsActions.getPanId())
     },
 })
 

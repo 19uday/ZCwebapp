@@ -4,6 +4,7 @@ export const settingsService = {
     threshold,
     heartBeat,
     timeZone,
+    getPanId,
 };
 
 const hostName = window.location.hostname+ ':5000';
@@ -35,6 +36,16 @@ function setPanID(panID) {
     console.log(panID);
 
     return fetch(`http://${hostNameXBee}/settings/xbeePanID `, requestOptions)
+        .then(handleResponse)
+}
+
+function getPanId() {
+    const requestOptions = {
+        method: "GET",
+        mode: 'cors',
+    };
+
+    return fetch(`http://192.168.0.94:5001/gettings/xbeePanID `, requestOptions)
         .then(handleResponse)
 }
 

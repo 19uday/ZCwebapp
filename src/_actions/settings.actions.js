@@ -9,6 +9,7 @@ export const settingsActions = {
     threshold,
     heartBeat,
     timeZone,
+    getPanId,
 };
 
 function sendSetting(setting) {
@@ -29,6 +30,21 @@ function sendSetting(setting) {
     function request(setting) { return { type: settingsConstants.SEND_SETTING, setting } }
     function success() { return { type: settingsConstants.SEND_SETTING_SUCCESS } }
     function failure(error) { return { type: settingsConstants.SEND_SETTING_FAILURE, error } }
+}
+
+function getPanId() {
+    return dispatch => {
+
+        settingsService.getPanId()
+            .then(
+                panId => { 
+                    dispatch(success(panId));
+                    console.log(panId);
+                }
+            );
+    };
+
+    function success(panId) { return { type: settingsConstants.GETPAN_SUCCESS, panId } }
 }
 
 function setPanID(panID) {

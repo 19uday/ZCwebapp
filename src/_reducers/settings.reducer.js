@@ -4,7 +4,8 @@ const initialState = {
   sending1: false,
   sent1:  false,
   sending1: false,
-  sent1:  false
+  sent1:  false,
+  panId: '',
 }
 
 export function settings(state, action) {
@@ -31,6 +32,13 @@ export function settings(state, action) {
         error: action.error,
         sent: false
       };
+    case settingsConstants.GETPAN_SUCCESS:
+    { console.log(action.panId["panID"]);
+      return {
+        ...state,
+        panId: action.panId["panID"]
+      };
+    }
       case settingsConstants.SET_THRESHOLD_REQUEST:
       return {
         ...state,
