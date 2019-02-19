@@ -11,7 +11,7 @@ export const commissioningActions = {
     setTrackerColor,
     triggerDiscovery,
     setWindParams,
-    getLogs,
+    setLogs,
 };
 
 function getCommissioningData() {
@@ -71,7 +71,7 @@ function setWindParams(windSpeed, windSpeedT) {
     function success(windSpeed, windSpeedT) { return { type: commissioningConstants.SET_WINDSPEED_SUCCESS, windSpeed, windSpeedT} }
 }
 
-function getLogs(logs) {
+function setLogs(logs) {
     return dispatch => {
         var res = [];
         var xbeeDatae = [];
