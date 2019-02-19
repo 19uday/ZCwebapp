@@ -4,7 +4,6 @@ import Layout from './Layout'
 import { } from '../_actions';
 import { Commissioning } from '../Commissioning';
 import { Commands } from '../Commands';
-import { Trends } from '../Trends';
 import { Wifi } from '../Wifi';
 import { commissioningActions } from '../_actions';
 import { Settings } from '../Settings';
@@ -38,75 +37,26 @@ class HomePage extends React.Component {
 
     logObj ={}
 
+    socket = null;
+
     componentDidMount() {
         var func = this;
-        var socket = io(`http://${this.hostname}`);
-        console.log(socket);
+        this.socket = io(`http://${this.hostname}`);
 
-        this.setState({sock: socket});
-
-        socket.on("connect", () => {
+        this.socket.on("connect", () => {
             console.log("Connected to server!!!");
-            socket.emit("subscribeToMessages",{});
+            this.socket.emit("subscribeToMessages",{});
         });
     
-        socket.on("disconnect", () => {
+        this.socket.on("disconnect", () => {
             console.log("Disconnect!!!");
-            socket.disconnect();
+            this.socket.disconnect();
         });
     
-        socket.on('message', function (data) {
+        this.socket.on('message', function (data) {
             console.log(data);
-            var res = [];   
-            var datae = func.state.messages;
-            var xbeeDatae = func.state.xbeeMessages;
-            
-            for(var i=0;i<data.logs.length;i++){
-              res = data.logs[i].message.split(" ");
-              if(data.logs[i].message.includes("rainFall"))
-              {
-                
-                func.setState({...func.state, buttonObject: {
-                  ...func.state.buttonObject,
-                  rainfall: Number(Number(res[2]).toFixed(2))
-                }});
-                func.setState({...func.state, buttonObject: {
-                  ...func.state.buttonObject,
-                  rainfallT: Number(Number(res[4]).toFixed(2))
-                }});
-              }
-              if(data.logs[i].message.includes("windSpeed"))
-              {
-                func.props.setWindParams(Number(Number(res[2]).toFixed(2)), Number(Number(res[4]).toFixed(2)))
-              }
-              if(data.logs[i].message.includes("colorChange"))
-              {
-                func.props.setTrackerColor(res[2], res[1]);
-              }
-              if( data.logs[i].message.includes("DID"))
-              {
-                console.log(typeof data.logs[i].message);
-                this.logsObj = {
-                    date: new Date().toLocaleDateString('en-US', {timeZone: 'America/Denver'}),
-                    time: new Date().toLocaleTimeString('en-US', {timeZone: 'America/Denver'}),
-                    log: data.logs[i].message,
-                }
-                xbeeDatae.push(this.logsObj);
-              }
-              else{
-                this.logsObj = {
-                    date: new Date().toLocaleDateString('en-US', {timeZone: 'America/Denver'}),
-                    time: new Date().toLocaleTimeString('en-US', {timeZone: 'America/Denver'}),
-                    log: data.logs[i].message,
-                }
-                datae.push(this.logsObj);
-              }
-            }
-            func.setState({messages: datae});
-            func.setState({xbeeMessages: xbeeDatae});
+            func.props.setLogs(data);
         });
-    
-        func.setState({start: true});
     }
 
     componentWillUnmount(){
@@ -137,6 +87,9 @@ const mapDispatchToProps = (dispatch) => ({
     },
     setWindParams: (windSpeed, windSpeedT) =>{
         dispatch(commissioningActions.setWindParams(windSpeed, windSpeedT))
+    },
+    setLogs: (logs) => {
+        dispatch(commissioningActions.setLogs(logs))
     },
 })
 

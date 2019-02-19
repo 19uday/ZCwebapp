@@ -363,10 +363,12 @@ ResponsiveDrawer.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  const { windSpeed, windSpeedT } = state.commissioning
+  const { windSpeed, windSpeedT, rainFall, rainFallT } = state.commissioning
   return {
     windSpeed,
     windSpeedT,
+    rainFall,
+    rainFallT,
   };
 }
 

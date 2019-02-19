@@ -14,8 +14,12 @@ const initialState = {
   },
   triggeringDiscovery: false,
   discoveryDetails: null,
+  rainFall: 0.0,
+  rainFallT: 0.0,
   windSpeed: 0.0,
   windSpeedT: 0.0,
+  logs: [],
+  xbeeLogs : [],
 }
 
 export function commissioning(state, action) {
@@ -64,18 +68,56 @@ export function commissioning(state, action) {
         error: action.error,
         loadedTrackerInfo: false
       };
-    case commissioningConstants.SET_COLOR_SUCCESS:
-    {
-      console.log(action.trackerID)
+
+      case 'messages':
+      return {
+        ...state,
+        logs: [
+          ...state.logs, action.datae
+        ],
+        xbeeLogs: [
+          ...state.xbeeLogs, action.xbeeDatae
+        ]
+      };
+
+      case 'rainFall':
+      return {
+        ...state,
+        rainFall: action.rainFall,
+        rainFallT: action.rainFallT,
+      }
+
+      case 'windSpeed':
+      return {
+        ...state,
+        windSpeed: action.windSpeed,
+        windSpeedT: action.windSpeedT,
+      }
+
+      case 'setTrackerColor':
       return {
         ...state,
         trackerColor:{
           ...state.trackerColor,
-          trackerID: action.trackerID,
+          trackerID: action.trackerId,
           color: action.color,
         }
       };
-    }
+
+    case commissioningConstants.GET_CURRENT_TRACKER_INFO_SUCCESS:
+      return {
+        ...state,
+        requestingTrackerInfo: false,  
+        selectedTrackerDetails: action.trackerDetails,
+        loadedTrackerInfo: true
+      };
+    case commissioningConstants.GET_CURRENT_TRACKER_INFO_FAILURE:
+      return {
+        ...state,
+        requestingTrackerInfo: false,
+        error: action.error,
+        loadedTrackerInfo: false
+      };
     case commissioningConstants.SET_WINDSPEED_SUCCESS:
     {
       return {

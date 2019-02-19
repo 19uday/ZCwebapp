@@ -11,6 +11,7 @@ export const commissioningActions = {
     setTrackerColor,
     triggerDiscovery,
     setWindParams,
+    getLogs,
 };
 
 function getCommissioningData() {
@@ -68,6 +69,53 @@ function setWindParams(windSpeed, windSpeedT) {
         dispatch(success(windSpeed, windSpeedT));
     };
     function success(windSpeed, windSpeedT) { return { type: commissioningConstants.SET_WINDSPEED_SUCCESS, windSpeed, windSpeedT} }
+}
+
+function getLogs(logs) {
+    return dispatch => {
+        var res = [];
+        var xbeeDatae = [];
+        var datae = [];
+        var logsObj = {};
+        logs['logs'].map(l => {
+            if(l.message.includes("rainFall"))
+            {
+                const rainFall = Number(Number(res[2]).toFixed(2));
+                const rainFallT = Number(Number(res[4]).toFixed(2));
+                dispatch({type: 'setRainfall', rainFall, rainFallT});
+            }
+            else if(l.message.includes("windSpeed"))
+            {
+                const windSpeed = Number(Number(res[2]).toFixed(2));
+                const windSpeedT = Number(Number(res[4]).toFixed(2));
+                dispatch({type: 'setWindSpeed', windSpeed, windSpeedT});
+            }
+            else if(l.message.includes("colorChange"))
+            {
+              const color = res[1];
+              const trackerId = res[2];
+              dispatch({type: 'setTrackerColor', color, trackerId});
+            }
+            else if(l.message.includes("DID"))
+            {
+              logsObj = {
+                  date: new Date().toLocaleDateString('en-US', {timeZone: 'America/Denver'}),
+                  time: new Date().toLocaleTimeString('en-US', {timeZone: 'America/Denver'}),
+                  log: l.message,
+              }
+              xbeeDatae.push(logsObj);
+            }
+            else{
+              logsObj = {
+                  date: new Date().toLocaleDateString('en-US', {timeZone: 'America/Denver'}),
+                  time: new Date().toLocaleTimeString('en-US', {timeZone: 'America/Denver'}),
+                  log: l.message,
+              }
+              datae.push(logsObj);
+            }
+        });
+        dispatch({type: 'messages', datae, xbeeDatae});
+    }
 }
 
 function triggerDiscovery() {
