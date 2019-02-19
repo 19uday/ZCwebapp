@@ -12,6 +12,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import classNames from 'classnames';
+import {connect} from 'react-redux';
 
 function TabContainer({ children, dir }) {
   return (
@@ -63,9 +64,9 @@ class Footer extends React.Component {
   };
 
   render() {
-    const { classes, theme, mess } = this.props;
+    const { classes, theme, logs } = this.props;
 
-    console.log(this.props.mess);
+    console.log(this.props.logs);
     return (
       <div className={classes.root}>
         <AppBar position="static" color="default" className={classes.appBar}>
@@ -102,7 +103,7 @@ class Footer extends React.Component {
           </TableRow>
         </TableHead>
         <TableBody>
-          {this.props.mess.map(row => (
+          {this.props.logs.map(row => (
             <TableRow key={row.id}>
               <TableCell  className={classes.white}  align="left">{row.date}</TableCell>
               <TableCell className={classes.white}  align="left">{row.time}</TableCell>
@@ -127,7 +128,7 @@ class Footer extends React.Component {
           </TableRow>
         </TableHead>
         <TableBody>
-          {this.props.xbee.map(row => (
+          {this.props.xbeeLogs.map(row => (
             <TableRow key={row.id}>
               <TableCell className={classes.white} align="left">{new Date(Number(JSON.parse(row.log).TS) * 1000).toLocaleDateString('en-US', {timeZone: 'America/Denver'})}</TableCell>
               <TableCell className={classes.white} align="left">{new Date(Number(JSON.parse(row.log).TS) * 1000).toLocaleTimeString('en-US', {timeZone: 'America/Denver'})}</TableCell>
@@ -150,4 +151,13 @@ Footer.propTypes = {
   theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(Footer);
+
+const mapStateToProps = (state) => {
+  const { logs, xbeeLogs } = state.commissioning
+  return {
+    logs,
+    xbeeLogs,
+  };
+}
+
+export default  connect(mapStateToProps)(withStyles(styles, { withTheme: true })(Footer));

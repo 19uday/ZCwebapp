@@ -57,6 +57,11 @@ class HomePage extends React.Component {
             console.log(data);
             func.props.setLogs(data);
         });
+
+        this.socket.on('closeApp', function (data){
+            console.log(data);
+            
+        })
     }
 
     componentWillUnmount(){
@@ -70,7 +75,7 @@ class HomePage extends React.Component {
                     this.props.match.params.id ?
                         this.props.match.params.id === 'Commissioning' ? <Commissioning /> :
                             this.props.match.params.id === 'Commands' ? <Commands /> :
-                                this.props.match.params.id === 'Logs' ? <Footer mess={this.state.messages} xbee={this.state.xbeeMessages}/>:
+                                this.props.match.params.id === 'Logs' ? <Footer />:
                                     this.props.match.params.id === 'Wifi' ? <Wifi /> :
                                         this.props.match.params.id === 'Settings' ? <Settings /> : <About />
                     : <Commissioning />
