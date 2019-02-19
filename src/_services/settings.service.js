@@ -45,7 +45,7 @@ function getPanId() {
         mode: 'cors',
     };
 
-    return fetch(`http://192.168.0.94:5001/gettings/xbeePanID `, requestOptions)
+    return fetch(`http://${hostNameXBee}/gettings/xbeePanID `, requestOptions)
         .then(handleResponse)
 }
 

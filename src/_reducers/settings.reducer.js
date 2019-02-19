@@ -33,10 +33,10 @@ export function settings(state, action) {
         sent: false
       };
     case settingsConstants.GETPAN_SUCCESS:
-    { console.log(action.panId["panID"]);
+    { console.log(action.panId["panID"].toString());
       return {
         ...state,
-        panId: action.panId["panID"]
+        panId: action.panId["panID"].toString()
       };
     }
       case settingsConstants.SET_THRESHOLD_REQUEST:

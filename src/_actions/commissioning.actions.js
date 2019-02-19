@@ -84,19 +84,19 @@ function setLogs(logs) {
                 const rainFallT = Number(Number(res[4]).toFixed(2));
                 dispatch({type: 'setRainfall', rainFall, rainFallT});
             }
-            else if(l.message.includes("windSpeed"))
+            if(l.message.includes("windSpeed"))
             {
                 const windSpeed = Number(Number(res[2]).toFixed(2));
                 const windSpeedT = Number(Number(res[4]).toFixed(2));
                 dispatch({type: 'setWindSpeed', windSpeed, windSpeedT});
             }
-            else if(l.message.includes("colorChange"))
+            if(l.message.includes("colorChange"))
             {
               const color = res[1];
               const trackerId = res[2];
               dispatch({type: 'setTrackerColor', color, trackerId});
             }
-            else if(l.message.includes("DID"))
+            if(l.message.includes("DID"))
             {
               logsObj = {
                   date: new Date().toLocaleDateString('en-US', {timeZone: 'America/Denver'}),
