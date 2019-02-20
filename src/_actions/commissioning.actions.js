@@ -11,7 +11,7 @@ export const commissioningActions = {
     setTrackerColor,
     triggerDiscovery,
     setWindParams,
-    setLogs,
+    getLogs,
 };
 
 function getCommissioningData() {
@@ -71,13 +71,19 @@ function setWindParams(windSpeed, windSpeedT) {
     function success(windSpeed, windSpeedT) { return { type: commissioningConstants.SET_WINDSPEED_SUCCESS, windSpeed, windSpeedT} }
 }
 
-function setLogs(logs) {
+function getLogs() {
     return dispatch => {
         var res = [];
         var xbeeDatae = [];
         var datae = [];
         var logsObj = {};
+
+        commissioningService.getLogs()
+        .then(
+            logs => { 
+
         logs['logs'].map(l => {
+            res = l.message.split(" ");
             if(l.message.includes("rainFall"))
             {
                 const rainFall = Number(Number(res[2]).toFixed(2));
@@ -98,12 +104,7 @@ function setLogs(logs) {
             }
             if(l.message.includes("DID"))
             {
-              logsObj = {
-                  date: new Date().toLocaleDateString('en-US', {timeZone: 'America/Denver'}),
-                  time: new Date().toLocaleTimeString('en-US', {timeZone: 'America/Denver'}),
-                  log: l.message,
-              }
-              xbeeDatae.push(logsObj);
+              xbeeDatae.push(l.message);
             }
             else{
               logsObj = {
@@ -115,6 +116,8 @@ function setLogs(logs) {
             }
         });
         dispatch({type: 'messages', datae, xbeeDatae});
+            }
+        );
     }
 }
 

@@ -128,12 +128,12 @@ class Footer extends React.Component {
           </TableRow>
         </TableHead>
         <TableBody>
-          {this.props.xbeeLogs.map(row => (
-            <TableRow key={row.id}>
-              <TableCell className={classes.white} align="left">{new Date(Number(JSON.parse(row.log).TS) * 1000).toLocaleDateString('en-US', {timeZone: 'America/Denver'})}</TableCell>
-              <TableCell className={classes.white} align="left">{new Date(Number(JSON.parse(row.log).TS) * 1000).toLocaleTimeString('en-US', {timeZone: 'America/Denver'})}</TableCell>
+          {this.props.xbeeLogs.map(row1 => (
+            <TableRow key={row1.id}>
+              <TableCell className={classes.white} align="left">{new Date(Number(JSON.parse(row1).TS) * 1000).toLocaleDateString('en-US', {timeZone: 'America/Denver'})}</TableCell>
+              <TableCell className={classes.white} align="left">{new Date(Number(JSON.parse(row1).TS) * 1000).toLocaleTimeString('en-US', {timeZone: 'America/Denver'})}</TableCell>
               <TableCell component="th" scope="row" align="right" className={classes.white}>
-                {row.log}
+                {row1}
               </TableCell>
             </TableRow>
           ))}

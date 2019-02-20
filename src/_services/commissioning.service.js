@@ -2,6 +2,7 @@ export const commissioningService = {
     getCommissioningData,
     getCurrentTrackerInfo,
     triggerDiscovery,
+    getLogs,
 };
 
 const hostname = window.location.hostname + ':5000';
@@ -17,6 +18,17 @@ function getCommissioningData() {
     };
 
     return fetch(`http://${hostname}/getCommissioningData`, requestOptions)
+        .then(handleResponse)
+}
+
+function getLogs() {
+    const requestOptions = {
+        method: "GET",
+        mode: 'cors',
+        body: null
+    };
+
+    return fetch(`http://${hostname}/messages`, requestOptions)
         .then(handleResponse)
 }
 

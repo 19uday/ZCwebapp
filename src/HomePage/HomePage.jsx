@@ -39,30 +39,19 @@ class HomePage extends React.Component {
 
     socket = null;
 
+    interr = {} 
+
+    everyThirty = () => {
+        var func = this;
+        this.interr = setInterval(() => {
+            func.props.getLogs();
+            console.log();
+        }, 30000)
+    }
+
     componentDidMount() {
         this.props.getPanId();
-        var func = this;
-        this.socket = io(`http://${this.hostname}`);
-
-        this.socket.on("connect", () => {
-            console.log("Connected to server!!!");
-            this.socket.emit("subscribeToMessages",{});
-        });
-    
-        this.socket.on("disconnect", () => {
-            console.log("Disconnect!!!");
-            this.socket.disconnect();
-        });
-    
-        this.socket.on('message', function (data) {
-            console.log(data);
-            func.props.setLogs(data);
-        });
-
-        this.socket.on('closeApp', function (data){
-            console.log(data);
-            
-        })
+        this.everyThirty();
     }
 
     render() {
@@ -90,8 +79,8 @@ const mapDispatchToProps = (dispatch) => ({
     setWindParams: (windSpeed, windSpeedT) =>{
         dispatch(commissioningActions.setWindParams(windSpeed, windSpeedT))
     },
-    setLogs: (logs) => {
-        dispatch(commissioningActions.setLogs(logs))
+    getLogs: () => {
+        dispatch(commissioningActions.getLogs())
     },
     getPanId: () =>{
         dispatch(settingsActions.getPanId())

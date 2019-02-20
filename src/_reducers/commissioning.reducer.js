@@ -70,6 +70,7 @@ export function commissioning(state, action) {
       };
 
       case 'messages':
+      { console.log(action.datae, action.xbeeDatae)
       return {
         ...state,
         logs: [
@@ -79,6 +80,7 @@ export function commissioning(state, action) {
           ...state.xbeeLogs, action.xbeeDatae
         ]
       };
+    }
 
       case 'rainFall':
       return {
